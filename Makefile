@@ -6,7 +6,7 @@
 #    By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/17 16:37:32 by jjs              ###   ########.fr        #
+#    Updated: 2024/09/17 17:03:49 by jjs              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CFLAGS = -Wall -Wextra -Werror #-g
 REMOVE = rm -rf
 
 # Directories
-MLX_DIR = minilibx-linux
+MLX_DIR = mlx
 LIBFT_DIR = Libft
 PRINTF_DIR = ft_printf
 
@@ -50,7 +50,7 @@ OBJ = $(SRC:.c=.o)
 
 # Compile object files
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC)  -c $< -o $@
 
 #Executable name
 NAME = so_long
