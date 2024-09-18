@@ -6,7 +6,7 @@
 #    By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 15:25:10 by jslusark          #+#    #+#              #
-#    Updated: 2024/09/18 15:19:38 by jjs              ###   ########.fr        #
+#    Updated: 2024/09/18 17:03:48 by jjs              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,9 @@ src/ft_printhex.c \
 src/ft_printpointer.c
 
 all : $(NAME)
-	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) ready for use!"
+	@echo "$(IDLE) $(MAGENTA)$(NAME)$(RESET) is up to date!"
 
 $(NAME) : $(OFILES)
-	$(MAKE) -C ../libft
-	cp ../libft/libft.a $(NAME)
 	ar rcs $(NAME) $(OFILES)
 	ranlib $(NAME)
 	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) library archived and indexed"
@@ -56,12 +54,10 @@ $(NAME) : $(OFILES)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(MAKE) clean -C ../libft
 	rm -f $(OFILES)
-	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) object files"
+	@echo "$(WARNING) removed $(MAGENTA)ft_printf$(RESET)'s object files"
 
 fclean: clean
-	$(MAKE) fclean -C ../libft
 	rm -f $(NAME)
 	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) library"
 

@@ -6,7 +6,7 @@
 #    By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 11:53:09 by jessica           #+#    #+#              #
-#    Updated: 2024/09/18 15:17:27 by jjs              ###   ########.fr        #
+#    Updated: 2024/09/18 16:46:50 by jjs              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ src/ft_split.c
 
 
 all : $(NAME)
-	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) ready for use!"
+	@echo "$(IDLE) $(MAGENTA)$(NAME)$(RESET) is up to date!"
 
 $(NAME) : $(OFILES)
 	ar rcs $(NAME) $(OFILES)
@@ -83,7 +83,7 @@ $(NAME) : $(OFILES)
 
 clean:
 	rm -f $(OFILES)
-	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) object files"
+	@echo "$(WARNING) removed $(MAGENTA)libft$(RESET)'s' object files"
 
 fclean: clean
 	rm -f $(NAME)

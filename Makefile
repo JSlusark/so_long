@@ -6,7 +6,7 @@
 #    By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/18 15:32:34 by jjs              ###   ########.fr        #
+#    Updated: 2024/09/18 17:13:20 by jjs              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,9 @@ OBJ = $(SRC:.c=.o)
 #Executable name
 NAME = so_long
 
-# Default target, includes a conditional that decides wheter to compile the project or not if it's there/not-there
+# Default target
 all: $(NAME)
-	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) ready for use!"
+	@echo "$(IDLE) $(MAGENTA)$(NAME)$(RESET) is up to date!"
 $(MLX_LIB):
 	@make -C $(MLX_DIR) --silent
 $(LIBFT_LIB):
@@ -70,21 +70,31 @@ $(NAME): $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB)
 	@$(CC) $(CFLAGS) -I. $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB) $(EXT_LIBS) -o $(NAME)
 	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) archived and indexed!"
 
-# Clean up object files - ADD IF AND ELSE STATEMENTS TO AVOID CLEANING WHEN NOT NEEDED
+# added if statements so that itwill clean only when th o files are present
 clean:
-	@$(REMOVE) $(OBJ)
-	@make -C $(MLX_DIR) clean --silent
-	@make -C $(PRINTF_DIR) clean --silent
-	@make -C $(LIBFT_DIR) clean --silent
-	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) object files"
+	@if ls $(OBJ) >/dev/null 2>&1; then \
+		$(REMOVE) $(OBJ); \
+		make -C $(MLX_DIR) clean --silent; \
+		make -C $(PRINTF_DIR) clean --silent; \
+		make -C $(LIBFT_DIR) clean --silent; \
+		echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) object files"; \
+	else \
+		echo "$(IDLE) object files were already cleaned"; \
+	fi
 
-# Full clean up including libraries and executables
+# added if statements so that itwill clean only when exec and lib files are present
 fclean: clean
-	@$(REMOVE) $(NAME)
-	@make -C $(MLX_DIR) clean --silent
-	@make -C $(PRINTF_DIR) fclean --silent
-	@make -C $(LIBFT_DIR) fclean --silent
-	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) library"
+	@if [ -f $(NAME) ]; then \
+		$(REMOVE) $(NAME); \
+		$(REMOVE) $(PRINTF_LIB); \
+		$(REMOVE) $(LIBFT_LIB); \
+		make -C $(MLX_DIR) clean --silent; \
+		echo "$(WARNING) removed $(MAGENTA)libftprintf.a$(RESET) library"; \
+		echo "$(WARNING) removed $(MAGENTA)libft.a$(RESET) library"; \
+		echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) executable"; \
+	else \
+		echo "$(IDLE) Executables and libraries were already cleaned"; \
+	fi
 
 # Recompile everything
 re: fclean all
