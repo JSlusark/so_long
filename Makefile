@@ -6,7 +6,7 @@
 #    By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/17 17:03:49 by jjs              ###   ########.fr        #
+#    Updated: 2024/09/18 15:32:34 by jjs              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,15 @@ REMOVE = rm -rf
 
 # Directories
 MLX_DIR = mlx
-LIBFT_DIR = Libft
+LIBFT_DIR = libft
 PRINTF_DIR = ft_printf
 
 # Libraries
-LIBFT = $(LIBFT_DIR)/libft.a
-PRINTF = $(PRINTF_DIR)/libftprintf.a
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
-LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
-# LIBS = -Lmlx -lmlx -framework OpenGL -framework AppKi #for mac
+EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
+# EXT_LIBS = -Lmlx -lmlx -framework OpenGL -framework AppKi #for mac
 
 # Source files
 SRC = main.c
@@ -50,45 +50,45 @@ OBJ = $(SRC:.c=.o)
 
 # Compile object files
 %.o: %.c
-	@$(CC)  -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 #Executable name
 NAME = so_long
 
 # Default target, includes a conditional that decides wheter to compile the project or not if it's there/not-there
-all: check_already_compiled
-
-# Check if the executable already exists
-check_already_compiled:
-	@if [ -f $(NAME) ]; then \
-		echo "$(IDLE) No changes detected, nothing to compile."; \
-	else \
-		$(MAKE) $(NAME); \
-	fi
-
+all: $(NAME)
+	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) ready for use!"
 $(MLX_LIB):
 	@make -C $(MLX_DIR) --silent
+$(LIBFT_LIB):
+	@make -C $(LIBFT_DIR) --silent
+$(PRINTF_LIB):
+	@make -C $(PRINTF_DIR) --silent
 
 # later add also compilation for libft, printf and getnextline
-$(NAME): $(OBJ) $(MLX_LIB)
-	@$(CC) $(CFLAGS) -I. $(OBJ) $(MLX_LIB) $(LIBS) -o $(NAME)
-	@echo "$(SUCCESS) So_long program was compiled successfully!"
+$(NAME): $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB)
+	@$(CC) $(CFLAGS) -I. $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB) $(EXT_LIBS) -o $(NAME)
+	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) archived and indexed!"
 
 # Clean up object files - ADD IF AND ELSE STATEMENTS TO AVOID CLEANING WHEN NOT NEEDED
 clean:
 	@$(REMOVE) $(OBJ)
 	@make -C $(MLX_DIR) clean --silent
-	@echo "$(WARNING) Cleaned up all object files."
+	@make -C $(PRINTF_DIR) clean --silent
+	@make -C $(LIBFT_DIR) clean --silent
+	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) object files"
 
 # Full clean up including libraries and executables
 fclean: clean
 	@$(REMOVE) $(NAME)
 	@make -C $(MLX_DIR) clean --silent
-	@echo "$(WARNING) Full clean including executables and libraries."
+	@make -C $(PRINTF_DIR) fclean --silent
+	@make -C $(LIBFT_DIR) fclean --silent
+	@echo "$(WARNING) removed $(MAGENTA)$(NAME)$(RESET) library"
 
 # Recompile everything
 re: fclean all
-	@echo "$(SUCCESS) Re-comipilation executables and libraries"
+	@echo "$(WARNING) recompiled everything from $(MAGENTA)$(NAME)$(RESET)"
 
 %:
 	@echo "$(FAILURE) target '$@' is not a valid target.$(RESET)"
