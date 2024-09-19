@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+         #
+#    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/18 17:13:20 by jjs              ###   ########.fr        #
+#    Updated: 2024/09/19 14:00:04 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
 # EXT_LIBS = -Lmlx -lmlx -framework OpenGL -framework AppKi #for mac
 
 # Source files
-SRC = main.c
+SRC = main.c \
+	src/map_check.c
 OBJ = $(SRC:.c=.o)
 
 # Compile object files

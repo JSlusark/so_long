@@ -3,71 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/18 15:56:00 by jjs              ###   ########.fr       */
+/*   Updated: 2024/09/19 14:00:07 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// typedef struct	s_data {
-// 	void	*img;
-// 	char	*addr;
-// 	int		bits_per_pixel;
-// 	int		line_length;
-// 	int		endian;
-// }				t_data;
+static	void launch_game(char *map_file)
+{
+	ft_printf("launching game %c ..\n", map_file[0]);
+	check_map(map_file); // maybe let it return a true statement after all map checks done
+	// do most checks before laucnhing mlx to avoid repeating unnecessary frees
+	// CHECKS IN MIND(for now):
+	// MAP checks
+	//		is_rectangular
+	//		is_same_len (prob included in check above)
+	//		includes_correct_symbols (P, C, 1, E, 0)
+	//		is_framed (checks if line 1 and last have all 1/walls, and mid lines 1st and last has one 1 while middle 0/empty )
+	// ASSETS
+	//	 ASSET LAYOUT CHECK
+	//		- problems with items spreading om the page and interacting
+	//	 ASSET GRAPHIC CONV CHECK ?
 
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
-
-// int	main(void)
-// {
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	t_data	img;
-
-// 	mlx = mlx_init();
-//     if (!mlx)
-//         return(1);
-// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "SO LONG");
-// 	if (!mlx_win)
-//     {
-//         return(free(mlx), 1);
-//     }
-//     img.img = mlx_new_image(mlx, 1920, 1080);
-// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-// 								&img.endian);
-// 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-// 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-// 	// mlx_loop(mlx);
-//     mlx_destroy_window(mlx, mlx_win);
-// 	mlx_destroy_display(mlx);
-//     free(mlx);
-//     free(img.img);
-//     free(img.addr);
-// }
-
-// int	launch_game(char *map_file)
-// {
-// 	//run an error message if the map file is not .ber extention and if invalid
-// }
-
+}
 
 int main(int argc, char **argv)
 {
-	// if(argc == 2)
-	// 	launch_game(argv[1]);
 	if(argc == 2)
-		ft_printf("launching game %c ..", argv[1][0]);
-	// else
-		ft_printf("./so_long requires a file from the map folder to run!");
-	// return (0);
+		launch_game(argv[1]);
+	else
+		ft_printf("./so_long requires a file from the map folder to run!\n");
+	return (0);
 }
