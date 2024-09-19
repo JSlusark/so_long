@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:43:46 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/09/19 14:19:27 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
+	if (!s1 && !s2)
+		return (NULL);
+	else if (!s1)
+		return (ft_strdup(s2));
+	else if (!s2)
+		return (ft_strdup(s1));
 	total_size = ft_strlen(s1) + ft_strlen(s2);
 	together = (char *)malloc(sizeof(char) * total_size + 1);
 	if (!together)
@@ -33,24 +39,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	together[j] = '\0';
 	return (together);
 }
-/* #include<stdio.h>
-int main(void) {
-    char *result;
-
-    // Test 1: Join two normal strings
-    result = ft_strjoin("Hello", " world!");
-    printf("Test 1: %s\n", result);
-    free(result);  // Remember to free after usage to avoid memory leaks
-
-    // Test 2: Join first string empty
-    result = ft_strjoin("", " world!");
-    printf("Test 2: %s\n", result);
-    free(result);
-
-    // Test 3: Join second string empty
-    result = ft_strjoin("Hello", "");
-    printf("Test 3: %s\n", result);
-    free(result);
-
-    return 0;
-} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:49:27 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/09/19 14:06:23 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,11 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
+	if (!s)
+		return (0);
 	len = 0;
 	while (s[len] != '\0')
 		len++;
 	return (len);
 }
-/* #include <stdio.h>
-int	main(void)
-{
-	printf("%zu\n", ft_strlen("123456")); //6
-	printf("%zu\n", ft_strlen("123")); //3
-	printf("%zu\n", ft_strlen("Hello World")); //11
-	printf("%zu\n", ft_strlen("/&90hsb\'s^-")); //11
-	printf("%zu\n", ft_strlen("X")); //1
-} //ok */
+

@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/19 14:00:04 by jslusark         ###   ########.fr        #
+#    Updated: 2024/09/19 19:00:38 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
 
 # Source files
 SRC = main.c \
-	src/map_check.c
+	src/map_check.c \
+	src/get_next_line.c
 OBJ = $(SRC:.c=.o)
 
 # Compile object files

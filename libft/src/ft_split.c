@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:44:06 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/09/19 19:00:38 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+// #include <stdio.h> // REMOVE AFTER DONE ERROR HANDLING
 
 static size_t	count_words(const char *s, char c)
 {
@@ -41,6 +42,7 @@ static char	*alloc_word(const char *start, int len)
 	if (!word)
 		return (NULL);
 	ft_strlcpy(word, start, len + 1);
+	// printf("WORD: %s\n", word ); // REMOVE AFTER DONE ERROR HANDLING
 	return (word);
 }
 
@@ -80,33 +82,3 @@ char	**ft_split(char const *s, char c)
 	result[w_i] = NULL;
 	return (result);
 }
-/* #include <stdio.h>
-void print_result(char **result) {
-    if (result) {
-        for (int i = 0; result[i] != NULL; i++) {
-            printf("'%s'\n", result[i]);
-            free(result[i]);  // Free each string after printing
-        }
-        free(result);  // Finally free the result array
-    }
-}
-int main(void) {
-    char **result;
-
-    // Test 1: Basic functionality
-    result = ft_split("hello world here", ' ');
-    printf("Test 1:\n");
-    print_result(result);
-
-    // Test 2: Delimiter at the start and end
-    result = ft_split(" test split case ", ' ');
-    printf("Test 2:\n");
-    print_result(result);
-
-    // Test 3: Consecutive delimiters
-    result = ft_split("hello  world  here", ' ');
-    printf("Test 3:\n");
-    print_result(result);
-
-    return 0;
-} */
