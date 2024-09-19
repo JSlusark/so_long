@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/19 18:56:01 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:54:59 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ void	check_map(char *map_file)
 	}
 	map_layout = ft_split(file_content, '\n');
 	free(file_content);
-	free_map(map_layout);
+
+	// check format
+	free_map(map_layout); // add this when over with the map array (probably afther the game closes)
 }
