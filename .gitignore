@@ -1,3 +1,8 @@
 readme.md
 old_main.c
 img/png/asset_example.clip
+
+#any ds_store files
+.DS_Store
+
+.vscode

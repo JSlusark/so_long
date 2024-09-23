@@ -1,29 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/19 19:54:59 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:13:27 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	free_map(char **map_layout)
-{
-	int i;
-
-	i = 0;
-	while (map_layout[i])
-	{
-		free(map_layout[i]);
-		i++;
-	}
-	free(map_layout);
-}
 static char	*parse_map(int fd) //what if there is nothing? written in the file
 {
 	char *file_content;
@@ -36,16 +24,23 @@ static char	*parse_map(int fd) //what if there is nothing? written in the file
 		if (file_content == NULL)
 		{
 			file_content = ft_strdup(line);
-			ft_printf("LINE: %s", line);
+			// ft_printf("LINE: %s", line);
 		}
 		else
 		{
-			ft_printf("LINE: %s", line);
+			// ft_printf("LINE: %s", line);
 			temp = ft_strjoin(file_content, line);
 			free(file_content);
 			file_content = temp;
+			// free temp?
 		}
 		free(line);
+	}
+	if (!file_content) // error handling if file is empty, do we free fd after?
+	{
+		ft_printf("Error: file is empty!\n");
+		free(file_content);
+		exit(1);
 	}
 	return(file_content);
 }
@@ -71,32 +66,27 @@ static int	has_file_extension(char *file, char *extension) // doing this in case
 	return 1;
 }
 
-void	check_map(char *map_file)
+char	**get_map(char *file, t_map *map_data)
 {
 	int fd;
-	char **map_layout;
+	char **map_array;
 	char *file_content;
 
-	if (!has_file_extension(map_file, ".ber"))
+	if (!has_file_extension(file, ".ber"))
 	{
 		ft_printf("Error: use the correct file extension\n");
 		exit(1);
 	}
-	fd = open(map_file, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_printf("Error: file not found!\n");
 		exit(1);
 	}
 	file_content = parse_map(fd);
-	if (!file_content)
-	{
-		ft_printf("Error: file is empty!\n");
-		exit(1);
-	}
-	map_layout = ft_split(file_content, '\n');
+	// check for documents that have spaces they should be err
+	map_array = ft_split(file_content, '\n');
 	free(file_content);
-
-	// check format
-	free_map(map_layout); // add this when over with the map array (probably afther the game closes)
+	verify_map(map_array, map_data);
+	return(map_array);
 }

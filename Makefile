@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/19 19:00:38 by jslusark         ###   ########.fr        #
+#    Updated: 2024/09/23 16:15:53 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ IDLE = $(BLUE)Idle:$(RESET)
 
 # Compiler flags and commands
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-g
+CFLAGS = -Wall -Wextra -Werror -g
 REMOVE = rm -rf
 
 # Directories
@@ -46,8 +46,11 @@ EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
 
 # Source files
 SRC = main.c \
-	src/map_check.c \
-	src/get_next_line.c
+	src/data_collection.c \
+	src/get_next_line.c \
+	src/map_parsing.c \
+	src/map_validation.c \
+	src/memory_handling.c
 OBJ = $(SRC:.c=.o)
 
 # Compile object files
