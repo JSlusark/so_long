@@ -1,6 +1,10 @@
 readme.md
+map_tests.md
 old_main.c
 img/png/asset_example.clip
+
+#tests
+run_all_maps.sh
 
 #any ds_store files
 .DS_Store

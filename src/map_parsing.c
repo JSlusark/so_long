@@ -6,43 +6,48 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/23 16:13:27 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:04:08 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static char	*parse_map(int fd) //what if there is nothing? written in the file
+static char	*parse_map(int fd)
 {
 	char *file_content;
 	char *line;
 	char *temp;
+	int i;
 
 	file_content = NULL;
+	i = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		if (file_content == NULL)
+		// printf("%s\n", line);
+		if (line[i] == '\0' || line[0] == '\n' ) // does not see as error if last line of doc has /n
 		{
-			file_content = ft_strdup(line);
-			// ft_printf("LINE: %s", line);
+			printf("Error: empty line found at line %d!\n", i+1);
+			free(file_content);
+			exit(1);
 		}
+		if (file_content == NULL)
+			file_content = ft_strdup(line);
 		else
 		{
-			// ft_printf("LINE: %s", line);
 			temp = ft_strjoin(file_content, line);
 			free(file_content);
 			file_content = temp;
-			// free temp?
 		}
 		free(line);
+		i++;
 	}
-	if (!file_content) // error handling if file is empty, do we free fd after?
+	if (!file_content)
 	{
-		ft_printf("Error: file is empty!\n");
+		printf("Error: file is empty!\n");
 		free(file_content);
 		exit(1);
 	}
-	return(file_content);
+	return file_content;
 }
 
 static int	has_file_extension(char *file, char *extension) // doing this in case file ext needs to be diff in future
@@ -74,13 +79,13 @@ char	**get_map(char *file, t_map *map_data)
 
 	if (!has_file_extension(file, ".ber"))
 	{
-		ft_printf("Error: use the correct file extension\n");
+		printf("Error: use the correct file extension\n");
 		exit(1);
 	}
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error: file not found!\n");
+		printf("Error: file not found!\n");
 		exit(1);
 	}
 	file_content = parse_map(fd);

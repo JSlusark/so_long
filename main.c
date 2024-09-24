@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/23 16:43:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:59:17 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static	void launch_game(char **map_array)
 {
-	ft_printf("launching game..\n");
+	printf("launching game..\n");
 	 int i = 0;
 	while (map_array[i] != NULL)
 	{
-		ft_printf("%s\n", map_array[i]);
+		printf("%s\n", map_array[i]);
 		i++;
 	}
 
@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 {
 	char	**map_array;
 	t_map	map_data;
+	printf("NOTE: PLEASE REMEMBER TO REPLACE WITH YOUR CORRECTED PRINTF\n");
 
 	// map_data = NULL;
 	if(argc == 2)
@@ -46,7 +47,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		ft_printf("./so_long requires a file from the map folder to run!\n");
+		printf("./so_long requires a file from the map folder to run!\n");
 		exit(1);
 	}
 	return (0);

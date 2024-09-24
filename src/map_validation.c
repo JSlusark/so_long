@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/23 17:23:54 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:08:53 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	has_required_text(char **map) // return 1 if map sym
 				c++;
 			else
 			{
-				ft_printf("map does not have required text: %c at r[%d]c[%d]\n", map[r][c], r, c);
+				printf("map does not have required text: %c at r[%d]c[%d]\n", map[r][c], r, c);
 				return(0);
 			}
 		}
@@ -57,7 +57,7 @@ int	count_sprites(char **map, int *f, int *e, int *c, int *p) // return 1 if map
 		col = 0;
 		while (map[row][col] != '\0')
 		{
-			ft_printf("%c", map[row][col]);
+			// printf("%c", map[row][col]);
 			if (map[row][col] == 'P')
 				(*p)++;
 			if (map[row][col] == 'C')
@@ -68,7 +68,7 @@ int	count_sprites(char **map, int *f, int *e, int *c, int *p) // return 1 if map
 				(*f)++;
 			col++;
 		}
-		ft_printf("\n");
+		// printf("\n");
 		row++;
 	}
 	return(1);
@@ -86,24 +86,17 @@ int	has_enough_sprites(char **map, t_map *map_data) // return 1 if map sym
 	c = 0;
 	p = 0;
 	count_sprites(map, &f, &e, &c, &p);
-	if(p == 0 || p > 1)
+	if(p == 0 || p > 1 || c == 0 || e == 0 || e > 1)
 	{
-		ft_printf("amount of P in map is %d\n", p);
-		return(0);
-	}
-	if(c == 0)
-	{
-		ft_printf("amount of C in map is %d\n", c);
-		return(0);
-	}
-	if(e == 0 || e > 1)
-	{
-		ft_printf("amount of E in map is %d\n", e);
+		printf("Map does not have the required amount assets. Check amount required below:\n");
+		printf("- C: %d (needs to be 1 or more) \n", c);
+		printf("- P: %d (needs to be 1) \n", p);
+		printf("- E: %d (needs to be 1) \n", e);
 		return(0);
 	}
 	// if(f == 0) // check if floor amount needs to be h x w (and go behind everything)
 	// {
-	// 	ft_printf("amount of F in map is %d\n", f);
+	// 	printf("amount of F in map is %d\n", f);
 	// 	return(0);
 	// }
 	map_data->c_n = c;
@@ -122,14 +115,14 @@ int	is_rectangular(char **map, int row, int col) // checks lines for shape, chec
 		curr = ft_strlen(map[i]);
 		if (curr != row)
 		{
-			ft_printf("Map's height is not the same for every row and therefore has no valid shape\n");
+			printf("Map's height is not the same for every row and therefore has no valid shape\n");
 			return(0);
 		}
 		i++;
 	}
 	if (row == col)
 	{
-		ft_printf("Map is not rectangular\n");
+		printf("Map is not rectangular\n");
 		return(0);
 	}
 	return(1);
@@ -150,7 +143,7 @@ int is_framed(char **map, int last_row, int last_c)
 			{
 				if (map[row][c] != '1')
 					{
-						ft_printf("Map is not framed from walls (1)\n");
+						printf("Map is not framed from walls (1)\n");
 						return(0);
 					}
 			}
@@ -158,7 +151,7 @@ int is_framed(char **map, int last_row, int last_c)
 			{
 					if (!ft_strchr("01CEP", map[row][c])) // check this better
 					{
-						ft_printf("No valid characters inside the map\n");
+						printf("No valid characters inside the map\n");
 						return(0);
 					}
 			}
