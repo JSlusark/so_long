@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/24 18:04:08 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:00:40 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char	**get_map(char *file, t_map *map_data)
 	file_content = parse_map(fd);
 	// check for documents that have spaces they should be err
 	map_array = ft_split(file_content, '\n');
+	collect_sprites(map_array, map_data);
 	free(file_content);
 	verify_map(map_array, map_data);
 	return(map_array);

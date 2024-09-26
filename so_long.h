@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/23 17:19:52 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:10:29 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
 
 #include "ft_printf/ft_printf.h"
 #include "libft/libft.h"
@@ -28,28 +29,50 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 
+//sprites size
+# define SIZE 32
+# define VALID_CHARS "01PCE"
+# define WALL "1"
+# define CHARACTER "P"
+# define LOOT "C"
+# define EXIT "E"
+# define FLOOR "0"
+
 
 //MAP
 typedef struct s_map
 {
 	int	width;
 	int height;
-	// int p_n;  // can be used to make exit available when 0
-	// t_coordinates p_position; // struct coords to use when finding the elements i need
-	// int e_n;  // can be used to make exit available when 0
-	// t_coordinates e_position;
-	int c_n;  // can be used to make exit available when 0
-	// t_coordinates c_position;
-	// int f_n;  // can be used to make exit available when 0
+	int loot_n;  // can be used to make exit available when 0
+	t_sprite **character_data;
+	char	*character_img;
+	char	*exit_img;
+	char	*floor_img;
+	char	*loot_img;
+	char	*wall_img;
+	int last_c;
+	int	last_r;
 }				t_map;
 
-// typedef struct s_coordinates // could-+ save coords in another struct
-// {
-// 	t_coordinates *prev; // for colectible
-// 	int col;
-// 	int row;
-// 	t_coordinates *next; // for colectible
-// }				t_coordinates;
+typedef struct s_sprite // could-+ save coords in another struct
+{
+	char *ptr;
+	int moves;
+	int	loot_collected;
+	t_coord **curr_i;
+	t_coord **up_i; // stores chara top of image if applicable
+	t_coord **left_i; // stores chara left of image if applicable
+	t_coord **right_i; // stores chara right of image if applicable
+	t_coord **down_i; // stores chara bottom of image if applicable
+}				t_sprite;
+
+typedef struct s_coord // could-+ save coords in another struct
+{
+	char *ptr;
+	int x; // so that then i can change these
+	int y;
+}				t_coord
 
 // Map parsing (to transform in array)
 char	**get_map(char *file, t_map *map_data); // handles fd errors, invalid and empty files

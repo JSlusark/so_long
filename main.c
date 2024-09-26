@@ -6,29 +6,44 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/24 15:59:17 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:12:01 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static	void launch_game(char **map_array)
+static	void launch_game(char **map_array, t_map map_data)
 {
-	printf("launching game..\n");
-	 int i = 0;
-	while (map_array[i] != NULL)
+
+	void	*game;
+	void	*mlx_win;
+	// void	wall;
+	// void	floor;
+	// void	exit;
+	// void	chara;
+	// void	loot;
+
+	if(!verify_sprites)
 	{
-		printf("%s\n", map_array[i]);
-		i++;
+
 	}
 
-	// check_map(map_file); // maybe let it return a true statement after all map checks done
-	// do most checks before laucnhing mlx to avoid repeating unnecessary frees
-	// MAP FORMAT & PARSING
-	// ASSETS
-	//	 ASSET LAYOUT CHECK
-	//		- problems with items spreading om the page and interacting
-	//	 ASSET GRAPHIC CONV CHECK ?
+	printf("launching game..\n");
+	game = mlx_init();
+	mlx_win = mlx_new_window(mlx, (map->width * 32), (map->height * 32), "SO_LONG");
+	if (!mlx_win)
+	 {
+		free(mlx),
+		exit(1);
+	}
+	if (!mlx)
+		exit(1);
+	// render map
+	// at key event count move and update map array and update sprite parsing
+	// re-render?
+	mlx_loop(game);
+	free(mlx);
+
 
 }
 
@@ -42,7 +57,9 @@ int main(int argc, char **argv)
 	if(argc == 2)
 	{
 		map_array = get_map(argv[1], &map_data); // maybe let it return a true statement after all map checks done
-		launch_game(map_array);
+		collect_sprites(map_array, map_data);
+		// void	store_chara_data(char **map_array, t_map map_data)
+		launch_game(map_array, map_data);
 		free_map(map_array); // IMPORTANT!!
 	}
 	else
