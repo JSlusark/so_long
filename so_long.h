@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/26 11:10:29 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:34:24 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,38 @@
 
 //sprites size
 # define SIZE 32
-# define VALID_CHARS "01PCE"
-# define WALL "1"
-# define CHARACTER "P"
-# define LOOT "C"
-# define EXIT "E"
-# define FLOOR "0"
+// # define VALID_CHARS "01PCE"
+// # define WALL "1"
+// # define CHARACTER "P"
+// # define LOOT "C"
+// # define EXIT "E"
+// # define FLOOR "0"
+typedef struct s_coord // could-+ save coords in another struct
+{
+	char *ptr;
+	int x; // so that then i can change these
+	int y;
+}				t_coord;
+
+typedef struct s_sprite // could-+ save coords in another struct
+{
+	char *ptr;
+	int moves;
+	int	loot_collected;
+	t_coord *curr_i;
+	t_coord *up_i; // stores chara top of image if applicable
+	t_coord *left_i; // stores chara left of image if applicable
+	t_coord *right_i; // stores chara right of image if applicable
+	t_coord *down_i; // stores chara bottom of image if applicable
+}				t_sprite;
 
 
-//MAP
 typedef struct s_map
 {
 	int	width;
 	int height;
 	int loot_n;  // can be used to make exit available when 0
-	t_sprite **character_data;
+	t_sprite *character_data;
 	char	*character_img;
 	char	*exit_img;
 	char	*floor_img;
@@ -55,24 +72,6 @@ typedef struct s_map
 	int	last_r;
 }				t_map;
 
-typedef struct s_sprite // could-+ save coords in another struct
-{
-	char *ptr;
-	int moves;
-	int	loot_collected;
-	t_coord **curr_i;
-	t_coord **up_i; // stores chara top of image if applicable
-	t_coord **left_i; // stores chara left of image if applicable
-	t_coord **right_i; // stores chara right of image if applicable
-	t_coord **down_i; // stores chara bottom of image if applicable
-}				t_sprite;
-
-typedef struct s_coord // could-+ save coords in another struct
-{
-	char *ptr;
-	int x; // so that then i can change these
-	int y;
-}				t_coord
 
 // Map parsing (to transform in array)
 char	**get_map(char *file, t_map *map_data); // handles fd errors, invalid and empty files
@@ -88,6 +87,9 @@ int		is_rectangular(char **map, int row, int col); // checks shape is rectangula
 int		is_framed(char **map, int last_row, int last_c); // checks maps os framed by wall sprites
 // Memory handling
 void	free_map(char **map_layout);
+
+//Sprites img handling
+void	collect_sprites(char **map_array, t_map map_data); //collects sprites path in map struct
 
 
 #endif

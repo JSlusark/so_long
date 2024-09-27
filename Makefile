@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/23 16:15:53 by jslusark         ###   ########.fr        #
+#    Updated: 2024/09/26 16:21:26 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRC = main.c \
 	src/get_next_line.c \
 	src/map_parsing.c \
 	src/map_validation.c \
-	src/memory_handling.c
+	src/memory_handling.c \
+	src/sprite_validation.c
 OBJ = $(SRC:.c=.o)
 
 # Compile object files

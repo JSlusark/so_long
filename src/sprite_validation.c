@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/26 12:00:16 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:26:27 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int verify_sprites(int chara, int loot, int exit, int floor, int wall)
+static int verify_sprites(int chara, int loot, int exit, int floor, int wall)
 {
 	int valid_sprite;
 
@@ -43,7 +43,8 @@ void	collect_sprites(char **map_array, t_map map_data)
 	wall = open("../sprites/xpm/wall.xpm", O_RDWR);
 	if (!valid_sprite)
 	{
-		free(map_array);
+		free_map(map_array);
+		printf("ERROR: unable to access one or more sprites\n");
 		exit(1);
 	}
 	map_data->character_img = "../sprites/xpm/chara.xpm";

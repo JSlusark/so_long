@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/26 15:40:04 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:55:59 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ t_coord	assign_direction_data(char **map_array, t_coord character_coords, t_coor
 {
 	int row;
 	int col;
-	t_coord direction_coords;
 
+	t_coord direction_coords;
+	direction_coords = malloc(sizeof(t_coord));
 	find_direction_coords(character_coords, direction, row, col); // func can be used once wit ahh assets
 	direction_coords->ptr = map_array[row][col];
 	if(direction_coords->ptr  == NULL )
@@ -68,16 +69,17 @@ t_sprite	assign_character_data()
 {
 	t_sprite	character_data;
 
+	map_data->character_data = malloc(sizeof(t_sprite));
 	character_data->ptr = map_array[r][c]; // we have the letter and also address of sprite
 	character_data->moves = 0; //needed only for chara
 	character_data->loot_collected = 0; //needed only for chara
-
+	map_data->character_data->curr_i = malloc(sizeof(t_coord));
 	character_data->curr_i->ptr = map_array[r][c];
 	character_data->curr_i->x = r;
 	character_data->curr_i->y = c;
 }
 
-void	create_chara_data(char **map_array, t_map map_data) // could be used to update array after char movement
+void	init_chara_data(char **map_array, t_map map_data) // could be used to update array after char movement
 {
 	int r;
 	int c;
@@ -95,8 +97,8 @@ void	create_chara_data(char **map_array, t_map map_data) // could be used to upd
 		}
 		r++;
 	}
-	map_data->character_data->up_i = assign_direction_data(map_array, map_data->character_data->curr_i, character_data->up_i, "up");
-	map_data->character_data->down_i = assign_direction_data(map_array, map_data->character_data->curr_i, character_data->down_i, "down");
-	map_data->character_data->left_i = assign_direction_data(map_array, map_data->character_data->curr_i, character_data->left_i, "left");
-	map_data->character_data->right_i = assign_direction_data(map_array, map_data->character_data->curr_i, character_data->right_i, "right");
+	assign_direction_data(map_array, map_data->character_data->curr_i, character_data->up_i, "up");
+	assign_direction_data(map_array, map_data->character_data->curr_i, character_data->down_i, "down");
+	assign_direction_data(map_array, map_data->character_data->curr_i, character_data->left_i, "left");
+	assign_direction_data(map_array, map_data->character_data->curr_i, character_data->right_i, "right");
 }
