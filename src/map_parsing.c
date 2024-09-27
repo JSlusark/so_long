@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/27 18:21:47 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:03:42 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*parse_map(int fd)
 		{
 			printf("Error: empty line found at line %d!\n", i + 1);
 			free(file_content);
+			free(line);
+			close(fd);
 			exit(1);
 		}
 		if (file_content == NULL)
@@ -44,6 +46,7 @@ static char	*parse_map(int fd)
 	{
 		printf("Error: file is empty!\n");
 		free(file_content);
+		close(fd);
 		exit(1);
 	}
 	return (file_content);
@@ -91,6 +94,7 @@ char	**get_map(char *file, t_map *map_data)
 	// check for documents that have spaces they should be err
 	map_array = ft_split(file_content, '\n');
 	// collect_sprites(map_array, map_data);
+	close(fd);
 	free(file_content);
 	verify_map(map_array, map_data);
 	return(map_array);

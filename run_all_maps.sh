@@ -13,40 +13,48 @@ MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
 RESET='\033[0m' # No color
 
-# Loop through each file in the directory and run the so_long program
-for map in "$MAP_INV"/*
-do
-    echo -e "${CYAN}Running invalid maps:${RESET} ${RED}$map${RESET}"
+# Function to run valgrind and check output
+run_test() {
+    local map=$1
+    local test_type=$2
+    local map_color=$3
 
-    # Run the program
+    echo -e "${CYAN}Running ${test_type} maps:${RESET} ${map_color}$map${RESET}"
+
+    # Run the program and capture both stdout and stderr
     ./so_long "$map"
+    exit_status=$?
 
-    # Check if the program exited with a non-zero status
-    if [ $? -ne 0 ]; then
-        echo -e "${RED}EXITED${RESET}"
+    # After the program runs, check if it exited with a non-zero status (failed test)
+    if [ $exit_status -ne 0 ]; then
+        echo -e "${RED}EXITED with non-zero status.${RESET}"
     else
         echo -e "${GREEN}Test passed: No exit encountered.${RESET}"
     fi
-	   # Add a new line after each test
-    echo
 
+    # Run valgrind and capture output
+    valgrind_output=$(valgrind --leak-check=full --error-exitcode=1 ./so_long "$map" 2>&1)
+
+    # Check for memory leaks or errors
+    if echo "$valgrind_output" | grep -q "All heap blocks were freed"; then
+        echo -e "${GREEN}Memory PASSED: No memory leaks detected.${RESET}"
+    else
+        echo -e "${RED}Memory issues detected${RESET}"
+        echo "$valgrind_output" # Show full valgrind output if there are issues
+    fi
+
+    # Add a new line after each test
+    echo
+}
+
+# Loop through invalid map files
+for map in "$MAP_INV"/*
+do
+    run_test "$map" "invalid" "$RED"
 done
 
-# Loop through each file in the directory and run the so_long program
+# Loop through valid map files
 for map in "$MAP_VAL"/*
 do
-    echo -e "${CYAN}Running valid maps:${RESET} ${GREEN}$map${RESET}"
-
-    # Run the program
-    ./so_long "$map"
-
-    # Check if the program exited with a non-zero status
-    if [ $? -ne 0 ]; then
-        echo -e "${RED}EXITED${RESET}"
-    else
-        echo -e "${GREEN}PASSED.${RESET}"
-    fi
-	   # Add a new line after each test
-    echo
-
+    run_test "$map" "valid" "$GREEN"
 done
