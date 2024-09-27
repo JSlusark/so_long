@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/26 16:27:17 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:13:56 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static	void launch_game(char **map_array, t_map map_data)
+static	void launch_game(char **map_array, t_map *map_data)
 {
 
 	// void	*game;
@@ -25,7 +25,8 @@ static	void launch_game(char **map_array, t_map map_data)
 
 	printf("launching game..\n");
 	printf("first line map_array %s..\n", map_array[0]);
-	printf("character file path %d\n", map_data->character_img);
+	printf("character file path %d\n", map_data->width);
+	// printf("character file path %d\n", map_data->character_img);
 	// game = mlx_init();
 	// mlx_win = mlx_new_window(mlx, (map->width * 32), (map->height * 32), "SO_LONG");
 	// if (!mlx_win)
@@ -50,12 +51,12 @@ int main(int argc, char **argv)
 	t_map	map_data;
 	printf("NOTE: PLEASE REMEMBER TO REPLACE WITH YOUR CORRECTED PRINTF\n");
 
-	if(argc == 2)
+	if (argc == 2)
 	{
-		map_array = get_map(argv[1], &map_data); // maybe let it return a true statement after all map checks done
+		map_array = get_map(argv[1], &map_data);
 		collect_sprites(map_array, &map_data);
 		// init_chara_data(map_array, &map_data);
-		launch_game(map_array, map_data);
+		launch_game(map_array, &map_data);
 		free_map(map_array); // IMPORTANT!!
 	}
 	else

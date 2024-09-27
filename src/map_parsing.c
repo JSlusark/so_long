@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/26 12:00:40 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:21:47 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 static char	*parse_map(int fd)
 {
-	char *file_content;
-	char *line;
-	char *temp;
-	int i;
+	char	*file_content;
+	char	*line;
+	char	*temp;
+	int		i;
 
 	file_content = NULL;
 	i = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		// printf("%s\n", line);
 		if (line[i] == '\0' || line[0] == '\n' ) // does not see as error if last line of doc has /n
 		{
-			printf("Error: empty line found at line %d!\n", i+1);
+			printf("Error: empty line found at line %d!\n", i + 1);
 			free(file_content);
 			exit(1);
 		}
@@ -47,35 +46,35 @@ static char	*parse_map(int fd)
 		free(file_content);
 		exit(1);
 	}
-	return file_content;
+	return (file_content);
 }
 
 static int	has_file_extension(char *file, char *extension) // doing this in case file ext needs to be diff in future
 {
-	int file_len;
-	int ext_len;
+	int	file_len;
+	int	ext_len;
 
 	if (!file || !extension)
-		return 0;
+		return (0);
 	file_len = ft_strlen(file) - 1;
 	ext_len = ft_strlen(extension) - 1;
 	if (ext_len > file_len)
-		return 0;
+		return (0);
 	while (ext_len >= 0)
 	{
 		if (file[file_len] != extension[ext_len])
-			return 0;
+			return (0);
 		file_len--;
 		ext_len--;
 	}
-	return 1;
+	return (1);
 }
 
 char	**get_map(char *file, t_map *map_data)
 {
-	int fd;
-	char **map_array;
-	char *file_content;
+	int		fd;
+	char	**map_array;
+	char	*file_content;
 
 	if (!has_file_extension(file, ".ber"))
 	{
@@ -91,7 +90,7 @@ char	**get_map(char *file, t_map *map_data)
 	file_content = parse_map(fd);
 	// check for documents that have spaces they should be err
 	map_array = ft_split(file_content, '\n');
-	collect_sprites(map_array, map_data);
+	// collect_sprites(map_array, map_data);
 	free(file_content);
 	verify_map(map_array, map_data);
 	return(map_array);

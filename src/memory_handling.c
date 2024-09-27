@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/23 16:03:17 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:14:30 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_map(char **map_layout)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map_layout[i])

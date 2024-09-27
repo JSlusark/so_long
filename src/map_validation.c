@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/24 18:08:53 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:15:37 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	has_enough_sprites(char **map, t_map *map_data) // return 1 if map sym
 	// 	printf("amount of F in map is %d\n", f);
 	// 	return(0);
 	// }
-	map_data->c_n = c;
+	map_data->loot_n = c;
 	return(1);
 }
 

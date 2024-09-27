@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/26 16:34:24 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:44:14 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_map
 	int loot_n;  // can be used to make exit available when 0
 	t_sprite *character_data;
 	char	*character_img;
-	char	*exit_img;
+	char	*door_img;
 	char	*floor_img;
 	char	*loot_img;
 	char	*wall_img;
@@ -89,7 +89,7 @@ int		is_framed(char **map, int last_row, int last_c); // checks maps os framed b
 void	free_map(char **map_layout);
 
 //Sprites img handling
-void	collect_sprites(char **map_array, t_map map_data); //collects sprites path in map struct
+void	collect_sprites(char **map_array, t_map *map_data); //collects sprites path in map struct
 
 
 #endif
