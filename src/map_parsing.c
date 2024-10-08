@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/09/27 19:03:42 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:10:31 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static char	*parse_map(int fd)
+static char	*parse_map(int fd, t_map *map_data)
 {
 	char	*file_content;
 	char	*line;
@@ -26,6 +26,7 @@ static char	*parse_map(int fd)
 		if (line[i] == '\0' || line[0] == '\n' ) // does not see as error if last line of doc has /n
 		{
 			printf("Error: empty line found at line %d!\n", i + 1);
+			free(map_data);
 			free(file_content);
 			free(line);
 			close(fd);
@@ -45,6 +46,7 @@ static char	*parse_map(int fd)
 	if (!file_content)
 	{
 		printf("Error: file is empty!\n");
+		free(map_data);
 		free(file_content);
 		close(fd);
 		exit(1);
@@ -79,23 +81,21 @@ char	**get_map(char *file, t_map *map_data)
 	char	**map_array;
 	char	*file_content;
 
-	if (!has_file_extension(file, ".ber"))
-	{
-		printf("Error: use the correct file extension\n");
-		exit(1);
-	}
 	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	if (!has_file_extension(file, ".ber") || fd < 0)
 	{
-		printf("Error: file not found!\n");
+		free(map_data);
+		close(fd);
+		printf("Error: file was not found, make sure it has the right file extension\n");
 		exit(1);
 	}
-	file_content = parse_map(fd);
-	// check for documents that have spaces they should be err
-	map_array = ft_split(file_content, '\n');
-	// collect_sprites(map_array, map_data);
+	file_content = parse_map(fd, map_data);
 	close(fd);
+	map_array = ft_split(file_content, '\n');
+	// check for documents that have spaces they should be err
+	// collect_sprites(map_array, map_data);
 	free(file_content);
 	verify_map(map_array, map_data);
+	printf("location: char	**get_map(char *file, t_map *map_data)\n h:%d w:%d\n", map_data->height, map_data->width);
 	return(map_array);
 }
