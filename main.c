@@ -6,22 +6,23 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/09 11:22:26 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:08:36 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+
+
 static	void launch_game(char **map_array, t_map *level)
 {
 
 	void	*game;
-	void	*window;
-	// void	wall;
-	// void	floor;
-	// void	exit;
-	// void	chara;
-	// void	loot;
+	void	*session;
+	void	*img;
+	// void	*img2;
+	int		w = 64;
+	int		h = 64;
 
 	printf("launching game..\n");
 	printf("first line map_array %s..\n", map_array[0]);
@@ -30,22 +31,51 @@ static	void launch_game(char **map_array, t_map *level)
 
 
 	game = mlx_init();
-	window = mlx_new_window(game, (64 * level->width), (64 * level->height), "Hello world!");
-	mlx_loop(game);
-	// // printf("character file path %d\n", map_data->character_img);
-	// game = mlx_init();
-	// window = mlx_new_window(game, 32, 32, "SO_LONG");
-	// if (!window)
-	//  {
-	// 	free(game),
-	// 	exit(1);
-	// }
-	// if (!game)
-	// 	exit(1);
+	if (!game)
+		exit(1);
+	session = mlx_new_window(game, (64 * level->width), (64 * level->height), "Hello world!");
+	if (!session)
+	 {
+		free(game),
+		exit(1);
+	}
+
+
+	// img = mlx_xpm_file_to_image(game, level->character_img, &w, &h);
+	// img2 = mlx_xpm_file_to_image(game, level->floor_img, &w, &h);
+	// mlx_put_image_to_window(game, session, img, w, h);
+	// mlx_put_image_to_window(game, session, img2, w, h);
+		int y = 0; // Loop through rows
+
+		while (map_array[y] != NULL)
+	{
+		int x = 0; // Loop through columns
+		while (map_array[y][x] != '\0')
+		{
+			if (map_array[y][x] == '1') // Wall
+				img = mlx_xpm_file_to_image(game, level->wall_img, &w, &h);
+			else if (map_array[y][x] == '0') // Floor
+				img = mlx_xpm_file_to_image(game, level->floor_img, &w, &h);
+			else if (map_array[y][x] == 'P') // Character
+				img = mlx_xpm_file_to_image(game, level->character_img, &w, &h);
+			else if (map_array[y][x] == 'E') // Exit
+				img = mlx_xpm_file_to_image(game, level->door_img, &w, &h);
+			else if (map_array[y][x] == 'C') // Loot
+				img = mlx_xpm_file_to_image(game, level->loot_img, &w, &h);
+
+			// Calculate position based on row (y) and column (x)
+			if (img != NULL)
+				mlx_put_image_to_window(game, session, img, x * w, y * h); // x * w and y * h
+			x++; // Move to next column
+		}
+		y++; // Move to next row
+	}
+
+
 	// // // render map
 	// // // at key event count move and update map array and update sprite parsing
 	// // // re-render?
-	// mlx_loop(game);
+	mlx_loop(game);
 	// free(game);
 
 

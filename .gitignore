@@ -1,12 +1,14 @@
+#notes and documentation drafts
 readme.md
+careful_notes.md
 map_tests.md
-old_main.c
+
+#raw sprite file
 sprites/png/asset_example.clip
 
-#tests
+#tests (wna to leave them on github but not push in school's repo)
 # run_all_maps.sh
 
-#any ds_store files
+#Useless annoying files
 .DS_Store
-
 .vscode
