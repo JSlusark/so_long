@@ -6,20 +6,54 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/09 14:32:25 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:41:34 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
+int	key_hook(int keycode, int nulls)
+{
+	if (keycode == UP_KEY || keycode == W_KEY)
+	{
+		// Move character up
+		printf("Moving up!\n");
+		// Your logic to move the character up
+	}
+	else if (keycode == DOWN_KEY || keycode == S_KEY)
+	{
+		// Move character down
+		printf("Moving down!\n");
+		// Your logic to move the character down
+	}
+	else if (keycode == LEFT_KEY || keycode == A_KEY)
+	{
+		// Move character left
+		printf("Moving left!\n");
+		// Your logic to move the character left
+	}
+	else if (keycode == RIGHT_KEY || keycode == D_KEY)
+	{
+		// Move character right
+		printf("Moving right!\n");
+		// Your logic to move the character right
+	}
+	else if (keycode == 65307 || keycode == Q_KEY) // <------this does not work
+	{
+			exit(0);
+		// close_window(lib);
+		// mlx_destroy_window(lib.game, lib.session);
+		printf("Clicked exit!\n");
+	}
+	// printf("keycode: %d, %d\n", keycode, nulls);
+	// return (0);
+	printf("keycode: %d, %d", keycode, nulls);
+	return (0);
+}
 
 static	void launch_game(char **map_array, t_map *level)
 {
-
-	void	*game;
-	void	*session;
-	void	*img;
+	t_lib	lib;
 
 	printf("launching game..\n");
 	printf("first line map_array %s..\n", map_array[0]);
@@ -27,19 +61,20 @@ static	void launch_game(char **map_array, t_map *level)
 	printf("w: %d h: %d\n", level->width, level->height);
 	printf("tile_pixel: %d\n", level->pixels);
 
-	img = NULL;
-	game = mlx_init();
-	if (!game)
+	lib.img = NULL;
+	lib.game = mlx_init();
+	if (!lib.game)
 		exit(1);
-	session = mlx_new_window(game, (level->pixels * level->width), (level->pixels * level->height), "Hello world!");
-	if (!session)
+	lib.session = mlx_new_window(lib.game, (level->pixels * level->width), (level->pixels * level->height), "Hello world!");
+	if (!lib.session)
 	 {
-		free(game),
+		free(lib.game),
 		exit(1);
 	}
-	render_map(img, map_array, level, game, session);
-	mlx_loop(game);
-	// free(session);
+	render_map(lib.img, map_array, level, lib.game, lib.session);
+	mlx_key_hook(lib.session, key_hook, &lib); // should be &lib instead of NULL
+	mlx_loop(lib.game);
+	// free(lib.session);
 	// free(game);
 }
 

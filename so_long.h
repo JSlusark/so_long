@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/09 14:31:26 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:33:16 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,28 @@
 
 //sprites size
 # define SIZE 32
+#define UP_KEY 65362 //<---------- can i use define?
+#define DOWN_KEY 65364
+#define LEFT_KEY 65361
+#define RIGHT_KEY 65363
+#define ESC_KEY 65307
+#define W_KEY 119
+#define A_KEY 97
+#define S_KEY 115
+#define D_KEY 100
+#define Q_KEY 113
 // # define VALID_CHARS "01PCE"
 // # define WALL "1"
 // # define CHARACTER "P"
 // # define LOOT "C"
 // # define EXIT "E"
 // # define FLOOR "0"
+typedef struct	s_lib {
+	void	*game;
+	void	*session;
+	void	*img;
+}				t_lib;
+
 typedef struct s_coord // could-+ save coords in another struct
 {
 	char *ptr;
