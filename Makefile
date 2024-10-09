@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/09/27 17:31:04 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/09 14:27:35 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRC = main.c \
 	src/map_parsing.c \
 	src/map_validation.c \
 	src/memory_handling.c \
-	src/sprite_validation.c
+	src/sprite_validation.c \
+	src/rendering/render_map.c
 OBJ = $(SRC:.c=.o)
 
 # Compile object files

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/27 18:14:16 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:18:24 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ void	collect_sprites(char **map_array, t_map *map_data)
 	map_data->floor_img = "sprites/xpm/floor.xpm";
 	map_data->loot_img = "sprites/xpm/loot.xpm";
 	map_data->wall_img = "sprites/xpm/wall.xpm";
+	map_data->pixels = 64;
 }

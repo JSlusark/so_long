@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/08 19:12:58 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:31:26 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_map
 {
 	int	width;
 	int height;
+	int pixels;
 	int loot_n;  // can be used to make exit available when 0
 	t_sprite *character_data;
 	char	*character_img;
@@ -87,9 +88,9 @@ int		is_rectangular(char **map, int row, int col); // checks shape is rectangula
 int		is_framed(char **map, int last_row, int last_c); // checks maps os framed by wall sprites
 // Memory handling
 void	free_map(char **map_layout);
-
 //Sprites img handling
 void	collect_sprites(char **map_array, t_map *map_data); //collects sprites path in map struct
-
+//Map rendering
+void	render_map(void *img, char **map_array, t_map *level, void *game, void * session);
 
 #endif
