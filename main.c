@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/09 18:41:34 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:58:18 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	main(int argc, char **argv)
 		map_data = malloc(sizeof(t_map));
 		map_array = get_map(argv[1], map_data);
 		collect_sprites(map_array, map_data);
+		init_chara_data(map_array, map_data);
 		// init_chara_data(map_array, &map_data); // <---- check if it goes here or better elsewhere and if needed
 		printf("Location: main.c h:%d w:%d\n", map_data->height, map_data->width);
 		// add function to see if map is bigger than screen res ❗❗❗

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:16 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:57:40 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int		is_framed(char **map, int last_row, int last_c); // checks maps os framed b
 void	free_map(char **map_layout);
 //Sprites img handling
 void	collect_sprites(char **map_array, t_map *map_data); //collects sprites path in map struct
+void	init_chara_data(char **map_array, t_map *map_data); // could be used to update array after char movement
 //Map rendering
 void	render_map(void *img, char **map_array, t_map *level, void *game, void * session);
 
