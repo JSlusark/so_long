@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/15 16:03:36 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:41:29 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_hook(int keycode, t_map	*level)
 {
 
-	// if direction is wall do nothing
+	// if direction is wall do nothing  x
 	// if direction is passable increase moves
 	// if direction is loot decrease loot_n
 	// if direction is door
@@ -23,26 +23,22 @@ int	key_hook(int keycode, t_map	*level)
 	// 		else change position, re-render and close YOU WIN
 	// if direction is anything instead than wall, increase moves
 
-	printf("\n\n keycode: %d, %d\n", keycode, level->width); // 65293 is x11 keycode
+	// printf("\n\n keycode: %d, %d\n", keycode, level->width); // 65293 is x11 keycode
 	if (keycode == UP_KEY || keycode == W_KEY)
 	{
 		// printf("Moving up!\n");
 		// printf("UP position map_arr[%d][%d], symbol %c\n", level->character_data->up_i->x, level->character_data->up_i->y, *(level->character_data->up_i->ptr));
 		// printf("CH position map_arr[%d][%d], symbol %c\n", level->character_data->curr_i->x, level->character_data->curr_i->y, *(level->character_data->curr_i->ptr));
-		if(*(level->character_data->up_i->ptr) == '1')
-			return(0);
-		*(level->character_data->up_i->ptr) = *(level->character_data->curr_i->ptr);
-		*(level->character_data->curr_i->ptr) = '0';
+
+		change_map(level->character_data->up_i->ptr, level->character_data->curr_i->ptr, level);
+
 	}
 	else if (keycode == DOWN_KEY || keycode == S_KEY)
 	{
 		// printf("Moving down!\n");
 		// printf("DOWN position map_arr[%d][%d], symbol %c\n", level->character_data->down_i->x, level->character_data->down_i->y, *(level->character_data->down_i->ptr));
 		// printf("CHAR position map_arr[%d][%d], symbol %c\n", level->character_data->curr_i->x, level->character_data->curr_i->y, *(level->character_data->curr_i->ptr));
-		if(*(level->character_data->down_i->ptr) == '1')
-			return(0);
-		*(level->character_data->down_i->ptr) = *(level->character_data->curr_i->ptr);
-		*(level->character_data->curr_i->ptr) = '0';
+		change_map(level->character_data->down_i->ptr, level->character_data->curr_i->ptr, level);
 	}
 	else if (keycode == LEFT_KEY || keycode == A_KEY)
 	{
@@ -50,10 +46,7 @@ int	key_hook(int keycode, t_map	*level)
 		// printf("Moving left!\n");
 		// printf("LEFT position map_arr[%d][%d], symbol %c\n", level->character_data->left_i->x, level->character_data->left_i->y, *(level->character_data->left_i->ptr));
 		// printf("CHAR position map_arr[%d][%d], symbol %c\n", level->character_data->curr_i->x, level->character_data->curr_i->y, *(level->character_data->curr_i->ptr));
-		if(*(level->character_data->left_i->ptr) == '1')
-			return(0);
-		*(level->character_data->left_i->ptr) = *(level->character_data->curr_i->ptr);
-		*(level->character_data->curr_i->ptr) = '0';
+		change_map(level->character_data->left_i->ptr, level->character_data->curr_i->ptr, level);
 	}
 	else if (keycode == RIGHT_KEY || keycode == D_KEY)
 	{
@@ -61,14 +54,11 @@ int	key_hook(int keycode, t_map	*level)
 		// printf("Moving right!\n");
 		// printf("RIGHT position map_arr[%d][%d], symbol %c\n", level->character_data->right_i->x, level->character_data->right_i->y, *(level->character_data->right_i->ptr));
 		// printf("CHARA position map_arr[%d][%d], symbol %c\n", level->character_data->curr_i->x, level->character_data->curr_i->y, *(level->character_data->curr_i->ptr));
-		if(*(level->character_data->right_i->ptr) == '1')
-			return(0);
-		*(level->character_data->right_i->ptr) = *(level->character_data->curr_i->ptr);
-		*(level->character_data->curr_i->ptr) = '0';
+		change_map(level->character_data->right_i->ptr, level->character_data->curr_i->ptr, level);
 	}
 	else if (keycode == 65307 || keycode == Q_KEY) // <------this does not work
 	{
-			exit(0);
+		exit(0);
 		// close_window(lib);
 		// mlx_destroy_window(lib.game, lib.session);
 		printf("Clicked exit!\n");
@@ -88,13 +78,13 @@ static	void launch_game(char **map_array, t_map *level)
 	// level->mini_libx = malloc(sizeof(t_lib));
 	// t_lib	lib;
 	// lib
-	print_chara_data(level->character_data); // this stays TRY IN PALGAME
+	// print_chara_data(level->character_data); // this stays TRY IN PALGAME
 
-	printf("launching game..\n");
-	printf("first line map_array %s..\n", map_array[0]);
-	printf("character file path %s\n", level->character_img);
-	printf("w: %d h: %d\n", level->width, level->height);
-	printf("tile_pixel: %d\n", level->pixels);
+	// printf("launching game..\n");
+	// printf("first line map_array %s..\n", map_array[0]);
+	// printf("character file path %s\n", level->character_img);
+	// printf("w: %d h: %d\n", level->width, level->height);
+	// printf("tile_pixel: %d\n", level->pixels);
 
 	// level->mini_libx.img = NULL;
 	level->mini_libx.game = mlx_init();

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/15 15:59:12 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:23:48 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_sprite	*assign_character_data(char **map_array, int r, int c)
 	if (!character_data) // Always check for successful malloc
 		return (NULL);
 	character_data->ptr = &map_array[r][c]; // we have the letter and also address of sprite
-	character_data->moves = 0; //needed only for chara
-	character_data->loot_collected = 0; //needed only for chara
+	// character_data->moves = 0; //needed only for chara
+	// character_data->loot_collected = 0; //needed only for chara
 	character_data->curr_i = malloc(sizeof(t_coord));
 	if (!character_data->curr_i)
 	{

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/27 17:15:37 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:25:44 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	has_enough_sprites(char **map, t_map *map_data) // return 1 if map sym
 	// 	return(0);
 	// }
 	map_data->loot_n = c;
+	map_data->moves = 0;
 	return(1);
 }
 

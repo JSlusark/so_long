@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/15 15:56:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:42:22 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,32 @@ void	render_map(void *img, char **map_array, t_map *level, void *game, void * se
 	}
 }
 
-void	change_map(char *direction, char *character)
+void	change_map(char *direction, char *character, t_map *level)
 {
 	if(*direction == '1')
-			return;
+	{
+		printf("STEPS: %d\n", level->moves);
+		return;
+	}
+	else if(*direction == 'E' && level->loot_n != 0)
+	{
+		printf("STEPS: %d\n", level->moves);
+		return;
+	}
+	else if(*direction == 'E' && level->loot_n == 0)
+	{
+		level->moves++;
+		printf("STEPS: %d\n", level->moves); // count last step before closing
+		exit(0);
+	}
+	else if(*direction == 'C')
+		{
+			// printf("LOOT N: %d\n", level->loot_n);
+			level->loot_n--;
+		}
+	level->moves++;
+	printf("STEPS: %d\n", level->moves);
+			// return; // and exit? or return number to decide?
 	*direction = *character;
 	*character = '0';
 }

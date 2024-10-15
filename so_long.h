@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/15 16:04:47 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:32:37 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_coord // could-+ save coords in another struct
 typedef struct s_sprite // could-+ save coords in another struct
 {
 	char *ptr; // it has to be a pointer because i want to change the char in the address
-	int moves;
-	int	loot_collected;
+	// int moves;
+	// int	loot_collected;
 	t_coord *curr_i;
 	t_coord *up_i; // stores chara top of image if applicable
 	t_coord *left_i; // stores chara left of image if applicable
@@ -81,6 +81,8 @@ typedef struct s_map
 	int height;
 	int pixels;
 	int loot_n;  // can be used to make exit available when 0
+	// int	loot_collected;
+	int moves;
 	t_sprite *character_data;
 	char	*character_img;
 	char	*door_img;
@@ -111,7 +113,7 @@ void	collect_sprites(char **map_array, t_map *map_data); //collects sprites path
 void	init_chara_data(char **map_array, t_map *map_data); // could be used to update array after char movement
 //Map rendering
 void	render_map(void *img, char **map_array, t_map *level, void *game, void * session);
-
+void	change_map(char *direction, char *character, t_map *level);
 
 // testing function
 void print_chara_data(t_sprite *c);
