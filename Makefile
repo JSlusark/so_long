@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/14 15:17:57 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/15 10:35:50 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC = main.c \
 	src/memory_handling.c \
 	src/sprite_validation.c \
 	src/sprite_parsing.c \
+	src/testing_functions.c \
 	src/rendering/render_map.c
 OBJ = $(SRC:.c=.o)
 

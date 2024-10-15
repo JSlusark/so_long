@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/09 14:32:07 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:56:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ void	render_map(void *img, char **map_array, t_map *level, void *game, void * se
 		}
 		y++;
 	}
+}
+
+void	change_map(char *direction, char *character)
+{
+	if(*direction == '1')
+			return;
+	*direction = *character;
+	*character = '0';
 }
