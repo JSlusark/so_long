@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/16 15:59:08 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:39:02 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ int	key_hook(int keycode, t_map	*level)
 	return (0);
 }
 
+int close_window(t_map *level)
+{
+    // Free all game data before exiting
+    free_all_gamedata(level);
+    exit(0);
+}
+
 static	void launch_game(char **map_array, t_map *level)
 {
 	// // print_chara_data(level->character_data); // this stays TRY IN PALGAME
@@ -79,16 +86,11 @@ static	void launch_game(char **map_array, t_map *level)
 		exit(1);
 	}
 	render_map(level->mini_libx.img, map_array, level, level->mini_libx.game, level->mini_libx.session);// <-
-	mlx_key_hook(level->mini_libx.session, key_hook, level); // should be &mini_libx instead of NULL
+	mlx_hook(level->mini_libx.session, 17, 0L, close_window, level);  // Event 17 handles window close (X button)
+	mlx_key_hook(level->mini_libx.session, key_hook, level);
 	mlx_loop(level->mini_libx.game);
 	print_map(map_array);
 	print_map(level->map_array);
-	//THIS FREES ALL TEH MIN
-	// mlx_clear_window(level->mini_libx.game, level->mini_libx.session);
-	// mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);  // Free the window
-	// mlx_destroy_display(level->mini_libx.game);
-	// free(level->mini_libx.game);
-
 }
 
 int	main(int argc, char **argv)
