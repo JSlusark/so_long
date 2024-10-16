@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:34:27 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/15 16:02:44 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:52:43 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ void print_chara_data(t_sprite *c)
 
 }
 
-// void print_pressed_data()
+void print_map(char **map_array)
+{
+    int i = 0;
+
+    while (map_array[i] != NULL)
+    {
+        printf("%s\n", map_array[i]);
+        i++;
+    }
+}

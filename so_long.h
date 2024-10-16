@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/15 17:32:37 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:41:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@
 // # define LOOT "C"
 // # define EXIT "E"
 // # define FLOOR "0"
-typedef struct	s_lib {
+typedef struct	s_lib
+{
 	void	*game;
 	void	*session;
 	void	*img;
@@ -108,6 +109,7 @@ int		is_rectangular(char **map, int row, int col); // checks shape is rectangula
 int		is_framed(char **map, int last_row, int last_c); // checks maps os framed by wall sprites
 // Memory handling
 void	free_map(char **map_layout);
+void	free_all_gamedata(t_map *level);
 //Sprites img handling
 void	collect_sprites(char **map_array, t_map *map_data); //collects sprites path in map struct
 void	init_chara_data(char **map_array, t_map *map_data); // could be used to update array after char movement
@@ -117,5 +119,6 @@ void	change_map(char *direction, char *character, t_map *level);
 
 // testing function
 void print_chara_data(t_sprite *c);
+void print_map(char **map_array);
 
 #endif

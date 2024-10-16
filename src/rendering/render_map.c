@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/15 17:42:22 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:44:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	render_map(void *img, char **map_array, t_map *level, void *game, void * se
 			else if (map_array[y][x] == 'C') // Loot
 				img = mlx_xpm_file_to_image(game, level->loot_img, &level->pixels, &level->pixels);
 			if (img != NULL)
+			{
 				mlx_put_image_to_window(game, session, img, x * level->pixels, y * level->pixels);
+				mlx_destroy_image(game, img);
+			}
 			x++;
 		}
 		y++;
@@ -56,6 +59,7 @@ void	change_map(char *direction, char *character, t_map *level)
 	{
 		level->moves++;
 		printf("STEPS: %d\n", level->moves); // count last step before closing
+		free_all_gamedata(level);
 		exit(0);
 	}
 	else if(*direction == 'C')
