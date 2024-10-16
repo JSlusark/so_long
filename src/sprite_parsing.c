@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/15 16:23:48 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:55:30 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ void	assign_direction_data(char **map_array, t_coord *character_coords, t_coord 
 	direction_coords->ptr = &map_array[direction_coords->x][direction_coords->y];
 }
 
-t_sprite	*assign_character_data(char **map_array, int r, int c)
+void	*assign_character_data(char **map_array, int r, int c, t_sprite *character_data)
 {
-	t_sprite	*character_data;
 
-	character_data = malloc(sizeof(t_sprite));
-	if (!character_data) // Always check for successful malloc
-		return (NULL);
+	// if (!character_data) // Always check for successful malloc
+	// 	return (NULL);
 	character_data->ptr = &map_array[r][c]; // we have the letter and also address of sprite
 	// character_data->moves = 0; //needed only for chara
 	// character_data->loot_collected = 0; //needed only for chara
@@ -66,21 +64,22 @@ void	init_chara_data(char **map_array, t_map *map_data) // could be used to upda
 
 	r = 0;
 	c = 0;
+	map_data->character_data = malloc(sizeof(t_sprite));
+	map_data->character_data->up_i = malloc(sizeof(t_coord));
+	map_data->character_data->down_i = malloc(sizeof(t_coord));
+	map_data->character_data->left_i = malloc(sizeof(t_coord));
+	map_data->character_data->right_i = malloc(sizeof(t_coord));
 	while (map_array[r] != NULL)
 	{
 		c = 0;
 		while (map_array[r][c] != '\0')
 		{
 			if(map_array[r][c] == 'P')
-				map_data->character_data = assign_character_data(map_array, r, c);
+				assign_character_data(map_array, r, c, map_data->character_data);
 			c++;
 		}
 		r++;
 	}
-	map_data->character_data->up_i = malloc(sizeof(t_coord));
-	map_data->character_data->down_i = malloc(sizeof(t_coord));
-	map_data->character_data->left_i = malloc(sizeof(t_coord));
-	map_data->character_data->right_i = malloc(sizeof(t_coord));
 	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->up_i, "up");
 	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->down_i, "down");
 	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->left_i, "left");

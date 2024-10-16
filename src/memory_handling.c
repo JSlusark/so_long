@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/16 12:43:34 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:10:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	free_all_gamedata(t_map *level)
  //THIS FREES ALL THE MINILIBX STUFF (GMAE AND SESSION)
 	if(level->mini_libx.game)
 	{
-		free(level->mini_libx.img);
 		mlx_clear_window(level->mini_libx.game, level->mini_libx.session);
 		mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);  // Free the window
 		mlx_destroy_display(level->mini_libx.game);

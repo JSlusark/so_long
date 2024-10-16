@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/16 14:47:19 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:59:08 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ int	key_hook(int keycode, t_map	*level)
 	// printf("move %d", level->character_data->moves);
 	// printf("keycode: %d, %d\n", keycode, nulls);
 	// return (0);
-	// init_chara_data(level->map_array, level);
-	// render_map(level->mini_libx.img, level->map_array, level, level->mini_libx.game, level->mini_libx.session);// <-
+	free_sprite(level->character_data);
+	init_chara_data(level->map_array, level);
+	render_map(level->mini_libx.img, level->map_array, level, level->mini_libx.game, level->mini_libx.session);// <-
 	return (0);
 }
 
