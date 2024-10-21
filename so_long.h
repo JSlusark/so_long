@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/16 15:58:03 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:33:26 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ char	**get_map(char *file, t_map *map_data); // handles fd errors, invalid and e
 char	*get_next_line(int fd); // collects map's text into an array that is split and used for validation
 // Map data collection - verifies map is valid and collects some data used further
 void	collect_size(char **map_array, t_map *map_data); // collects map size
-void	verify_map(char **map_array, t_map *map_data); // uses map validation below and collects collectable amount
+void	verify_format(char **map_array, t_map *map_data); // uses map validation below and collects collectable amount
+void 	verify_playability(t_map *level);
 // Map validation (returns true or false)
 int		has_required_text(char **map); // handles invalid characters
 int		has_enough_sprites(char **map, t_map *map_data); // makes sure there is the correct amount of assets required

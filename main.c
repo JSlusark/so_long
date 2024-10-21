@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/16 17:39:02 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/17 21:26:19 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ int	main(int argc, char **argv)
 
 		level = malloc(sizeof(t_map));
 		level->map_array = get_map(argv[1], level);
+		verify_format(level->map_array, level);
 		collect_sprites(level->map_array, level);
 		init_chara_data(level->map_array, level);
+		verify_playability(level); // floowdfill check E C P
 		// // add function to see if map is bigger than screen res ❗❗❗
 		launch_game(level->map_array, level);
 		free_all_gamedata(level); // IMORTANT!! it should free everything besides ministuff

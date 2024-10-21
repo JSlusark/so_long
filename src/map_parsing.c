@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/16 11:45:04 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/17 19:19:40 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ char	**get_map(char *file, t_map *level)
 	// check for documents that have spaces they should be err
 	// collect_sprites(level->map_array, level);
 	free(file_content);
-	verify_map(level->map_array, level);
 	printf("location: char	**get_map(char *file, t_map *level)\n h:%d w:%d\n", level->height, level->width);
 	return(level->map_array);
 }
