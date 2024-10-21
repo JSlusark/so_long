@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/15 16:25:44 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:20:04 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 #include "../so_long.h"
 
-int	has_required_text(char **map) // return 1 if map sym
+int	has_required_text(char **map)
 {
-	int r;
-	int c;
+	int	r;
+	int	c;
 
 	r = 0;
 	while (map[r] != NULL)
@@ -37,77 +37,65 @@ int	has_required_text(char **map) // return 1 if map sym
 				c++;
 			else
 			{
-				printf("map does not have required text: %c at r[%d]c[%d]\n", map[r][c], r, c);
-				return(0);
+				printf("Error: text %c at r[%d]c[%d]\n", map[r][c], r, c);
+				return (0);
 			}
 		}
 		r++;
 	}
-	return(1);
+	return (1);
 }
 
-int	count_sprites(char **map, int *f, int *e, int *c, int *p) // return 1 if map sym
+static int	count_sprite(char **map, char c)
 {
-	int row;
-	int col;
+	int	row;
+	int	col;
+	int	amount;
 
+	amount = 0;
 	row = 0;
 	while (map[row] != NULL)
 	{
 		col = 0;
 		while (map[row][col] != '\0')
 		{
-			// printf("%c", map[row][col]);
-			if (map[row][col] == 'P')
-				(*p)++;
-			if (map[row][col] == 'C')
-				(*c)++;
-			if (map[row][col] == 'E')
-				(*e)++;
-			if (map[row][col] == '0')
-				(*f)++;
+			if (map[row][col] == c)
+				amount++;
 			col++;
 		}
-		// printf("\n");
 		row++;
 	}
-	return(1);
+	return (amount);
 }
 
-int	has_enough_sprites(char **map, t_map *map_data) // return 1 if map sym
+int	has_enough_sprites(char **map, t_map *map_data)
 {
-	int f;
-	int e;
-	int c;
-	int p;
+	int	f;
+	int	e;
+	int	c;
+	int	p;
 
-	f = 0;
-	e = 0;
-	c = 0;
-	p = 0;
-	count_sprites(map, &f, &e, &c, &p);
-	if(p == 0 || p > 1 || c == 0 || e == 0 || e > 1)
+	f = count_sprite(map, '0');
+	e = count_sprite(map, 'E');
+	c = count_sprite(map, 'C');
+	p = count_sprite(map, 'P');
+	if (p == 0 || p > 1 || c == 0 || e == 0 || e > 1)
 	{
-		printf("Map does not have the required amount assets. Check amount required below:\n");
+		printf("Map does not have the required amount assets:\n");
 		printf("- C: %d (needs to be 1 or more) \n", c);
 		printf("- P: %d (needs to be 1) \n", p);
 		printf("- E: %d (needs to be 1) \n", e);
-		return(0);
+		return (0);
 	}
-	// if(f == 0) // check if floor amount needs to be h x w (and go behind everything)
-	// {
-	// 	printf("amount of F in map is %d\n", f);
-	// 	return(0);
-	// }
 	map_data->loot_n = c;
 	map_data->moves = 0;
-	return(1);
+	return (1);
 }
 
 
-int	is_rectangular(char **map, int row, int col) // checks lines for shape, check is not squared
+int	is_rectangular(char **map, int row, int col)
 {
-	int i;
+	int	i;
 	int	curr;
 
 	i = 0;
@@ -116,23 +104,23 @@ int	is_rectangular(char **map, int row, int col) // checks lines for shape, chec
 		curr = ft_strlen(map[i]);
 		if (curr != row)
 		{
-			printf("Map's height is not the same for every row and therefore has no valid shape\n");
-			return(0);
+			printf("Error: height of each row is not the same\n");
+			return (0);
 		}
 		i++;
 	}
 	if (row == col)
 	{
 		printf("Map is not rectangular\n");
-		return(0);
+		return (0);
 	}
-	return(1);
+	return (1);
 }
 
-int is_framed(char **map, int last_row, int last_c)
+int	is_framed(char **map, int last_row, int last_c)
 {
-	int row;
-	int c;
+	int	row;
+	int	c;
 
 	row = 0;
 	while (map[row] != NULL)
@@ -143,22 +131,14 @@ int is_framed(char **map, int last_row, int last_c)
 			if (row == 0 || row == last_row || c == 0 || c == last_c)
 			{
 				if (map[row][c] != '1')
-					{
-						printf("Map is not framed from walls (1)\n");
-						return(0);
-					}
-			}
-			else
-			{
-					if (!ft_strchr("01CEP", map[row][c])) // check this better
-					{
-						printf("No valid characters inside the map\n");
-						return(0);
-					}
+				{
+					printf("Map is not framed from walls (1)\n");
+					return (0);
+				}
 			}
 			c++;
 		}
 		row++;
 	}
-	return(1);
+	return (1);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/17 19:19:40 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:00:01 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static char	*parse_map(int fd, t_map *map_data)
+static char	*parse_map(int fd, t_map *map_data) // 38 lines need to shorten
 {
 	char	*file_content;
 	char	*line;
@@ -54,7 +54,7 @@ static char	*parse_map(int fd, t_map *map_data)
 	return (file_content);
 }
 
-static int	has_file_extension(char *file, char *extension) // doing this in case file ext needs to be diff in future
+static int	has_file_extension(char *file, char *extension)
 {
 	int	file_len;
 	int	ext_len;
@@ -78,13 +78,12 @@ static int	has_file_extension(char *file, char *extension) // doing this in case
 char	**get_map(char *file, t_map *level)
 {
 	int		fd;
-	// char	**map_array;
 	char	*file_content;
 
 	fd = open(file, O_RDONLY);
 	if (!has_file_extension(file, ".ber") || fd < 0)
 	{
-		printf("Error: file was not found, make sure it has the right file extension\n");
+		printf("Error: file does not exist or has wrong extension format\n");
 		free(level);
 		close(fd);
 		exit(1);
@@ -92,9 +91,6 @@ char	**get_map(char *file, t_map *level)
 	file_content = parse_map(fd, level);
 	close(fd);
 	level->map_array = ft_split(file_content, '\n');
-	// check for documents that have spaces they should be err
-	// collect_sprites(level->map_array, level);
 	free(file_content);
-	printf("location: char	**get_map(char *file, t_map *level)\n h:%d w:%d\n", level->height, level->width);
-	return(level->map_array);
+	return (level->map_array);
 }
