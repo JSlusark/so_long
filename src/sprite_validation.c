@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/09 14:18:24 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:20:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	collect_sprites(char **map_array, t_map *map_data)
 	if (!verify_sprites(chara, loot, door, floor, wall))
 	{
 		free_map(map_array);
-		printf("ERROR: unable to access one or more sprites\n");
+		free(map_data);
+		printf("Error: unable to access one or more sprites\n");
 		exit(1);
 	}
 	map_data->character_img = "sprites/xpm/chara.xpm";

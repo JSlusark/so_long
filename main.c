@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/22 16:56:37 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:21:17 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		printf("./so_long requires a file from the map folder to run!\n");
+		printf("Error: ./so_long requires a file from the map folder to run!\n");
 		exit(1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/21 19:27:53 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:01:58 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	verify_format(char **map_array, t_map *level)
 		|| !is_framed(map_array, level->height - 1, level->width - 1)
 		|| !has_enough_sprites(map_array, level))
 	{
-		free_all_gamedata(level);
+		free_map(level->map_array);
+		free(level);
+		// free_all_gamedata(level);
 		exit(1);
 	}
 }

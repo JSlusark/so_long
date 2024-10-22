@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/21 15:20:04 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:41:12 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	has_enough_sprites(char **map, t_map *map_data)
 	p = count_sprite(map, 'P');
 	if (p == 0 || p > 1 || c == 0 || e == 0 || e > 1)
 	{
-		printf("Map does not have the required amount assets:\n");
+		printf("Error: Map does not have the required amount assets:\n");
 		printf("- C: %d (needs to be 1 or more) \n", c);
 		printf("- P: %d (needs to be 1) \n", p);
 		printf("- E: %d (needs to be 1) \n", e);
@@ -111,7 +111,7 @@ int	is_rectangular(char **map, int row, int col)
 	}
 	if (row == col)
 	{
-		printf("Map is not rectangular\n");
+		printf("Error: Map is not rectangular\n");
 		return (0);
 	}
 	return (1);
@@ -132,7 +132,7 @@ int	is_framed(char **map, int last_row, int last_c)
 			{
 				if (map[row][c] != '1')
 				{
-					printf("Map is not framed from walls (1)\n");
+					printf("Error: Map is not framed from walls (1)\n");
 					return (0);
 				}
 			}

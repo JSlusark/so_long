@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/16 16:10:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:32:17 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	free_all_gamedata(t_map *level)
 		free(level->mini_libx.game);
 	}
 	// MY STUFF
+
 	free_sprite(level->character_data);
 	free_map(level->map_array);
 	free(level);
