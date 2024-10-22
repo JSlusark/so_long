@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing the map files
-MAP_INV="./maps/invalid_map/"
-MAP_VAL="./maps/valid_map/"
+MAP="./maps/unplayable_map"
 
 # Define color codes
 RED='\033[0;31m'
@@ -32,7 +31,7 @@ run_test() {
         echo -e "${GREEN}Test passed: No exit encountered.${RESET}"
     fi
 
-    # Run valgrind and capture output
+    # # Run valgrind and capture output
     # valgrind_output=$(valgrind --leak-check=full --error-exitcode=1 ./so_long "$map" 2>&1)
 
     # # Check for memory leaks or errors
@@ -43,18 +42,11 @@ run_test() {
     #     echo "$valgrind_output" # Show full valgrind output if there are issues
     # fi
 
-    # # Add a new line after each test
-    # echo
+    # Add a new line after each test
+    echo
 }
 
-# Loop through invalid map files
-for map in "$MAP_INV"/*
-do
-    run_test "$map" "invalid" "$RED"
-done
-
-# Loop through valid map files
-for map in "$MAP_VAL"/*
+for map in "$MAP"/*
 do
     run_test "$map" "valid" "$GREEN"
 done

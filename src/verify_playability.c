@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/21 19:25:21 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:37:42 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	create_map_dup(char **map_dup, t_map *level)
 	return (1);
 }
 
-int	exit_was_reached(char **map_dup)
+int	exit_was_found(char **map_dup)
 {
 	int x;
 	int y;
@@ -44,48 +44,42 @@ int	exit_was_reached(char **map_dup)
 	x = 0;
 	while (map_dup[x] != NULL)
 	{
+		y = 0;
 		while(map_dup[x][y] != '\0')
 		{
-			if(map_dup[x][y] == 'E') // if e is found it means that we were not able to fill it in loot_is_reachable
-				return(0);
+			if(map_dup[x][y] == 'E')
+				return(1);
 			y++;
 		}
-		y = 0;
 		x++;
 	}
-	return(1);
+	return(0);
 }
-int	loot_is_reachable(char **map_dup, int y, int x, int *reached_loot, t_map *level) // my floodfill
+int	collect_loot(char **map_dup, int y, int x, int *reachable_loot, t_map *level) // my floodfill
 {
 	if (x < 0 || x >= level->height || y < 0 || y >= level->width)
-	{
-		// printf("Out of bounds: tile[%d][%d]\n", x, y);
 		return(0);
-	}
-	if (map_dup[x][y] == '1' || map_dup[x][y] == ' ')
+	if (map_dup[x][y] == '1' || map_dup[x][y] == ' ' || ((*reachable_loot) != level->loot_n && map_dup[x][y] == 'E') )
 	{
-		// printf("Blocked or visited tile[%d][%d] letter %c\n", x, y, map_dup[x][y]);
+		if(map_dup[x][y] == 'E')
+				map_dup[x][y] = ' ';
 		return(0);
 	}
 	if (map_dup[x][y] == 'C')
-		(*reached_loot)++;
-	// if (map_dup[x][y] == 'C' || map_dup[x][y] == '0' || map_dup[x][y] == 'P')
+		(*reachable_loot)++;
 	map_dup[x][y] = ' ';
-	// if (map_dup[x][y] == 'E' && (*reached_loot) == level->loot_n )
-	// 	map_dup[x][y] = ' ';
-	loot_is_reachable(map_dup, y, x - 1, reached_loot, level);
-	loot_is_reachable(map_dup, y, x + 1, reached_loot, level);
-	loot_is_reachable(map_dup, y - 1, x, reached_loot, level);
-	loot_is_reachable(map_dup, y + 1, x, reached_loot, level);
-	if ((*reached_loot) == level->loot_n )
-		return(1);
-	else
-		return(0);
+	collect_loot(map_dup, y, x - 1, reachable_loot, level);
+	collect_loot(map_dup, y, x + 1, reachable_loot, level);
+	collect_loot(map_dup, y - 1, x, reachable_loot, level);
+	collect_loot(map_dup, y + 1, x, reachable_loot, level);
+	if((*reachable_loot) == level->loot_n && map_dup[x][y] == 'E')
+		map_dup[x][y] = ' ';
+	return(*reachable_loot);
 }
 void verify_playability(t_map *level)
 {
 	int i;
-	int reached_loot;
+	int reachable_loot;
 	char **map_dup;
 
 	i = 0;
@@ -96,18 +90,39 @@ void verify_playability(t_map *level)
 		free_all_gamedata(level);
 		exit(1);
 	}
-	reached_loot = 0;
+	reachable_loot = 0;
 	int x = level->character_data->curr_i->x;  // Correct coordinate access for column (width)
 	int y = level->character_data->curr_i->y;  // Correct coordinate access for row (height)
 	print_map(map_dup);
-	if(!loot_is_reachable(map_dup, y, x, &reached_loot, level) || !exit_was_reached(map_dup)) // problem when exit covers loot
+	reachable_loot = collect_loot(map_dup, y, x, &reachable_loot, level);
+
+	printf("%d\n", reachable_loot);
+	// print_map(map_dup);
+
+	// if(!collect_loot(map_dup, y, x, &reachable_loot, level) && !exit_was_found(map_dup)) // problem when exit covers loot
+	if(reachable_loot != level->loot_n) // problem when exit covers loot
 	{
 		print_map(map_dup);
-		printf("Error: Either exit or loot is not reachable, loot not collected: %d \n", level->loot_n - reached_loot);
+		printf("Error: Could not reach %d out of %d loot\n", level->loot_n - reachable_loot, level->loot_n);
 		free_map(map_dup);
 		free_all_gamedata(level);
 		exit(1);
 	}
+
+	// printf("exit found: %d\n", exit_is_reached(map_dup, y, x, level));
+	// exit_is_reached(map_dup, y, x, level);
+	print_map(map_dup);
+	if(exit_was_found(map_dup))
+	{
+		printf("Error: all loot can be collected but exit is blocked");
+		exit(1);
+	}
+
+
+
+	// printf("Loot remaining: %d  exit reached: %d\n", level->loot_n - reachable_loot, exit_was_found(map_dup));
+	// print_map(map_dup);
+
 	// print_map(map_dup);
 	free(map_dup);// problem with freeing
 }
