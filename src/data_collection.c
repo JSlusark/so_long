@@ -6,11 +6,38 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/22 18:01:58 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:05:46 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include <X11/Xlib.h> // added for screen size
+
+int	map_fits_screen(int width, int height)
+{
+	Display *d;
+	Screen *s;
+
+	d = XOpenDisplay(NULL);
+	if (d == NULL)
+	{
+		printf("Error: Unable to open X display\n");
+		return 0;
+	}
+	s = DefaultScreenOfDisplay(d);
+	if ( width  * 64  > s->width ||  height  * 64 > s->height)
+	{
+		printf("Error: map resolution is bigger than your screen!\n");
+		printf("Screen width: %d map width: %d\n", s->width, width  * 64);
+		printf("Screen height: %d map height: %d\n", s->height, height * 64);
+	XCloseDisplay(d);
+
+		return 0;
+	}
+	XCloseDisplay(d);
+	return(1);
+}
+
 
 void	collect_size(char **map_array, t_map *map_data)
 {
@@ -34,7 +61,7 @@ void	collect_size(char **map_array, t_map *map_data)
 void	verify_format(char **map_array, t_map *level)
 {
 	collect_size(map_array, level);
-	if (!has_required_text(map_array)
+	if (!map_fits_screen(level->width, level->height) || !has_required_text(map_array)
 		||!is_rectangular(map_array, level->width, level->height)
 		|| !is_framed(map_array, level->height - 1, level->width - 1)
 		|| !has_enough_sprites(map_array, level))

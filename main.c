@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/22 18:21:17 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:48:55 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 		verify_playability(level); // floowdfill check E C P
 		// // add function to see if map is bigger than screen res ❗❗❗
 		launch_game(level->map_array, level);
-		free_all_gamedata(level); // IMORTANT!! it should free everything besides ministuff
+		free_all_gamedata(level); // IMORTANT!! it should free everything besides ministuff (not reasllybecause if we get here game is still happ)
 	}
 	else
 	{
