@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing the map files
-MAP_INV="./maps/invalid_map/"
-MAP_VAL="./maps/valid_map/"
+MAP="./maps/invalid_map/"
 
 # Define color codes
 RED='\033[0;31m'
@@ -33,28 +32,22 @@ run_test() {
     fi
 
     # Run valgrind and capture output
-    # valgrind_output=$(valgrind --leak-check=full --error-exitcode=1 ./so_long "$map" 2>&1)
+    valgrind_output=$(valgrind --leak-check=full --error-exitcode=1 ./so_long "$map" 2>&1)
 
-    # # Check for memory leaks or errors
-    # if echo "$valgrind_output" | grep -q "All heap blocks were freed"; then
-    #     echo -e "${GREEN}Memory PASSED: No memory leaks detected.${RESET}"
-    # else
-    #     echo -e "${RED}Memory issues detected${RESET}"
-    #     echo "$valgrind_output" # Show full valgrind output if there are issues
-    # fi
+    # Check for memory leaks or errors
+    if echo "$valgrind_output" | grep -q "All heap blocks were freed"; then
+        echo -e "${GREEN}Memory PASSED: No memory leaks detected.${RESET}"
+    else
+        echo -e "${RED}Memory issues detected${RESET}"
+        echo "$valgrind_output" # Show full valgrind output if there are issues
+    fi
 
-    # # Add a new line after each test
-    # echo
+    # Add a new line after each test
+    echo
 }
 
 # Loop through invalid map files
-for map in "$MAP_INV"/*
+for map in "$MAP"/*
 do
     run_test "$map" "invalid" "$RED"
-done
-
-# Loop through valid map files
-for map in "$MAP_VAL"/*
-do
-    run_test "$map" "valid" "$GREEN"
 done

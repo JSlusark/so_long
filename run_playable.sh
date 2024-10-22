@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing the map files
-MAP="./maps/unplayable_map"
+MAP="./maps/valid_map/"
 
 # Define color codes
 RED='\033[0;31m'
@@ -46,6 +46,7 @@ run_test() {
     echo
 }
 
+# Loop through valid map files
 for map in "$MAP"/*
 do
     run_test "$map" "valid" "$GREEN"
