@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/21 15:00:01 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:39:06 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static char	*parse_map(int fd, t_map *map_data) // 38 lines need to shorten
 	i = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		if (line[i] == '\0' || line[0] == '\n' ) // does not see as error if last line of doc has /n
+		if (line[0] == '\n' ) // does not see as error if last line of doc has /n
 		{
-			printf("Error: empty line found at line %d!\n", i + 1);
+			printf("Error: empty line found at line %d char: %c!\n", i + 1, line[0]);
 			free(map_data);
 			free(file_content);
 			free(line);
