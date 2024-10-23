@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/22 17:32:17 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:27:27 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

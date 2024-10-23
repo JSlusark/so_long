@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   verify_playability.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/22 16:16:55 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:27:08 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 int	create_map_dup(char **map_dup, t_map *level)
 {
@@ -78,11 +78,11 @@ int	collect_loot(char **map_dup, int y, int x, int *reachable_loot, t_map *level
 }
 void verify_playability(t_map *level)
 {
-	int i;
+	// int i;
 	int reachable_loot;
 	char **map_dup;
 
-	i = 0;
+	// i = 0;
 	map_dup = malloc(sizeof(char *) * (level->height + 1));
 	if(!create_map_dup(map_dup, level))
 	{

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
+#    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/21 17:36:53 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/23 14:29:07 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,17 @@ EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
 
 # Source files
 SRC = main.c \
-	src/data_collection.c \
-	src/get_next_line.c \
-	src/map_parsing.c \
-	src/map_validation.c \
-	src/verify_playability.c \
-	src/memory_handling.c \
-	src/sprite_validation.c \
-	src/sprite_parsing.c \
+	src/map_data/data_collection.c \
+	src/map_data/get_map.c \
+	src/map_data/get_next_line.c \
+	src/map_data/map_validation.c \
 	src/rendering/render_map.c \
-	src/testing_functions.c
+	src/rendering/verify_playability.c \
+	src/sprite_data/get_sprite_position.c \
+	src/sprite_data/sprite_validation.c \
+	src/memory_handling.c \
+	src/error_handling/testing_functions.c
+
 OBJ = $(SRC:.c=.o)
 
 # Compile object files

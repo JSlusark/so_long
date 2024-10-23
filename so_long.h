@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/17 19:33:26 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:31:56 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
+#include <X11/Xlib.h> // added for screen size
 
 //sprites size
 # define SIZE 32

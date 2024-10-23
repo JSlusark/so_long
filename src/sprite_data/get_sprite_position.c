@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite_parsing.c                                   :+:      :+:    :+:   */
+/*   get_sprite_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/21 15:32:07 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:14:47 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
+
 
 void	assign_direction_data(char **map_array, t_coord *character_coords, t_coord *direction_coords, char *direction) // func can
 {

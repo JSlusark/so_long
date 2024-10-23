@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/22 18:36:34 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:29:57 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
+
 void	render_map(void *img, char **map_array, t_map *level, void *game, void * session)
 {
 	int y;

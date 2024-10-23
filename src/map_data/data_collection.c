@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   data_collection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/22 19:05:46 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:31:42 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
-#include <X11/Xlib.h> // added for screen size
+#include "../../so_long.h"
 
 int	map_fits_screen(int width, int height)
 {

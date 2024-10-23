@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/22 17:41:12 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:26:12 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //is_rextangular() -> supported by find map height
 //			checks that map is rectangular
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 int	has_required_text(char **map)
 {
@@ -70,12 +70,12 @@ static int	count_sprite(char **map, char c)
 
 int	has_enough_sprites(char **map, t_map *map_data)
 {
-	int	f;
+	// int	f;
 	int	e;
 	int	c;
 	int	p;
 
-	f = count_sprite(map, '0');
+	// f = count_sprite(map, '0');
 	e = count_sprite(map, 'E');
 	c = count_sprite(map, 'C');
 	p = count_sprite(map, 'P');
