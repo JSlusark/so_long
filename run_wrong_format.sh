@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing the map files
-MAP="./maps/invalid_map/"
+MAP="./maps/wrong_format"
 
 # Define color codes
 RED='\033[0;31m'

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing the map files
-MAP="./maps/unplayable_map"
+MAP="./maps/unplayable"
 
 # Define color codes
 RED='\033[0;31m'
