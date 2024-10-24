@@ -6,28 +6,13 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 18:19:59 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:16:57 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-static int	verify_sprites(int chara, int loot, int door, int floor, int wall)
-{
-	int	valid_sprite;
-
-	valid_sprite = 1;
-	if (chara < 0 || loot < 0 || door < 0 || floor < 0 || wall < 0)
-		valid_sprite = 0;
-	close(chara);
-	close(door);
-	close(floor);
-	close(loot);
-	close(wall);
-	return (valid_sprite);
-}
-
-void	collect_sprites(char **map_array, t_map *map_data)
+static int	verify_sprites(void)
 {
 	int	chara;
 	int	loot;
@@ -40,17 +25,29 @@ void	collect_sprites(char **map_array, t_map *map_data)
 	floor = open("sprites/xpm/floor.xpm", O_RDWR);
 	loot = open("sprites/xpm/loot.xpm", O_RDWR);
 	wall = open("sprites/xpm/wall.xpm", O_RDWR);
-	if (!verify_sprites(chara, loot, door, floor, wall))
+	if (chara < 0 || loot < 0 || door < 0 || floor < 0 || wall < 0)
+		return (0);
+	close(chara);
+	close(door);
+	close(floor);
+	close(loot);
+	close(wall);
+	return (1);
+}
+
+void	collect_sprites(char **map_array, t_map *level)
+{
+	if (!verify_sprites())
 	{
 		free_map(map_array);
-		free(map_data);
+		free(level);
 		printf("Error: unable to access one or more sprites\n");
 		exit(1);
 	}
-	map_data->character_img = "sprites/xpm/chara.xpm";
-	map_data->door_img = "sprites/xpm/door.xpm";
-	map_data->floor_img = "sprites/xpm/floor.xpm";
-	map_data->loot_img = "sprites/xpm/loot.xpm";
-	map_data->wall_img = "sprites/xpm/wall.xpm";
-	map_data->pixels = 64;
+	level->character_img = "sprites/xpm/chara.xpm";
+	level->door_img = "sprites/xpm/door.xpm";
+	level->floor_img = "sprites/xpm/floor.xpm";
+	level->loot_img = "sprites/xpm/loot.xpm";
+	level->wall_img = "sprites/xpm/wall.xpm";
+	level->pixels = 64;
 }

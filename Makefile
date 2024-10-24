@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/23 14:29:07 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/24 19:26:11 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,10 +50,11 @@ SRC = main.c \
 	src/map_data/get_map.c \
 	src/map_data/get_next_line.c \
 	src/map_data/map_validation.c \
+	src/sprite_data/sprite_validation.c \
+	src/sprite_data/get_sprite_position.c \
 	src/rendering/render_map.c \
 	src/rendering/verify_playability.c \
-	src/sprite_data/get_sprite_position.c \
-	src/sprite_data/sprite_validation.c \
+	src/player_interaction/commands.c \
 	src/memory_handling.c \
 	src/error_handling/testing_functions.c
 

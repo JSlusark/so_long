@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 18:20:28 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:16:50 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,32 +55,31 @@ t_sprite *character_data)
 	return (character_data);
 }
 
-void	init_chara_data(char **map_array, t_map *map_data)
+void	init_chara_data(char **map_array, t_map *level)
 {
 	int	r;
 	int	c;
 
 	r = 0;
 	c = 0;
-	map_data->character_data = malloc(sizeof(t_sprite));
-	map_data->character_data->up_i = malloc(sizeof(t_coord));
-	map_data->character_data->down_i = malloc(sizeof(t_coord));
-	map_data->character_data->left_i = malloc(sizeof(t_coord));
-	map_data->character_data->right_i = malloc(sizeof(t_coord));
+	level->character_data = malloc(sizeof(t_sprite));
+	level->character_data->up_i = malloc(sizeof(t_coord));
+	level->character_data->down_i = malloc(sizeof(t_coord));
+	level->character_data->left_i = malloc(sizeof(t_coord));
+	level->character_data->right_i = malloc(sizeof(t_coord));
 	while (map_array[r] != NULL)
 	{
 		c = 0;
 		while (map_array[r][c] != '\0')
 		{
 			if (map_array[r][c] == 'P')
-				assign_character_data(map_array, r, c, map_data->character_data);
+				assign_character_data(map_array, r, c, level->character_data);
 			c++;
 		}
 		r++;
 	}
-	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->up_i, "up");
-	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->down_i, "down");
-	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->left_i, "left");
-	assign_direction_data(map_array, map_data->character_data->curr_i, map_data->character_data->right_i, "right");
-
+	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->up_i, "up");
+	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->down_i, "down");
+	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->left_i, "left");
+	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->right_i, "right");
 }

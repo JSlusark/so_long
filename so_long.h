@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/24 19:03:12 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:15:35 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //MACROS
 # define BUFFER_SIZE 42
-# define BITS 64
+# define PIXELS 64
 # define UP_KEY 65362 //<---------- can i use define?
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
@@ -104,6 +104,9 @@ void			collect_sprites(char **map_array, t_map *map_data);
 void			init_chara_data(char **map_array, t_map *map_data);
 void			render_map(void *img, char **map_array, t_map *level, void *game, void * session);
 void			change_map(char *direction, char *character, t_map *level);
+
+int				key_hook(int keycode, t_map	*level);
+int				close_window(t_map *level);
 
 // testing functions
 // void			print_chara_data(t_sprite *c);
