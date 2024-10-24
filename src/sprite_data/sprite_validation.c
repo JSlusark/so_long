@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_validation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/23 14:15:35 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:19:59 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	verify_sprites(int chara, int loot, int door, int floor, int wall)
 	close(wall);
 	return (valid_sprite);
 }
-
 
 void	collect_sprites(char **map_array, t_map *map_data)
 {

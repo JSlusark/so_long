@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_playability.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/23 12:27:08 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:04:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	create_map_dup(char **map_dup, t_map *level)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!map_dup)
@@ -28,7 +28,7 @@ int	create_map_dup(char **map_dup, t_map *level)
 		if (!map_dup[i])
 		{
 			printf("Error: failed strdup on line %i\n", i);
-			return(0);
+			return (0);
 		}
 		i++;
 	}
@@ -38,32 +38,34 @@ int	create_map_dup(char **map_dup, t_map *level)
 
 int	exit_was_found(char **map_dup)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (map_dup[x] != NULL)
 	{
 		y = 0;
-		while(map_dup[x][y] != '\0')
+		while (map_dup[x][y] != '\0')
 		{
-			if(map_dup[x][y] == 'E')
-				return(1);
+			if (map_dup[x][y] == 'E')
+				return (1);
 			y++;
 		}
 		x++;
 	}
-	return(0);
+	return (0);
 }
-int	collect_loot(char **map_dup, int y, int x, int *reachable_loot, t_map *level) // my floodfill
+
+int	collect_loot(char **map_dup, int y, int x, int *reachable_loot, t_map *level)
 {
 	if (x < 0 || x >= level->height || y < 0 || y >= level->width)
-		return(0);
-	if (map_dup[x][y] == '1' || map_dup[x][y] == ' ' || ((*reachable_loot) != level->loot_n && map_dup[x][y] == 'E') )
+		return (0);
+	if (map_dup[x][y] == '1' || map_dup[x][y] == ' '
+	|| ((*reachable_loot) != level->loot_n && map_dup[x][y] == 'E'))
 	{
-		if(map_dup[x][y] == 'E')
-				map_dup[x][y] = ' ';
-		return(0);
+		if (map_dup[x][y] == 'E')
+			map_dup[x][y] = ' ';
+		return (0);
 	}
 	if (map_dup[x][y] == 'C')
 		(*reachable_loot)++;
@@ -72,40 +74,39 @@ int	collect_loot(char **map_dup, int y, int x, int *reachable_loot, t_map *level
 	collect_loot(map_dup, y, x + 1, reachable_loot, level);
 	collect_loot(map_dup, y - 1, x, reachable_loot, level);
 	collect_loot(map_dup, y + 1, x, reachable_loot, level);
-	if((*reachable_loot) == level->loot_n && map_dup[x][y] == 'E')
+	if ((*reachable_loot) == level->loot_n && map_dup[x][y] == 'E')
 		map_dup[x][y] = ' ';
-	return(*reachable_loot);
+	return (*reachable_loot);
 }
-void verify_playability(t_map *level)
+void	verify_playability(t_map *level)
 {
-	// int i;
-	int reachable_loot;
-	char **map_dup;
+	int		reachable_loot;
+	char	**map_dup;
+	int		x;
+	int		y;
 
-	// i = 0;
 	map_dup = malloc(sizeof(char *) * (level->height + 1));
-	if(!create_map_dup(map_dup, level))
+	if (!create_map_dup(map_dup, level))
 	{
 		free_map(map_dup);
 		free_all_gamedata(level);
 		exit(1);
 	}
 	reachable_loot = 0;
-	int x = level->character_data->curr_i->x;
-	int y = level->character_data->curr_i->y;
+	x = level->character_data->curr_i->x;
+	y = level->character_data->curr_i->y;
 	reachable_loot = collect_loot(map_dup, y, x, &reachable_loot, level);
-	if(reachable_loot != level->loot_n)
+	if (reachable_loot != level->loot_n)
 	{
-		printf("Error: Could not reach %d out of %d loot\n", level->loot_n - reachable_loot, level->loot_n);
-		print_map(map_dup);
+		printf("Error: Could not reach %d out of %d loot\n",
+			level->loot_n - reachable_loot, level->loot_n);
 		free_map(map_dup);
 		free_all_gamedata(level);
 		exit(1);
 	}
-	if(exit_was_found(map_dup))
+	if (exit_was_found(map_dup))
 	{
 		printf("Error: all loot can be collected but exit is blocked\n");
-		print_map(map_dup);
 		free_map(map_dup);
 		free_all_gamedata(level);
 		exit(1);
