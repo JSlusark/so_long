@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 11:10:02 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:35:26 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,8 @@ int	main(int argc, char **argv)
 		level->map_array = get_map(argv[1], level);
 		verify_format(level->map_array, level);
 		collect_sprites(level->map_array, level);
-		level->character_data = malloc(sizeof(t_sprite));
-		if (!level->character_data)
-		{
-			free(level);
-			exit(1);
-		}
-		level->character_data->curr_i = malloc(sizeof(t_coord));
-		level->character_data->up_i = malloc(sizeof(t_coord));
-		level->character_data->down_i = malloc(sizeof(t_coord));
-		level->character_data->left_i = malloc(sizeof(t_coord));
-		level->character_data->right_i = malloc(sizeof(t_coord));
-		if (!level->character_data->curr_i || !level->character_data->up_i ||
-			!level->character_data->down_i || !level->character_data->left_i ||
-			!level->character_data->right_i)
-		{
-			free_all_gamedata(level); // Assuming this handles freeing properly
-			exit(1);
-		}
-		get_chara_position(level->map_array, level);
+		allocate_chara_data(level);
+		get_chara_position(level->map_array, level->character_data);
 		verify_playability(level);
 		launch_game(level->map_array, level);
 		free_all_gamedata(level);

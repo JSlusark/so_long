@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory_handling.c                                  :+:      :+:    :+:   */
+/*   freeing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 18:10:19 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:27:03 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	free_sprite(t_sprite *character_data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 14:52:52 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/23 12:25:48 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:45:09 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 	}
 	line = ft_get_line(collector);
 	collector = ft_update_collector(collector);
-	if(line[0] == '\n') // this line fixes the memory leaks when map is invalid and has new lines
+	if (line[0] == '\n')
 		free(collector);
 	return (line);
 }

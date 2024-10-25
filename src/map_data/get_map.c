@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/23 12:25:14 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:50:51 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-static char	*parse_map(int fd, t_map *map_data) // 38 lines need to shorten
+static char	*parse_map(int fd, t_map *map_data)
 {
 	char	*file_content;
 	char	*line;
@@ -23,9 +23,9 @@ static char	*parse_map(int fd, t_map *map_data) // 38 lines need to shorten
 	i = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		if (line[0] == '\n' ) // does not see as error if last line of doc has /n
+		if (line[0] == '\n' )
 		{
-			printf("Error: empty line found at line %d char: %c!\n", i + 1, line[0]);
+			printf("Error: newline found at line %d!\n", i + 1);
 			free(map_data);
 			free(file_content);
 			free(line);

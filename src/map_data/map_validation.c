@@ -3,21 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/23 12:26:12 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:45:58 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//contains_symbols()
-//			checks if map cointains any of the letters needed 01CEP
-//has_width()
-//			checks that every line has the same len
-//is_framed()
-//			checks that the walls (1) contain the whole game
-//is_rextangular() -> supported by find map height
-//			checks that map is rectangular
 
 #include "../../so_long.h"
 
@@ -70,12 +61,10 @@ static int	count_sprite(char **map, char c)
 
 int	has_enough_sprites(char **map, t_map *map_data)
 {
-	// int	f;
 	int	e;
 	int	c;
 	int	p;
 
-	// f = count_sprite(map, '0');
 	e = count_sprite(map, 'E');
 	c = count_sprite(map, 'C');
 	p = count_sprite(map, 'P');
@@ -91,7 +80,6 @@ int	has_enough_sprites(char **map, t_map *map_data)
 	map_data->moves = 0;
 	return (1);
 }
-
 
 int	is_rectangular(char **map, int row, int col)
 {

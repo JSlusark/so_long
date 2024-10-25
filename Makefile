@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/25 11:01:53 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/25 11:27:37 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ SRC = main.c \
 	src/rendering/render_map.c \
 	src/rendering/verify_playability.c \
 	src/player_interaction/commands.c \
-	src/memory_handling.c \
+	src/memory_handling/freeing_functions.c \
+	src/memory_handling/allocation_functions.c \
 	src/error_handling/testing_functions.c
 
 OBJ = $(SRC:.c=.o)

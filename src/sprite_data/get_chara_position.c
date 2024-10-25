@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 11:17:29 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:46:19 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_coord *direction_coords, char *direction)
 {
 	if (strcmp(direction, "up") == 0)
 	{
-		direction_coords->x = character_coords->x - 1; // Update x by reference
+		direction_coords->x = character_coords->x - 1;
 		direction_coords->y = character_coords->y;
 	}
 	else if (strcmp(direction, "down") == 0)
@@ -54,7 +54,7 @@ t_sprite *character_data)
 	return (character_data);
 }
 
-void	get_chara_position(char **map_array, t_map *level)
+void	get_chara_position(char **map_array, t_sprite *chara)
 {
 	int	r;
 	int	c;
@@ -66,13 +66,13 @@ void	get_chara_position(char **map_array, t_map *level)
 		while (map_array[r][c] != '\0')
 		{
 			if (map_array[r][c] == 'P')
-					assign_character_data(map_array, r, c, level->character_data);
+				assign_character_data(map_array, r, c, chara);
 			c++;
 		}
 		r++;
 	}
-	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->up_i, "up");
-	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->down_i, "down");
-	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->left_i, "left");
-	assign_direction_data(map_array, level->character_data->curr_i, level->character_data->right_i, "right");
+	assign_direction_data(map_array, chara->curr_i, chara->up_i, "up");
+	assign_direction_data(map_array, chara->curr_i, chara->down_i, "down");
+	assign_direction_data(map_array, chara->curr_i, chara->left_i, "left");
+	assign_direction_data(map_array, chara->curr_i, chara->right_i, "right");
 }
