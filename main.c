@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 13:43:16 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:49:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 		level = malloc(sizeof(t_map));
 		if (!level)
 			exit(1);
+		level->mini_libx.game = NULL;
 		level->map_array = get_map(argv[1], level);
 		verify_format(level->map_array, level);
 		collect_sprites(level->map_array, level);
