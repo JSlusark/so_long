@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 20:16:57 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:08:38 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	collect_sprites(char **map_array, t_map *level)
 	{
 		free_map(map_array);
 		free(level);
-		printf("Error: unable to access one or more sprites\n");
+		ft_printf("Error: unable to access one or more sprites\n");
 		exit(1);
 	}
 	level->character_img = "sprites/xpm/chara.xpm";

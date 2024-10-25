@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 11:35:26 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:31:41 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 {
 	t_map	*level;
 
-	printf("NOTE: PLEASE REMEMBER TO REPLACE WITH YOUR CORRECTED PRINTF\n");
 	if (argc == 2)
 	{
 		level = malloc(sizeof(t_map));
@@ -53,7 +52,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		printf("Error: ./so_long requires a file from the map folder to run!\n");
+		ft_printf("Error: ./so_long needs a file from the map folder to run!\n");
 		exit(1);
 	}
 	return (0);

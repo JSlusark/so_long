@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 12:50:51 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:08:24 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*parse_map(int fd, t_map *map_data)
 	{
 		if (line[0] == '\n' )
 		{
-			printf("Error: newline found at line %d!\n", i + 1);
+			ft_printf("Error: newline found at line %d!\n", i + 1);
 			free(map_data);
 			free(file_content);
 			free(line);
@@ -45,7 +45,7 @@ static char	*parse_map(int fd, t_map *map_data)
 	}
 	if (!file_content)
 	{
-		printf("Error: file is empty!\n");
+		ft_printf("Error: file is empty!\n");
 		free(map_data);
 		free(file_content);
 		close(fd);
@@ -83,7 +83,7 @@ char	**get_map(char *file, t_map *level)
 	fd = open(file, O_RDONLY);
 	if (!has_file_extension(file, ".ber") || fd < 0)
 	{
-		printf("Error: file does not exist or has wrong extension format\n");
+		ft_printf("Error: file does not exist or has wrong extension format\n");
 		free(level);
 		close(fd);
 		exit(1);

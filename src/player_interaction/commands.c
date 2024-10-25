@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 11:35:28 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:08:29 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	key_hook(int keycode, t_map	*level)
 	{
 		free_all_gamedata(level);
 		exit(0);
-		printf("Clicked exit!\n");
+		ft_printf("Clicked exit!\n");
 	}
 	else
 		return (0);

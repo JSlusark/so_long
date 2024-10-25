@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 12:45:58 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:29:52 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	has_required_text(char **map)
 				c++;
 			else
 			{
-				printf("Error: text %c at r[%d]c[%d]\n", map[r][c], r, c);
+				ft_printf("Error: text %c at r[%d]c[%d]\n", map[r][c], r, c);
 				return (0);
 			}
 		}
@@ -70,10 +70,10 @@ int	has_enough_sprites(char **map, t_map *map_data)
 	p = count_sprite(map, 'P');
 	if (p == 0 || p > 1 || c == 0 || e == 0 || e > 1)
 	{
-		printf("Error: Map does not have the required amount assets:\n");
-		printf("- C: %d (needs to be 1 or more) \n", c);
-		printf("- P: %d (needs to be 1) \n", p);
-		printf("- E: %d (needs to be 1) \n", e);
+		ft_printf("Error: Map does not have the required amount assets:\n");
+		ft_printf("- C: %d (needs to be 1 or more) \n", c);
+		ft_printf("- P: %d (needs to be 1) \n", p);
+		ft_printf("- E: %d (needs to be 1) \n", e);
 		return (0);
 	}
 	map_data->loot_n = c;
@@ -92,41 +92,41 @@ int	is_rectangular(char **map, int row, int col)
 		curr = ft_strlen(map[i]);
 		if (curr != row)
 		{
-			printf("Error: height of each row is not the same\n");
+			ft_printf("Error: height of each row is not the same\n");
 			return (0);
 		}
 		i++;
 	}
 	if (row == col)
 	{
-		printf("Error: Map is not rectangular\n");
+		ft_printf("Error: Map is has to be rectangular not squared\n");
 		return (0);
 	}
 	return (1);
 }
 
-int	is_framed(char **map, int last_row, int last_c)
+int	is_framed(char **map, int last_r, int last_c)
 {
-	int	row;
+	int	r;
 	int	c;
 
-	row = 0;
-	while (map[row] != NULL)
+	r = 0;
+	while (map[r] != NULL)
 	{
 		c = 0;
-		while (map[row][c] != '\0')
+		while (map[r][c] != '\0')
 		{
-			if (row == 0 || row == last_row || c == 0 || c == last_c)
+			if (r == 0 || r == last_r || c == 0 || c == last_c)
 			{
-				if (map[row][c] != '1')
+				if (map[r][c] != '1')
 				{
-					printf("Error: Map is not framed from walls (1)\n");
+					ft_printf("Error: Not framed at map[%d][%d]\n", r, c);
 					return (0);
 				}
 			}
 			c++;
 		}
-		row++;
+		r++;
 	}
 	return (1);
 }

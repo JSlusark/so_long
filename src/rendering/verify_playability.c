@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 19:04:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:08:33 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	create_map_dup(char **map_dup, t_map *level)
 	i = 0;
 	if (!map_dup)
 	{
-		printf("Error: Memory allocation failed for map copy\n");
+		ft_printf("Error: Memory allocation failed for map copy\n");
 		return (0);
 	}
 	while (i < level->height)
@@ -27,7 +27,7 @@ int	create_map_dup(char **map_dup, t_map *level)
 		map_dup[i] = ft_strdup(level->map_array[i]);
 		if (!map_dup[i])
 		{
-			printf("Error: failed strdup on line %i\n", i);
+			ft_printf("Error: failed strdup on line %i\n", i);
 			return (0);
 		}
 		i++;
@@ -98,7 +98,7 @@ void	verify_playability(t_map *level)
 	reachable_loot = collect_loot(map_dup, y, x, &reachable_loot, level);
 	if (reachable_loot != level->loot_n)
 	{
-		printf("Error: Could not reach %d out of %d loot\n",
+		ft_printf("Error: Could not reach %d out of %d loot\n",
 			level->loot_n - reachable_loot, level->loot_n);
 		free_map(map_dup);
 		free_all_gamedata(level);
@@ -106,7 +106,7 @@ void	verify_playability(t_map *level)
 	}
 	if (exit_was_found(map_dup))
 	{
-		printf("Error: all loot can be collected but exit is blocked\n");
+		ft_printf("Error: all loot can be collected but exit is blocked\n");
 		free_map(map_dup);
 		free_all_gamedata(level);
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 19:50:27 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:08:30 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	change_map(char *direction, char *character, t_map *level)
 	else if (*direction == 'E' && level->loot_n == 0)
 	{
 		level->moves++;
-		printf("STEPS: %d\n", level->moves);
-		printf("YOU WON!\n");
+		ft_printf("STEPS: %d\n", level->moves);
+		ft_printf("YOU WON!\n");
 		free_all_gamedata(level);
 		exit(0);
 	}
 	else if (*direction == 'C')
 		level->loot_n--;
 	level->moves++;
-	printf("STEPS: %d\n", level->moves);
+	ft_printf("STEPS: %d\n", level->moves);
 	*direction = *character;
 	*character = '0';
 }
