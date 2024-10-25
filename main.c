@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 18:49:20 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 21:34:23 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_printf("Error: ./so_long needs a file from the map folder to run!\n");
+		ft_printf("Error: ./so_long needs a map file to run!\n");
 		exit(1);
 	}
 	return (0);
