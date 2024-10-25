@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:12:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/19 14:00:16 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:07:30 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 # include <stdarg.h>
 # include <limits.h>
-#include <stdint.h>
+# include <stdint.h>
 
 int		ft_printf(const char *format, ...);
 int		ft_printchar(char c);

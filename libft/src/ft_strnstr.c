@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:49:32 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 12:58:04 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-/* #include <stdio.h>
-int main(void) {
-    const char *largestring;
-    const char *smallstring;
-    char *ptr;
-
-    // Test 1: Finding a substring in the middle of the string within limits
-    largestring = "Foo Bar Baz";
-    smallstring = "Bar";
-    ptr = ft_strnstr(largestring, smallstring, 8);
-    printf("Test 1: %s\n", ptr ? ptr : "Not found");
-
-    // Test 2: Substring beyond the search limit
-    largestring = "Foo Bar Baz";
-    smallstring = "Baz";
-    ptr = ft_strnstr(largestring, smallstring, 8);
-    printf("Test 2: %s\n", ptr ? ptr : "Not found");
-
-    // Test 3: Empty 'little' string should return 'big'
-    largestring = "Foo Bar Baz";
-    smallstring = "";
-    ptr = ft_strnstr(largestring, smallstring, 8);
-    printf("Test 3: %s\n", ptr ? ptr : "Not found");
-
-    return 0;
-}
- */

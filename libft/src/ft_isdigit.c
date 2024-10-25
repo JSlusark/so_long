@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:25:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 12:57:03 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,3 @@ int	ft_isdigit(int c)
 	}
 	return (0);
 }
-/* #include <stdio.h>
-int	main(void)
-{
-	printf("n %i\n", ft_isdigit('a'));
-	printf("n %i\n", ft_isdigit(128));
-	printf("n %i\n", ft_isdigit(190));
-	printf("y %i\n", ft_isdigit('1'));
-	printf("y %i\n", ft_isdigit('9'));
-	printf("y %i\n", ft_isdigit('5'));
-	printf("n %i\n", ft_isdigit(-10));
-} */

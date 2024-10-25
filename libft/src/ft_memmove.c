@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:49:11 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 12:57:30 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,3 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest_ptr);
 }
-/* #include <stdio.h>
-int main(void)
-{
-	char	string1[10] = "aaaaaaaaaa";
-	char	string2[10] = "bbbbbbbbbb";
-	printf("%s\n", (char*)ft_memmove(string1, string2, 5));
-	printf("%s\n", (char*)memmove(string1, string2, 5));
-
-	char	string3[13] = "aaaaaaaaaaaaa";
-	char	string4[10] = "bbbbbbbbbb";
-	printf("%s\n", (char*)ft_memmove(string3, string4, 5));
-	printf("%s\n", (char*)memmove(string3, string4, 5));
-} */

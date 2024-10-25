@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:48:32 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 12:56:40 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_memset(dst, 0, tot_size);
 	return (dst);
 }
-/*
-#include <stdio.h>
-#include <stdint.h> // for uintptr_t to check alignment
-void print_memory(char *ptr, size_t n) {
-    printf("Memory: ");
-    for (size_t i = 0; i < n; i++) {
-        printf("%02x ", (unsigned char)ptr[i]);
-    }
-    printf("\n");
-}
-int main(void) {
-    // Test 1: Basic functionality with non-zero members
-    int *array = ft_calloc(10, sizeof(int));
-    printf("Test 1 - First 10 integers should all be zero:\n");
-    print_memory((char *)array, 10 * sizeof(int));
-    free(array);
-
-    // Test 2: Zero elements allocated
-    double *doubles = ft_calloc(0, sizeof(double));
-    printf("Test 2 - Pointer should be non-NULL (implementation-specific):\n");
-    printf("Pointer: %p\n", doubles);
-    free(doubles);
-
-    return 0;
-}
- */

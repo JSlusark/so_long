@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:30:49 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:37:08 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 13:04:34 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_printhex(unsigned int num, char format)
 	int		count;
 	char	*hex_digits;
 
-// IF NUM IS 0 REURN 0
 	count = 0;
 	hex_digits = "0123456789abcdef";
 	if (format == 'X')

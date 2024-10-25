@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:44:06 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/19 19:00:38 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:57:44 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static char	*alloc_word(const char *start, int len)
 	if (!word)
 		return (NULL);
 	ft_strlcpy(word, start, len + 1);
-	// printf("WORD: %s\n", word ); // REMOVE AFTER DONE ERROR HANDLING
 	return (word);
 }
 

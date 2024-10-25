@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 15:49:20 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 12:57:58 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dst[d_i + s_i] = '\0';
 	return (d_i + ft_strlen(src));
 }
-/* #include <stdio.h>
-#include <string.h>
-int	main(void)
-{
-   char buffer1[20] = "Hello";
-    char buffer2[20] = "Hello";
-    char buffer3[20] = "Hello";
-
-    // Test 1: Concatenate with ample space
-    ft_strlcat(buffer1, " world!", sizeof(buffer1));
-    printf("Test 1: %s\n", buffer1);  // Expected output: "Hello world!"
-
-    // Test 2: Concatenate with exactly fitting space
-    ft_strlcat(buffer2, " world!", 12);
-    printf("Test 2: %s\n", buffer2);  // Expected output: "Hello world!"
-
-    // Test 3: Concatenate with not enough space for the full string
-    ft_strlcat(buffer3, " world!", 10);
-    printf("Test 3: %s\n", buffer3);  // Expected output: "Hello wor"
-
-    return 0;
-} */

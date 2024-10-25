@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjs <jjs@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:11:26 by jslusark          #+#    #+#             */
-/*   Updated: 2024/09/18 14:48:55 by jjs              ###   ########.fr       */
+/*   Updated: 2024/10/25 12:57:10 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-// #include <stdio.h>
-// #include <limits.h>
-// int	main(void)
-// {
-// 	printf("%s\n", ft_itoa(1300));
-// 	printf("%s\n", ft_itoa(100));
-// 	printf("%s\n", ft_itoa(-300)); //1316
-// 	printf("%s\n", ft_itoa(INT_MIN)); //-2147483648
-// 	printf("%s\n", ft_itoa(INT_MAX)); //2147483647
-// }
