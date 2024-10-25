@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 11:02:08 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:17:29 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	*assign_character_data(char **map_array, int r, int c,
 t_sprite *character_data)
 {
 	character_data->ptr = &map_array[r][c];
-	character_data->curr_i = malloc(sizeof(t_coord));
 	if (!character_data->curr_i)
 	{
 		free(character_data);
@@ -61,19 +60,13 @@ void	get_chara_position(char **map_array, t_map *level)
 	int	c;
 
 	r = 0;
-	c = 0;
-	level->character_data = malloc(sizeof(t_sprite));
-	level->character_data->up_i = malloc(sizeof(t_coord));
-	level->character_data->down_i = malloc(sizeof(t_coord));
-	level->character_data->left_i = malloc(sizeof(t_coord));
-	level->character_data->right_i = malloc(sizeof(t_coord));
 	while (map_array[r] != NULL)
 	{
 		c = 0;
 		while (map_array[r][c] != '\0')
 		{
 			if (map_array[r][c] == 'P')
-				assign_character_data(map_array, r, c, level->character_data);
+					assign_character_data(map_array, r, c, level->character_data);
 			c++;
 		}
 		r++;
