@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/26 00:14:23 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/26 00:47:44 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,13 @@ void			change_map(char *direction, char *character, t_map *level);
 int				key_hook(int keycode, t_map	*level);
 int				close_window(t_map *level);
 
-int	create_map_dup(char **map_dup, t_map *level);
+int				create_map_dup(char **map_dup, t_map *level);
+int				exit_was_found(char **map_dup);
+int				enemy_was_found(char **map_dup);
+int				loot_was_found(char **map_dup);
+void			reach_enemies(int y, int x, t_map *level);
+int				collect_loot(int y, int x, int *reachable_loot, t_map *level);
+
 
 // testing functions
 void			print_chara_data(t_sprite *c);

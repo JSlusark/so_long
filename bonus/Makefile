@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/25 21:44:47 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/26 00:45:57 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC = main.c \
 	src/sprite_data/get_chara_position.c \
 	src/rendering/render_map.c \
 	src/rendering/verify_playability.c \
+	src/rendering/fill_checks.c \
 	src/player_interaction/commands.c \
 	src/memory_handling/freeing_functions.c \
 	src/memory_handling/allocation_functions.c \
