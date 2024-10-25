@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_sprite_position.c                              :+:      :+:    :+:   */
+/*   get_chara_position.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/24 20:16:50 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:02:08 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_sprite *character_data)
 	return (character_data);
 }
 
-void	init_chara_data(char **map_array, t_map *level)
+void	get_chara_position(char **map_array, t_map *level)
 {
 	int	r;
 	int	c;

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/24 20:14:37 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:01:51 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 		level->map_array = get_map(argv[1], level);
 		verify_format(level->map_array, level);
 		collect_sprites(level->map_array, level);
-		init_chara_data(level->map_array, level);
+		get_chara_position(level->map_array, level);
 		verify_playability(level);
 		launch_game(level->map_array, level);
 		free_all_gamedata(level);

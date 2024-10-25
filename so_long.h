@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/24 20:15:35 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:01:56 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			free_map(char **map_layout);
 void			free_sprite(t_sprite *character_data);
 void			free_all_gamedata(t_map *level);
 void			collect_sprites(char **map_array, t_map *map_data);
-void			init_chara_data(char **map_array, t_map *map_data);
+void			get_chara_position(char **map_array, t_map *map_data);
 void			render_map(void *img, char **map_array, t_map *level, void *game, void * session);
 void			change_map(char *direction, char *character, t_map *level);
 

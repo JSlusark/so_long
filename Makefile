@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/24 19:26:11 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/25 11:01:53 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC = main.c \
 	src/map_data/get_next_line.c \
 	src/map_data/map_validation.c \
 	src/sprite_data/sprite_validation.c \
-	src/sprite_data/get_sprite_position.c \
+	src/sprite_data/get_chara_position.c \
 	src/rendering/render_map.c \
 	src/rendering/verify_playability.c \
 	src/player_interaction/commands.c \
