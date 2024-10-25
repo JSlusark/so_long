@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 13:46:47 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:06:22 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_map
 {
 	t_lib		mini_libx;
 	char		**map_array;
+	char		**map_dup;
 	int			width;
 	int			height;
 	int			pixels;
@@ -98,6 +99,7 @@ int				has_enough_sprites(char **map, t_map *map_data);
 int				is_rectangular(char **map, int row, int col);
 int				is_framed(char **map, int last_row, int last_c);
 void			allocate_chara_data(t_map *level);
+void			allocate_map_dup(t_map *level);
 void			free_map(char **map_layout);
 void			free_sprite(t_sprite *character_data);
 void			free_all_gamedata(t_map *level);

@@ -6,11 +6,33 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 13:44:26 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:58:53 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
+
+void	change_map(char *direction, char *character, t_map *level)
+{
+	if (*direction == '1')
+		return ;
+	else if (*direction == 'E' && level->loot_n != 0)
+		return ;
+	else if (*direction == 'E' && level->loot_n == 0)
+	{
+		level->moves++;
+		ft_printf("STEPS: %d\n", level->moves);
+		ft_printf("YOU WON!\n");
+		free_all_gamedata(level);
+		exit(0);
+	}
+	else if (*direction == 'C')
+		level->loot_n--;
+	level->moves++;
+	ft_printf("STEPS: %d\n", level->moves);
+	*direction = *character;
+	*character = '0';
+}
 
 int	key_hook(int keycode, t_map	*level)
 {

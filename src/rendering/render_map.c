@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 13:58:14 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:58:36 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*get_file(char c, t_map *level)
 {
-
 	if (c == '1')
 		return (level->wall_img);
 	else if (c == '0')
@@ -27,7 +26,6 @@ char	*get_file(char c, t_map *level)
 		return (level->loot_img);
 	return (NULL);
 }
-
 
 void	render_map(void *img, char **map_array, t_map *level, t_lib lib)
 {
@@ -55,26 +53,4 @@ void	render_map(void *img, char **map_array, t_map *level, t_lib lib)
 		}
 		y++;
 	}
-}
-
-void	change_map(char *direction, char *character, t_map *level)
-{
-	if (*direction == '1')
-		return ;
-	else if (*direction == 'E' && level->loot_n != 0)
-		return ;
-	else if (*direction == 'E' && level->loot_n == 0)
-	{
-		level->moves++;
-		ft_printf("STEPS: %d\n", level->moves);
-		ft_printf("YOU WON!\n");
-		free_all_gamedata(level);
-		exit(0);
-	}
-	else if (*direction == 'C')
-		level->loot_n--;
-	level->moves++;
-	ft_printf("STEPS: %d\n", level->moves);
-	*direction = *character;
-	*character = '0';
 }
