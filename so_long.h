@@ -6,17 +6,16 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 15:06:22 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:21:13 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-//MACROS
 # define BUFFER_SIZE 42
 # define PIXELS 64
-# define UP_KEY 65362 //<---------- can i use define?
+# define UP_KEY 65362
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
@@ -26,13 +25,6 @@
 # define S_KEY 115
 # define D_KEY 100
 # define Q_KEY 113
-// # define VALID_CHARS "01PCE"
-// # define WALL "1"
-// # define CHARACTER "P"
-// # define LOOT "C"
-// # define EXIT "E"
-// # define FLOOR "0"
-
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
 # include "mlx/mlx.h"

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 14:58:36 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:23:02 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	render_map(void *img, char **map_array, t_map *level, t_lib lib)
 					img, x * level->pixels, y * level->pixels);
 				mlx_destroy_image(lib.game, img);
 			}
-			//else error handling ?
 			x++;
 		}
 		y++;
