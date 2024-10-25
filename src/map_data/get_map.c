@@ -6,33 +6,41 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 17:07:01 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:05:49 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-static char	*parse_map(int fd, t_map *map_data)
+void	handle_nl_start(int fd, t_map *map_data, char *file_content, char *line)
 {
-	char	*file_content;
+	ft_printf("Error: map cannot have an empty newline!\n");
+	free(map_data);
+	free(file_content);
+	free(line);
+	close(fd);
+	exit(1);
+}
+
+void	no_content(int fd, t_map *map_data, char *file_content)
+{
+	ft_printf("Error: file is empty!\n");
+	free(map_data);
+	free(file_content);
+	close(fd);
+	exit(1);
+}
+
+static char	*parse_map(int fd, t_map *map_data, char *file_content, char *line)
+{
 	char	*temp;
 	int		i;
-	char 	*line;
 
-	file_content = NULL;
 	i = 0;
-	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (line[0] == '\n' )
-		{
-			ft_printf("Error: newline found at line %d!\n", i + 1);
-			free(map_data);
-			free(file_content);
-			free(line);
-			close(fd);
-			exit(1);
-		}
+		if (line[0] == '\n')
+			handle_nl_start(fd, map_data, file_content, line);
 		if (file_content == NULL)
 			file_content = ft_strdup(line);
 		else
@@ -46,13 +54,7 @@ static char	*parse_map(int fd, t_map *map_data)
 		i++;
 	}
 	if (!file_content)
-	{
-		ft_printf("Error: file is empty!\n");
-		free(map_data);
-		free(file_content);
-		close(fd);
-		exit(1);
-	}
+		no_content(fd, map_data, file_content);
 	return (file_content);
 }
 
@@ -81,6 +83,7 @@ char	**get_map(char *file, t_map *level)
 {
 	int		fd;
 	char	*file_content;
+	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (!has_file_extension(file, ".ber") || fd < 0)
@@ -90,7 +93,8 @@ char	**get_map(char *file, t_map *level)
 		close(fd);
 		exit(1);
 	}
-	file_content = parse_map(fd, level);
+	line = get_next_line(fd);
+	file_content = parse_map(fd, level, NULL, line);
 	close(fd);
 	level->map_array = ft_split(file_content, '\n');
 	free(file_content);
