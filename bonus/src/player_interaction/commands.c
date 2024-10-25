@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 22:24:54 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 22:38:25 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 void	change_map(char *direction, char *character, t_map *level)
 {
-	if (*direction == '1')
+	if (*direction == '1' || (*direction == 'E' && level->loot_n != 0))
 		return ;
-	else if (*direction == 'E' && level->loot_n != 0)
-		return ;
+	else if (*direction == 'K')
+	{
+		level->moves++;
+		ft_printf("STEPS: %d\n", level->moves);
+		ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
+		free_all_gamedata(level);
+		exit(1);
+	}
 	else if (*direction == 'E' && level->loot_n == 0)
 	{
 		level->moves++;
@@ -36,6 +42,7 @@ void	change_map(char *direction, char *character, t_map *level)
 
 int	key_hook(int keycode, t_map	*level)
 {
+	// add function that gets keycode and chnagege chara img based on keycode
 	if (keycode == UP_KEY || keycode == W_KEY)
 		change_map(level->character_data->up_i->ptr,
 			level->character_data->curr_i->ptr, level);
