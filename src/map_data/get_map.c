@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 13:08:24 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 17:07:01 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 static char	*parse_map(int fd, t_map *map_data)
 {
 	char	*file_content;
-	char	*line;
 	char	*temp;
 	int		i;
+	char 	*line;
 
 	file_content = NULL;
 	i = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		if (line[0] == '\n' )
 		{
@@ -41,6 +42,7 @@ static char	*parse_map(int fd, t_map *map_data)
 			file_content = temp;
 		}
 		free(line);
+		line = get_next_line(fd);
 		i++;
 	}
 	if (!file_content)
