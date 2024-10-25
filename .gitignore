@@ -5,7 +5,7 @@ map_tests.md
 readme.md
 
 #raw sprite file
-sprites/png/asset_example.clip
+textures/png/asset_example.clip
 
 #tests (wna to leave them on github but not push in school's repo)
 # run_all_maps.sh
