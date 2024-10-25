@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 13:31:41 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:43:16 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static void	launch_game(char **map_array, t_map *level)
 		free(level->mini_libx.game),
 		exit(1);
 	}
-	render_map(level->mini_libx.img, map_array, level,
-		level->mini_libx.game, level->mini_libx.session);
+	render_map(level->mini_libx.img, map_array, level, level->mini_libx);
 	mlx_hook(level->mini_libx.session, 17, 0L, close_window, level);
 	mlx_key_hook(level->mini_libx.session, key_hook, level);
 	mlx_loop(level->mini_libx.game);
