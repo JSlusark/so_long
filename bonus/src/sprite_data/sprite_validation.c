@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 22:16:01 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:04:13 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 static int	verify_bonus_sprites(void)
 {
 	int	enemy;
+	int	door_open;
 
 	enemy = open("textures/xpm/enemy.xpm", O_RDWR);
+	door_open = open("textures/xpm/open.xpm", O_RDWR);
+	// also do with up down right as left is already chara
 
-	if (enemy < 0)
+	if (enemy < 0 || door_open < 0)
 		return (0);
 	close(enemy);
+	close(door_open);
 	return (1);
 }
 
