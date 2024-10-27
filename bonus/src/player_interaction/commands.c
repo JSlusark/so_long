@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/26 18:05:15 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/27 14:41:48 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,33 @@
 void	check_exit_update(t_map *level)
 {
 	if(level->loot_n == 0)
-		level->door_img = "textures/xpm/open.xpm";// here is when i put sprite!!! <--DO IMG CHECK in srite validation to be added!
+		level->door_img = "textures/xpm/open.xpm";
+
+	// should add animation here,
+	// activation = 0
+	// once the level loyyn activation ++
+	//if activation is not 1 it does the animation loop while if it is 1 it just shiws the open thingie
 }
+
+void	change_player_texture(int keycode, t_map	*level)
+{
+	if (keycode == UP_KEY || keycode == W_KEY)
+		level->character_img = "textures/xpm/up.xpm";
+	else if (keycode == DOWN_KEY || keycode == S_KEY)
+		level->character_img = "textures/xpm/chara.xpm";
+	else if (keycode == LEFT_KEY || keycode == A_KEY)
+		level->character_img = "textures/xpm/left.xpm";
+	else if (keycode == RIGHT_KEY || keycode == D_KEY)
+		level->character_img = "textures/xpm/right.xpm";
+}
+
+void	rerender_game(t_map *level)
+{
+	get_chara_position(level->map_array, level->character_data);
+	render_map(level->mini_libx.img, level->map_array, level,
+		level->mini_libx);
+}
+
 void	change_map(char *direction, char *character, t_map *level)
 {
 	if (*direction == '1' || (*direction == 'E' && level->loot_n != 0))
@@ -39,7 +64,7 @@ void	change_map(char *direction, char *character, t_map *level)
 	}
 	else if (*direction == 'C')
 		level->loot_n--;
-	check_exit_update(level); // checks EXIT is highlight
+	check_exit_update(level);
 	level->moves++;
 	ft_printf("STEPS: %d\n", level->moves);
 	*direction = *character;
@@ -48,35 +73,18 @@ void	change_map(char *direction, char *character, t_map *level)
 
 int	key_hook(int keycode, t_map	*level)
 {
-	// add function that gets keycode and chnagege chara img based on keycode
 	if (keycode == UP_KEY || keycode == W_KEY)
-	{
-		// check_exit_update(level);
-		level->character_img = "textures/xpm/up.xpm";// here is when i put sprite!!!
 		change_map(level->character_data->up_i->ptr,
-		level->character_data->curr_i->ptr, level);
-	}
+			level->character_data->curr_i->ptr, level);
 	else if (keycode == DOWN_KEY || keycode == S_KEY)
-	{
-		// check_exit_update(level);
-		level->character_img = "textures/xpm/chara.xpm";// here is when i put sprite!!!
 		change_map(level->character_data->down_i->ptr,
-		level->character_data->curr_i->ptr, level);
-	}
+			level->character_data->curr_i->ptr, level);
 	else if (keycode == LEFT_KEY || keycode == A_KEY)
-	{
-		// check_exit_update(level);
-		level->character_img = "textures/xpm/left.xpm";// here is when i put sprite!!!
 		change_map(level->character_data->left_i->ptr,
 			level->character_data->curr_i->ptr, level);
-	}
 	else if (keycode == RIGHT_KEY || keycode == D_KEY)
-	{
-		// check_exit_update(level);
-		level->character_img = "textures/xpm/right.xpm";// here is when i put sprite!!!
 		change_map(level->character_data->right_i->ptr,
-		level->character_data->curr_i->ptr, level);
-	}
+			level->character_data->curr_i->ptr, level);
 	else if (keycode == 65307 || keycode == Q_KEY)
 	{
 		free_all_gamedata(level);
@@ -84,9 +92,8 @@ int	key_hook(int keycode, t_map	*level)
 	}
 	else
 		return (0);
-	get_chara_position(level->map_array, level->character_data);
-	render_map(level->mini_libx.img, level->map_array, level,
-		level->mini_libx);
+	change_player_texture(keycode, level);
+	rerender_game(level);
 	return (0);
 }
 
