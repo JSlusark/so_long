@@ -6,21 +6,46 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/27 14:41:48 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:03:21 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
+
+int	animate_door(t_map *level)
+{
+	static int frame_counter;
+
+	if (frame_counter == 0 && level->activation == 1)
+		frame_counter = 1;
+	if (level->activation != 1)
+		return (0);
+	if (frame_counter < 1)
+		level->door_img = "textures/xpm/open_1.xpm";
+	else if (frame_counter < 2)
+		level->door_img = "textures/xpm/open_2.xpm";
+	else if (frame_counter < 3)
+		level->door_img = "textures/xpm/open_3.xpm";
+	else if (frame_counter < 4)
+		level->door_img = "textures/xpm/open_4.xpm";
+	else if (frame_counter < 5)
+		level->door_img = "textures/xpm/open.xpm";
+	else
+	{
+		frame_counter = 3;
+		return (0);
+	}
+	frame_counter++;
+	rerender_game(level);
+	return (0);
+}
+
+
 void	check_exit_update(t_map *level)
 {
-	if(level->loot_n == 0)
-		level->door_img = "textures/xpm/open.xpm";
-
-	// should add animation here,
-	// activation = 0
-	// once the level loyyn activation ++
-	//if activation is not 1 it does the animation loop while if it is 1 it just shiws the open thingie
+	if (level->loot_n == 0)
+		level->activation = 1;
 }
 
 void	change_player_texture(int keycode, t_map	*level)
@@ -64,11 +89,11 @@ void	change_map(char *direction, char *character, t_map *level)
 	}
 	else if (*direction == 'C')
 		level->loot_n--;
-	check_exit_update(level);
 	level->moves++;
 	ft_printf("STEPS: %d\n", level->moves);
 	*direction = *character;
 	*character = '0';
+	check_exit_update(level);
 }
 
 int	key_hook(int keycode, t_map	*level)

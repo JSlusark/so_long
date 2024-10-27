@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/26 00:47:44 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:03:04 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_map
 	char		*enemy_img;
 	int			last_c;
 	int			last_r;
+	int			activation;
 }				t_map;
 
 char			**get_map(char *file, t_map *map_data);
@@ -111,6 +112,11 @@ int				enemy_was_found(char **map_dup);
 int				loot_was_found(char **map_dup);
 void			reach_enemies(int y, int x, t_map *level);
 int				collect_loot(int y, int x, int *reachable_loot, t_map *level);
+
+
+
+void			rerender_game(t_map *level);
+int				animate_door(t_map *level);
 
 
 // testing functions
