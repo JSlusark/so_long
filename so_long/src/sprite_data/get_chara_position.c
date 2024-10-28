@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 12:46:19 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:29:23 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void	*assign_character_data(char **map_array, int r, int c,
 t_sprite *character_data)
 {
 	character_data->ptr = &map_array[r][c];
-	if (!character_data->curr_i)
-	{
-		free(character_data);
-		return (NULL);
-	}
 	character_data->curr_i->ptr = &map_array[r][c];
 	character_data->curr_i->x = r;
 	character_data->curr_i->y = c;

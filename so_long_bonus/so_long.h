@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/28 09:09:55 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:52:30 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,9 @@ int				enemy_was_found(char **map_dup);
 int				loot_was_found(char **map_dup);
 void			reach_enemies(int y, int x, t_map *level);
 int				collect_loot(int y, int x, int *reachable_loot, t_map *level);
-
-
-
 void			rerender_game(t_map *level);
 int				animation(t_map *level);
-
-
 // testing functions
-void			print_chara_data(t_sprite *c);
-void			print_map(char **map_array);
+// void			print_chara_data(t_sprite *c);
+// void			print_map(char **map_array);
 #endif

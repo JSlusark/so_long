@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:26:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 15:10:04 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:43:35 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	allocate_chara_data(t_map *level)
 	level->character_data = malloc(sizeof(t_sprite));
 	if (!level->character_data)
 	{
-		free(level);
+		free_all_gamedata(level);
 		exit(1);
 	}
 	level->character_data->curr_i = malloc(sizeof(t_coord));
