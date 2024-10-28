@@ -3,44 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/27 17:03:21 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:07:29 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
-
-
-int	animate_door(t_map *level)
-{
-	static int frame_counter;
-
-	if (frame_counter == 0 && level->activation == 1)
-		frame_counter = 1;
-	if (level->activation != 1)
-		return (0);
-	if (frame_counter < 1)
-		level->door_img = "textures/xpm/open_1.xpm";
-	else if (frame_counter < 2)
-		level->door_img = "textures/xpm/open_2.xpm";
-	else if (frame_counter < 3)
-		level->door_img = "textures/xpm/open_3.xpm";
-	else if (frame_counter < 4)
-		level->door_img = "textures/xpm/open_4.xpm";
-	else if (frame_counter < 5)
-		level->door_img = "textures/xpm/open.xpm";
-	else
-	{
-		frame_counter = 3;
-		return (0);
-	}
-	frame_counter++;
-	rerender_game(level);
-	return (0);
-}
-
 
 void	check_exit_update(t_map *level)
 {
@@ -120,10 +90,4 @@ int	key_hook(int keycode, t_map	*level)
 	change_player_texture(keycode, level);
 	rerender_game(level);
 	return (0);
-}
-
-int	close_window(t_map *level)
-{
-	free_all_gamedata(level);
-	exit(0);
 }

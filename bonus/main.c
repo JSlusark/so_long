@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/27 16:56:36 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/10/28 08:58:58 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	launch_game(char **map_array, t_map *level)
 	render_map(level->mini_libx.img, map_array, level, level->mini_libx);
 	mlx_hook(level->mini_libx.session, 17, 0L, close_window, level);
 	mlx_key_hook(level->mini_libx.session, key_hook, level);
-	mlx_loop_hook(level->mini_libx.game, animate_door, level);
+	mlx_loop_hook(level->mini_libx.game, animation, level);
 	mlx_loop(level->mini_libx.game);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/10/26 00:45:57 by jslusark         ###   ########.fr        #
+#    Updated: 2024/10/28 09:09:22 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,10 @@ SRC = main.c \
 	src/rendering/verify_playability.c \
 	src/rendering/fill_checks.c \
 	src/player_interaction/commands.c \
+	src/player_interaction/close_game.c \
 	src/memory_handling/freeing_functions.c \
 	src/memory_handling/allocation_functions.c \
+	src/rendering/animation.c \
 	src/error_handling/testing_functions.c
 
 OBJ = $(SRC:.c=.o)
