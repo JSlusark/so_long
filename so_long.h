@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/28 11:52:30 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/25 21:01:17 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ typedef struct s_map
 	int			moves;
 	t_sprite	*character_data;
 	char		*character_img;
+	char		*char_frame_0;
+	char		*char_frame_1;
+	char		*char_frame_2;
 	char		*door_img;
 	char		*floor_img;
 	char		*loot_img;

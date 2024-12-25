@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/28 12:28:14 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/25 21:00:14 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,33 @@ void	check_exit_update(t_map *level)
 void	change_player_texture(int keycode, t_map	*level)
 {
 	if (keycode == UP_KEY || keycode == W_KEY)
+	{
 		level->character_img = "textures/xpm/up.xpm";
+		level->char_frame_0 = "textures/xpm/up_0.xpm";
+		level->char_frame_1 = "textures/xpm/up_1.xpm";
+		level->char_frame_2 = "textures/xpm/up_2.xpm";
+	}
 	else if (keycode == DOWN_KEY || keycode == S_KEY)
+	{
 		level->character_img = "textures/xpm/chara.xpm";
+		level->char_frame_0 = "textures/xpm/down_0.xpm";
+		level->char_frame_1 = "textures/xpm/down_1.xpm";
+		level->char_frame_2 = "textures/xpm/down_2.xpm";
+	}
 	else if (keycode == LEFT_KEY || keycode == A_KEY)
+	{
 		level->character_img = "textures/xpm/left.xpm";
+		level->char_frame_0 = "textures/xpm/left_0.xpm";
+		level->char_frame_1 = "textures/xpm/left_1.xpm";
+		level->char_frame_2 = "textures/xpm/left_2.xpm";
+	}
 	else if (keycode == RIGHT_KEY || keycode == D_KEY)
+	{
 		level->character_img = "textures/xpm/right.xpm";
+		level->char_frame_0 = "textures/xpm/right_0.xpm";
+		level->char_frame_1 = "textures/xpm/right_1.xpm";
+		level->char_frame_2 = "textures/xpm/right_2.xpm";
+	}
 }
 
 void	rerender_game(t_map *level)
