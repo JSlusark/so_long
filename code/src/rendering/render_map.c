@@ -6,12 +6,29 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:58:51 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
+void	render_moves(t_map *level)
+{
+	char *moves_text;
+
+	// Convert moves count to a string for display
+	moves_text = ft_itoa(level->moves);
+	if (!moves_text)
+		return; // Handle memory allocation failure
+
+	// Display moves on the screen at coordinates (10, 10)
+	mlx_string_put(level->mini_libx.game, level->mini_libx.session,
+		10, 20, 0xFFFFFF, "Moves: ");
+	mlx_string_put(level->mini_libx.game, level->mini_libx.session,
+		60, 20, 0xFFFFFF, moves_text);
+
+	free(moves_text);
+}
 char	*get_file(char c, t_map *level)
 {
 	if (c == '1')

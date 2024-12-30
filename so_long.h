@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:58 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:55:43 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void			reach_enemies(int y, int x, t_map *level);
 int				collect_loot(int y, int x, int *reachable_loot, t_map *level);
 void			rerender_game(t_map *level);
 int				animation(t_map *level);
+void			render_moves(t_map *level); // flickers on vm ubuntu (not on mac)
 // testing functions
 // void			print_chara_data(t_sprite *c);
 // void			print_map(char **map_array);
