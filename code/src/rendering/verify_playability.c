@@ -6,11 +6,11 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/27 14:42:49 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../../so_long.h"
 
 void	enemy_check(t_map	*level, int y, int x)
 {

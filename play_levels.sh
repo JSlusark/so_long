@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing the map files
-MAP="maps/playable"
+MAP="map/"
 
 # Define color codes
 RED='\033[0;31m'

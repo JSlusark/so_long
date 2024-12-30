@@ -6,11 +6,11 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 19:57:23 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../../so_long.h"
 
 void	free_sprite(t_sprite *character_data)
 {

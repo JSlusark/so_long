@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   allocation_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:26:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/28 11:43:35 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../../so_long.h"
 
 void	allocate_chara_data(t_map *level)
 {

@@ -6,11 +6,11 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 19:20:08 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../../so_long.h"
 
 #ifdef __APPLE__
 #include <CoreGraphics/CGDisplayConfiguration.h>

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/12/30 18:33:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:58 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@
 #endif
 
 
-# include "ft_printf/ft_printf.h"
-# include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "code/ft_printf/ft_printf.h"
+# include "code/libft/libft.h"
+# include "code/minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <limits.h>

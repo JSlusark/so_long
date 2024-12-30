@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/12/30 20:03:00 by jslusark         ###   ########.fr        #
+#    Updated: 2024/12/30 20:11:33 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,16 +33,16 @@ REMOVE = rm -rf
 UNAME := $(shell uname)
 
 # Directories
-LIBFT_DIR = libft
-PRINTF_DIR = ft_printf
+LIBFT_DIR = code/libft
+PRINTF_DIR = code/ft_printf
 
 # Platform-specific settings
 ifeq ($(UNAME), Linux)
-    MLX_DIR = minilibx-linux
+    MLX_DIR = code/minilibx-linux
     MLX_LIB = $(MLX_DIR)/libmlx.a
     EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd
 else ifeq ($(UNAME), Darwin)
-    MLX_DIR = mlx-apple
+    MLX_DIR = code/mlx-apple
     MLX_LIB = $(MLX_DIR)/libmlx.a
     EXT_LIBS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 endif
@@ -52,22 +52,22 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 
 # Source files
-SRC = src/main.c \
-	src/map_data/data_collection.c \
-	src/map_data/get_map.c \
-	src/map_data/get_next_line.c \
-	src/map_data/map_validation.c \
-	src/sprite_data/sprite_validation.c \
-	src/sprite_data/get_chara_position.c \
-	src/rendering/render_map.c \
-	src/rendering/verify_playability.c \
-	src/rendering/fill_checks.c \
-	src/player_interaction/commands.c \
-	src/player_interaction/close_game.c \
-	src/memory_handling/freeing_functions.c \
-	src/memory_handling/allocation_functions.c \
-	src/rendering/animation.c \
-	src/error_handling/testing_functions.c
+SRC = code/src/main.c \
+	code/src/map_data/data_collection.c \
+	code/src/map_data/get_map.c \
+	code/src/map_data/get_next_line.c \
+	code/src/map_data/map_validation.c \
+	code/src/sprite_data/sprite_validation.c \
+	code/src/sprite_data/get_chara_position.c \
+	code/src/rendering/render_map.c \
+	code/src/rendering/verify_playability.c \
+	code/src/rendering/fill_checks.c \
+	code/src/player_interaction/commands.c \
+	code/src/player_interaction/close_game.c \
+	code/src/memory_handling/freeing_functions.c \
+	code/src/memory_handling/allocation_functions.c \
+	code/src/rendering/animation.c \
+	code/src/error_handling/testing_functions.c
 
 OBJ = $(SRC:.c=.o)
 

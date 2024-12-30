@@ -6,11 +6,11 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/25 21:03:37 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../../so_long.h"
 
 static int	verify_animation_sprites(void)
 {

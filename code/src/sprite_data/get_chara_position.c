@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_chara_position.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/28 11:47:00 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../../../so_long.h"
 
 void	assign_direction_data(char **map_array, t_coord *character_coords,
 t_coord *direction_coords, char *direction)
