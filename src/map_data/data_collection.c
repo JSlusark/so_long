@@ -6,16 +6,29 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 22:20:46 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:20:08 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	map_fits_screen(int width, int height)
+#ifdef __APPLE__
+#include <CoreGraphics/CGDisplayConfiguration.h>
+#endif
+
+int map_fits_screen(int width, int height)
 {
-	Display	*d;
-	Screen	*s;
+	int screen_width;
+	int screen_height;
+
+	#ifdef __APPLE__
+	// for mac os build
+	screen_width = CGDisplayPixelsWide(CGMainDisplayID());
+	screen_height = CGDisplayPixelsHigh(CGMainDisplayID());
+	#else
+	// for Linux build with X11
+	Display *d;
+	Screen *s;
 
 	d = XOpenDisplay(NULL);
 	if (d == NULL)
@@ -24,15 +37,18 @@ int	map_fits_screen(int width, int height)
 		return (0);
 	}
 	s = DefaultScreenOfDisplay(d);
-	if (width * 64 > s->width || height * 64 > s->height)
+	screen_width = s->width;
+	screen_height = s->height;
+	XCloseDisplay(d);
+	#endif
+
+	if (width * 64 > screen_width || height * 64 > screen_height)
 	{
 		ft_printf("Error: map resolution is bigger than your screen!\n");
-		ft_printf("Screen width: %d map width: %d\n", s->width, width * 64);
-		ft_printf("Screen height: %d map height: %d\n", s->height, height * 64);
-		XCloseDisplay(d);
+		ft_printf("Screen width: %d map width: %d\n", screen_width, width * 64);
+		ft_printf("Screen height: %d map height: %d\n", screen_height, height * 64);
 		return (0);
 	}
-	XCloseDisplay(d);
 	return (1);
 }
 

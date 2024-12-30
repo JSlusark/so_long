@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/25 21:00:14 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:09:00 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	change_player_texture(int keycode, t_map	*level)
 {
 	if (keycode == UP_KEY || keycode == W_KEY)
 	{
+		printf("hey!!!\n");
 		level->character_img = "textures/xpm/up.xpm";
 		level->char_frame_0 = "textures/xpm/up_0.xpm";
 		level->char_frame_1 = "textures/xpm/up_1.xpm";

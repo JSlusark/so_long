@@ -15,7 +15,7 @@ run_levels() {
     echo -e "${CYAN}Running map:${RESET} ${map}"
 
     # Run the executable with the current map
-    ./linux "$map"
+    ./game "$map"
     exit_status=$?
 
     # Add a new line after each test

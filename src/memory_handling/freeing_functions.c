@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freeing_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/10/25 18:48:24 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:57:23 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	free_all_gamedata(t_map *level)
 	{
 		mlx_clear_window(level->mini_libx.game, level->mini_libx.session);
 		mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
+#ifdef __linux__  // Only include this part on Linux
 		mlx_destroy_display(level->mini_libx.game);
+#endif
 		free(level->mini_libx.game);
 	}
 	free_sprite(level->character_data);

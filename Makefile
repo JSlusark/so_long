@@ -6,14 +6,13 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/12/25 18:40:32 by jslusark         ###   ########.fr        #
+#    Updated: 2024/12/30 20:03:00 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Colors
 RED = \033[0;31m
 GRAY = \033[0;90m
-RED = \033[0;91m
 GREEN = \033[0;92m
 YELLOW = \033[0;93m
 BLUE = \033[0;94m
@@ -31,18 +30,26 @@ IDLE = $(BLUE)Idle:$(RESET)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 REMOVE = rm -rf
+UNAME := $(shell uname)
 
 # Directories
-MLX_DIR = mlx
 LIBFT_DIR = libft
 PRINTF_DIR = ft_printf
+
+# Platform-specific settings
+ifeq ($(UNAME), Linux)
+    MLX_DIR = minilibx-linux
+    MLX_LIB = $(MLX_DIR)/libmlx.a
+    EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd
+else ifeq ($(UNAME), Darwin)
+    MLX_DIR = mlx-apple
+    MLX_LIB = $(MLX_DIR)/libmlx.a
+    EXT_LIBS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+endif
 
 # Libraries
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
-MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
-EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd #for linux
-# EXT_LIBS = -Lmlx -lmlx -framework OpenGL -framework AppKi #for mac
 
 # Source files
 SRC = src/main.c \
@@ -69,24 +76,27 @@ OBJ = $(SRC:.c=.o)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 #Executable name
-NAME = linux
+NAME = game
 
 # Default target
 all: $(NAME)
 	@echo "$(IDLE) $(MAGENTA)$(NAME)$(RESET) is up to date!"
+
 $(MLX_LIB):
 	@make -C $(MLX_DIR) --silent
+
 $(LIBFT_LIB):
 	@make -C $(LIBFT_DIR) --silent
+
 $(PRINTF_LIB):
 	@make -C $(PRINTF_DIR) --silent
 
-# later add also compilation for libft, printf and getnextline
+# Compile the main executable
 $(NAME): $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB)
 	@$(CC) $(CFLAGS) -I. $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB) $(EXT_LIBS) -o $(NAME)
 	@echo "$(SUCCESS) $(MAGENTA)$(NAME)$(RESET) archived and indexed!"
 
-# added if statements so that itwill clean only when th o files are present
+# Clean object files
 clean:
 	@if ls $(OBJ) >/dev/null 2>&1; then \
 		$(REMOVE) $(OBJ); \
@@ -98,7 +108,7 @@ clean:
 		echo "$(IDLE) object files were already cleaned"; \
 	fi
 
-# added if statements so that itwill clean only when exec and lib files are present
+# Full clean
 fclean: clean
 	@if [ -f $(NAME) ]; then \
 		$(REMOVE) $(NAME); \

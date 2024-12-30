@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2024/12/25 21:01:17 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:33:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,46 @@
 
 # define BUFFER_SIZE 42
 # define PIXELS 64
-# define UP_KEY 65362
-# define DOWN_KEY 65364
-# define LEFT_KEY 65361
-# define RIGHT_KEY 65363
+
+// keyboard codes for mac and linux
+#ifdef __APPLE__
+# define ESC_KEY 53
+# define W_KEY 13
+# define A_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define Q_KEY 12
+# define UP_KEY 126
+# define DOWN_KEY 125
+# define LEFT_KEY 123
+# define RIGHT_KEY 124
+#else
 # define ESC_KEY 65307
 # define W_KEY 119
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
 # define Q_KEY 113
+# define UP_KEY 65362
+# define DOWN_KEY 65364
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
+#endif
+
+
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
-# include "mlx/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <limits.h>
 # include <stdint.h>
 # include <stdio.h>
+#ifdef __linux__
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <X11/Xlib.h>
+#endif
 
 typedef struct s_lib
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/10/25 18:05:49 by jslusark         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:58:17 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	no_content(int fd, t_map *map_data, char *file_content)
 static char	*parse_map(int fd, t_map *map_data, char *file_content, char *line)
 {
 	char	*temp;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	while (line != NULL)
 	{
 		if (line[0] == '\n')
@@ -51,7 +51,7 @@ static char	*parse_map(int fd, t_map *map_data, char *file_content, char *line)
 		}
 		free(line);
 		line = get_next_line(fd);
-		i++;
+		// i++;
 	}
 	if (!file_content)
 		no_content(fd, map_data, file_content);
