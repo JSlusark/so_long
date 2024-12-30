@@ -69,15 +69,18 @@ Exit the game using Q, ESC, or by clicking the exit button.
 The game's resolution was meant to be fixed. No support for scaling or expansion is needed.
 
 **Sprites and Animations**
-Character Sprite:
-Initially based on a design from <artist> (reference to the base inspiration) as I really liked the cute, fairy like feel of the character. It was then replaced with a custom-designed character sprite created by me and inspired to such character.
 
-**Animation and Pixel Art:**
 All animation sprites and pixel art were created by me.
 The pixel art was kept simple without focusing on high resolution or advanced techniques.
 
+The character sprite design was inspired to this design from <artist>, you can see her work <here>.
+I really liked the cute, fairy appearance of the character and iused her character initially as a mock to use while coding the project and testing its usability.
+It was later replaced with my own design:
+
+
 **Level Design:**
 The character collects mushrooms to prepare mushroom soup.Deadly mushrooms kill the character instantly.
+
 
 ### How to Contribute
 
