@@ -50,11 +50,13 @@ Alternatively, you can run all maps using the created script:
  	- Checks the exit codes.
  	- Validates leaks (only on Linux using Valgrind).
  	- Prints the specific type of error encountered.
+-- add shell check screenshot here--
 
 2. **test_unplayable.sh** runs all unplayable maps from the maps/unplayable directory. Maps are considered unplayable when the map is bigger than the computer screen or when the player is not able to reach all collectibles and reach the cauldron to complete the game.
 	- Checks the exit codes.
 	- Validates leaks (only on Linux using Valgrind).
 	- Prints the specific type of error encountered.
+-- add shell check screenshot here--
 
 3. **test_playable.sh** runs all playable maps from the maps/unplayable directory.
 	- Checks the exit codes.
@@ -88,11 +90,20 @@ The character sprite design was inspired to this design from <artist>, you can s
 I really liked the cute, fairy appearance of the character and iused her character initially as a mock to use while coding the project and testing its usability.
 It was later replaced with my own design:
 
--- add animation gifs here--
+![Sprite designs](./md_resources/sprites.png)
+
+<div align="center">
+  <img src="./md_resources/left.gif" alt="sprite animation left" width="100" />
+  <img src="./md_resources/down.gif" alt="sprite animation up" width="100" />
+  <img src="./md_resources/right.gif" alt="sprite animation right" width="100" />
+  <img src="./md_resources/up.gif" alt="sprite animation down" width="100" />
+</div>
+
 
 **Level Design:**
 The character collects mushrooms to prepare mushroom soup.
 Deadly mushrooms kill the character instantly.
+
 
 -- add frenzy gif here--
 
