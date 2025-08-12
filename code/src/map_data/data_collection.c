@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:44:39 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int map_fits_screen(int width, int height)
 	int screen_width;
 	int screen_height;
 
-	#ifdef __APPLE__
+#ifdef __APPLE__
 	// for mac os build
 	screen_width = CGDisplayPixelsWide(CGMainDisplayID());
 	screen_height = CGDisplayPixelsHigh(CGMainDisplayID());
-	#else
+#else
 	// for Linux build with X11
 	Display *d;
 	Screen *s;
@@ -40,7 +40,7 @@ int map_fits_screen(int width, int height)
 	screen_width = s->width;
 	screen_height = s->height;
 	XCloseDisplay(d);
-	#endif
+#endif
 
 	if (width * 64 > screen_width || height * 64 > screen_height)
 	{
@@ -52,10 +52,10 @@ int map_fits_screen(int width, int height)
 	return (1);
 }
 
-void	collect_size(char **map_array, t_map *map_data)
+void collect_size(char **map_array, t_map *map_data)
 {
-	int	h;
-	int	w;
+	int h;
+	int w;
 
 	h = 0;
 	w = ft_strlen(map_array[h]);
@@ -69,16 +69,14 @@ void	collect_size(char **map_array, t_map *map_data)
 	}
 	map_data->height = h;
 	map_data->width = w;
+	printf("MAP %d: \n h:%d w:%d\n", map_data->curr_map, map_data->height, map_data->width);
+
 }
 
-void	verify_format(char **map_array, t_map *level)
+void verify_format(char **map_array, t_map *level)
 {
 	collect_size(map_array, level);
-	if (!map_fits_screen(level->width, level->height)
-		|| !is_rectangular(map_array, level->width, level->height)
-		|| !is_framed(map_array, level->height - 1, level->width - 1)
-		|| !has_required_text(map_array)
-		|| !has_enough_sprites(map_array, level))
+	if (!map_fits_screen(level->width, level->height) || !is_rectangular(map_array, level->width, level->height) || !is_framed(map_array, level->height - 1, level->width - 1) || !has_required_text(map_array) || !has_enough_sprites(map_array, level))
 	{
 		free_map(level->map_array);
 		free(level);
