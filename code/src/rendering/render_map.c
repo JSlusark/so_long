@@ -6,30 +6,36 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:58:51 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/12 23:31:10 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-void	render_moves(t_map *level)
+void render_moves(t_map *level)
 {
 	char *moves_text;
+	char *lives_text;
 
 	// Convert moves count to a string for display
 	moves_text = ft_itoa(level->moves);
+	lives_text = ft_itoa(level->lives);
 	if (!moves_text)
 		return; // Handle memory allocation failure
 
 	// Display moves on the screen at coordinates (10, 10)
 	mlx_string_put(level->mini_libx.game, level->mini_libx.session,
-		10, 20, 0xFFFFFF, "Moves: ");
+				   10, 20, 0xFFFFFF, "Moves: ");
 	mlx_string_put(level->mini_libx.game, level->mini_libx.session,
-		60, 20, 0xFFFFFF, moves_text);
+				   60, 20, 0xFFFFFF, moves_text);
+	mlx_string_put(level->mini_libx.game, level->mini_libx.session,
+				   100, 20, 0xFFFFFF, "Lives: ");
+	mlx_string_put(level->mini_libx.game, level->mini_libx.session,
+				   150, 20, 0xFFFFFF, lives_text);
 
 	free(moves_text);
 }
-char	*get_file(char c, t_map *level)
+char *get_file(char c, t_map *level)
 {
 	if (c == '1')
 		return (level->wall_img);
@@ -46,10 +52,10 @@ char	*get_file(char c, t_map *level)
 	return (NULL);
 }
 
-void	render_map(void *img, char **map_array, t_map *level, t_lib lib)
+void render_map(void *img, char **map_array, t_map *level, t_lib lib)
 {
-	int		y;
-	int		x;
+	int y;
+	int x;
 
 	y = 0;
 	while (map_array[y] != NULL)
@@ -58,8 +64,8 @@ void	render_map(void *img, char **map_array, t_map *level, t_lib lib)
 		while (map_array[y][x] != '\0')
 		{
 			img = mlx_xpm_file_to_image(lib.game,
-					get_file(map_array[y][x], level),
-					&level->pixels, &level->pixels);
+										get_file(map_array[y][x], level),
+										&level->pixels, &level->pixels);
 			if (img == NULL)
 			{
 				printf("Error: rendering textured to map failed\n");
@@ -67,7 +73,7 @@ void	render_map(void *img, char **map_array, t_map *level, t_lib lib)
 				exit(1);
 			}
 			mlx_put_image_to_window(lib.game, lib.session,
-				img, x * level->pixels, y * level->pixels);
+									img, x * level->pixels, y * level->pixels);
 			mlx_destroy_image(lib.game, img);
 			x++;
 		}

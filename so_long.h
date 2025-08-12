@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2025/08/12 15:32:16 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/12 23:15:31 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 #include <limits.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 #ifdef __linux__
 #include <X11/X.h>
 #include <X11/keysym.h>
@@ -82,6 +83,8 @@ typedef struct s_sprite
 typedef struct s_map
 {
 	t_lib mini_libx;
+	int lives;
+	bool death;
 	char **map_array;
 	char **map_dup;
 	int width;

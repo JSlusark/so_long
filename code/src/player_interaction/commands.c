@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/12 16:02:47 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/12 23:27:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,13 @@ void change_map(char *direction, char *character, t_map *level)
 	{
 		level->moves++;
 		ft_printf("STEPS: %d\n", level->moves);
-		ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
-		free_all_gamedata(level);
-		exit(0);
+		// ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
+		level->lives--;
+		level->death = true;
+		// mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
+		load_map(level->level_array, level);
+		// free_all_gamedata(level);
+		// exit(0);
 	}
 	else if (*direction == 'E' && level->loot_n == 0)
 	{
