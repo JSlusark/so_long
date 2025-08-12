@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2024/12/30 20:48:33 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:16:28 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-static void	launch_game(char **map_array, t_map *level)
+static void launch_game(char **map_array, t_map *level)
 {
 	level->mini_libx.game = mlx_init();
 	if (!level->mini_libx.game)
@@ -21,8 +21,8 @@ static void	launch_game(char **map_array, t_map *level)
 		exit(1);
 	}
 	level->mini_libx.session = mlx_new_window(level->mini_libx.game,
-			(level->pixels * level->width), (level->pixels * level->height),
-			"SO_LONG");
+											  (level->pixels * level->width), (level->pixels * level->height),
+											  "SO_LONG");
 	if (!level->mini_libx.session)
 	{
 		free_all_gamedata(level);
@@ -35,30 +35,44 @@ static void	launch_game(char **map_array, t_map *level)
 	mlx_loop(level->mini_libx.game);
 }
 
-int	main(int argc, char **argv)
+void load_map(char **levels, t_map *level)
 {
-	t_map	*level;
+	int map_n = 0; // start from first map
 
-	if (argc == 2)
+	if (!levels[map_n])
 	{
-		level = malloc(sizeof(t_map));
-		if (!level)
-			exit(1);
-		level->mini_libx.game = NULL;
-		level->map_array = get_map(argv[1], level);
-		verify_format(level->map_array, level);
-		collect_sprites(level->map_array, level);
-		allocate_chara_data(level);
-		get_chara_position(level->map_array, level->character_data);
-		verify_playability(level);
-		level->activation = 0;
-		launch_game(level->map_array, level);
-		free_all_gamedata(level);
+		// level->end_game = true;
+		ft_printf("you've won!");
+		return;
 	}
-	else
-	{
-		ft_printf("Error: ./so_long needs a map file to run!\n");
+	level->map_array = get_map(levels[map_n], level);
+	verify_format(level->map_array, level);
+	collect_sprites(level->map_array, level);
+	allocate_chara_data(level);
+	get_chara_position(level->map_array, level->character_data);
+	verify_playability(level);
+	// level->activation = 0;
+	// printf("%s", level->map_array[0]);
+}
+
+int main()
+{
+	t_map *level;
+
+	char *level_array[] =
+		{
+			"map/01.ber",
+			"map/02.ber",
+			"map/03.ber",
+			"map/04.ber",
+			"map/05.ber",
+			NULL};
+	level = malloc(sizeof(t_map));
+	if (!level)
 		exit(1);
-	}
+	level->mini_libx.game = NULL;
+	load_map(level_array, level);
+	launch_game(level->map_array, level);
+	// free_all_gamedata(level);
 	return (0);
 }
