@@ -6,16 +6,16 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-int	has_required_text(char **map)
+int has_required_text(char **map)
 {
-	int	r;
-	int	c;
+	int r;
+	int c;
 
 	r = 0;
 	while (map[r] != NULL)
@@ -37,11 +37,11 @@ int	has_required_text(char **map)
 	return (1);
 }
 
-static int	count_sprite(char **map, char c)
+static int count_sprite(char **map, char c)
 {
-	int	row;
-	int	col;
-	int	amount;
+	int row;
+	int col;
+	int amount;
 
 	amount = 0;
 	row = 0;
@@ -59,12 +59,12 @@ static int	count_sprite(char **map, char c)
 	return (amount);
 }
 
-int	has_enough_sprites(char **map, t_map *map_data)
+int has_enough_sprites(char **map, t_game *map_data)
 {
-	int	e;
-	int	c;
-	int	p;
-	int	k;
+	int e;
+	int c;
+	int p;
+	int k;
 
 	e = count_sprite(map, 'E');
 	c = count_sprite(map, 'C');
@@ -84,10 +84,10 @@ int	has_enough_sprites(char **map, t_map *map_data)
 	return (1);
 }
 
-int	is_rectangular(char **map, int row, int col)
+int is_rectangular(char **map, int row, int col)
 {
-	int	i;
-	int	curr;
+	int i;
+	int curr;
 
 	i = 0;
 	while (map[i] != NULL)
@@ -108,10 +108,10 @@ int	is_rectangular(char **map, int row, int col)
 	return (1);
 }
 
-int	is_framed(char **map, int last_r, int last_c)
+int is_framed(char **map, int last_r, int last_c)
 {
-	int	r;
-	int	c;
+	int r;
+	int c;
 
 	r = 0;
 	while (map[r] != NULL)

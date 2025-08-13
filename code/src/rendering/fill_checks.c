@@ -6,16 +6,16 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 13:36:59 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-int	exit_was_found(char **map_dup)
+int exit_was_found(char **map_dup)
 {
-	int	x;
-	int	y;
+	int x;
+	int y;
 
 	x = 0;
 	while (map_dup[x] != NULL)
@@ -32,10 +32,10 @@ int	exit_was_found(char **map_dup)
 	return (0);
 }
 
-int	enemy_was_found(char **map_dup)
+int enemy_was_found(char **map_dup)
 {
-	int	x;
-	int	y;
+	int x;
+	int y;
 
 	x = 0;
 	while (map_dup[x] != NULL)
@@ -52,11 +52,11 @@ int	enemy_was_found(char **map_dup)
 	return (0);
 }
 
-int	loot_was_found(char **map_dup)
+int loot_was_found(char **map_dup)
 {
-	int	x;
-	int	y;
-	int	loot_found;
+	int x;
+	int y;
+	int loot_found;
 
 	x = 0;
 	loot_found = 0;
@@ -74,13 +74,12 @@ int	loot_was_found(char **map_dup)
 	return (loot_found);
 }
 
-void	reach_enemies(int y, int x, t_map *level)
+void reach_enemies(int y, int x, t_game *level)
 {
 	if (x < 0 || x >= level->height || y < 0 || y >= level->width)
-		return ;
-	if (level->map_dup[x][y] == '1' || level->map_dup[x][y] == ' '
-		|| level->map_dup[x][y] == 'E')
-		return ;
+		return;
+	if (level->map_dup[x][y] == '1' || level->map_dup[x][y] == ' ' || level->map_dup[x][y] == 'E')
+		return;
 	level->map_dup[x][y] = ' ';
 	reach_enemies(y, x - 1, level);
 	reach_enemies(y, x + 1, level);
@@ -88,13 +87,11 @@ void	reach_enemies(int y, int x, t_map *level)
 	reach_enemies(y + 1, x, level);
 }
 
-int	collect_loot(int y, int x, int *reachable_loot, t_map *level)
+int collect_loot(int y, int x, int *reachable_loot, t_game *level)
 {
 	if (x < 0 || x >= level->height || y < 0 || y >= level->width)
 		return (0);
-	if (level->map_dup[x][y] == '1' || level->map_dup[x][y] == ' '
-	|| ((*reachable_loot) != level->loot_n && level->map_dup[x][y] == 'E')
-	|| level->map_dup[x][y] == 'K')
+	if (level->map_dup[x][y] == '1' || level->map_dup[x][y] == ' ' || ((*reachable_loot) != level->loot_n && level->map_dup[x][y] == 'E') || level->map_dup[x][y] == 'K')
 	{
 		if (level->map_dup[x][y] == 'E')
 			level->map_dup[x][y] = ' ';

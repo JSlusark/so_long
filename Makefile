@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2024/12/30 20:11:33 by jslusark         ###   ########.fr        #
+#    Updated: 2025/08/13 11:49:05 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ UNAME := $(shell uname)
 # Directories
 LIBFT_DIR = code/libft
 PRINTF_DIR = code/ft_printf
+OBJ_DIR = code/obj
+
 
 # Platform-specific settings
 ifeq ($(UNAME), Linux)
@@ -69,17 +71,24 @@ SRC = code/src/main.c \
 	code/src/rendering/animation.c \
 	code/src/error_handling/testing_functions.c
 
-OBJ = $(SRC:.c=.o)
+# OBJ = $(SRC:.c=.o)
+OBJ = $(patsubst code/%.c,$(OBJ_DIR)/%.o,$(SRC))
+
 
 # Compile object files
-%.o: %.c
+# %.o: %.c
+# 	@$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: code/%.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
+
 
 #Executable name
 NAME = game
 
 # Default target
 all: $(NAME)
+	@mkdir -p $(OBJ_DIR)
 	@echo "$(IDLE) $(MAGENTA)$(NAME)$(RESET) is up to date!"
 
 $(MLX_LIB):
@@ -99,7 +108,7 @@ $(NAME): $(OBJ) $(MLX_LIB) $(PRINTF_LIB) $(LIBFT_LIB)
 # Clean object files
 clean:
 	@if ls $(OBJ) >/dev/null 2>&1; then \
-		$(REMOVE) $(OBJ); \
+		$(REMOVE) $(OBJ_DIR); \
 		make -C $(MLX_DIR) clean --silent; \
 		make -C $(PRINTF_DIR) clean --silent; \
 		make -C $(LIBFT_DIR) clean --silent; \

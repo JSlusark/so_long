@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2025/08/12 23:15:31 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:26:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ typedef struct s_lib
 	void *img;
 } t_lib;
 
+typedef struct s_level
+{
+	char *level_path;
+	char *loading_path;
+} t_level;
+
 typedef struct s_coord
 {
 	char *ptr;
@@ -80,7 +86,7 @@ typedef struct s_sprite
 	t_coord *down_i;
 } t_sprite;
 
-typedef struct s_map
+typedef struct s_game
 {
 	t_lib mini_libx;
 	int lives;
@@ -105,44 +111,50 @@ typedef struct s_map
 	int last_c;
 	int last_r;
 	int activation;
-	char *level_array[7]; // 6 levels + NULL
-	int curr_map;
-} t_map;
+	// char *level_array[7]; // 6 levels + NULL
+	t_level *all_levels;
+	char *intro_screen;
+	char *you_won_screen;
+	char *you_lose_screen;
+	int level_i;
+	char *level_file;
+	char *level_loading_file;
+} t_game;
 
-char **get_map(char *file, t_map *map_data);
+char **get_map(char *file, t_game *map_data);
 char *get_next_line(int fd);
-void collect_size(char **map_array, t_map *map_data);
-void verify_format(char **map_array, t_map *map_data);
-void verify_playability(t_map *level);
+void collect_size(char **map_array, t_game *map_data);
+void verify_format(char **map_array, t_game *map_data);
+void verify_playability(t_game *level);
 int has_required_text(char **map); // handles invalid characters
-int has_enough_sprites(char **map, t_map *map_data);
+int has_enough_sprites(char **map, t_game *map_data);
 int is_rectangular(char **map, int row, int col);
 int is_framed(char **map, int last_row, int last_c);
-void allocate_chara_data(t_map *level);
-void allocate_map_dup(t_map *level);
+void allocate_chara_data(t_game *level);
+void allocate_map_dup(t_game *level);
 void free_map(char **map_layout);
 void free_sprite(t_sprite *character_data);
-void free_all_gamedata(t_map *level);
-void collect_sprites(char **map_array, t_map *map_data);
+void free_all_gamedata(t_game *level);
+void collect_sprites(char **map_array, t_game *map_data);
 void get_chara_position(char **map_array, t_sprite *chara);
 void render_map(void *img, char **map_array,
-				t_map *level, t_lib mini_libx);
-void change_map(char *direction, char *character, t_map *level);
+				t_game *level, t_lib mini_libx);
+void change_map(char *direction, char *character, t_game *level);
 
-int key_hook(int keycode, t_map *level);
-int close_window(t_map *level);
+int key_hook(int keycode, t_game *level);
+int close_window(t_game *level);
 
-int create_map_dup(char **map_dup, t_map *level);
+int create_map_dup(char **map_dup, t_game *level);
 int exit_was_found(char **map_dup);
 int enemy_was_found(char **map_dup);
 int loot_was_found(char **map_dup);
-void reach_enemies(int y, int x, t_map *level);
-int collect_loot(int y, int x, int *reachable_loot, t_map *level);
-void rerender_game(t_map *level);
-int animation(t_map *level);
-void render_moves(t_map *level); // flickers on vm ubuntu (not on mac)
+void reach_enemies(int y, int x, t_game *level);
+int collect_loot(int y, int x, int *reachable_loot, t_game *level);
+void rerender_game(t_game *level);
+int animation(t_game *level);
+void render_moves(t_game *level); // flickers on vm ubuntu (not on mac)
 
-void load_map(char **levels, t_map *level);
+void load_map(t_level *levels, t_game *level);
 
 // testing functions
 // void			print_chara_data(t_sprite *c);

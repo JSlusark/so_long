@@ -6,19 +6,19 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/12 23:27:20 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 12:33:33 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-void check_exit_update(t_map *level)
+void check_exit_update(t_game *level)
 {
 	if (level->loot_n == 0)
 		level->activation = 1;
 }
 
-void change_player_texture(int keycode, t_map *level)
+void change_player_texture(int keycode, t_game *level)
 {
 	if (keycode == UP_KEY || keycode == W_KEY)
 	{
@@ -50,7 +50,7 @@ void change_player_texture(int keycode, t_map *level)
 	}
 }
 
-void rerender_game(t_map *level)
+void rerender_game(t_game *level)
 {
 	get_chara_position(level->map_array, level->character_data);
 	render_map(level->mini_libx.img, level->map_array, level,
@@ -58,7 +58,7 @@ void rerender_game(t_map *level)
 	render_moves(level);
 }
 
-void change_map(char *direction, char *character, t_map *level)
+void change_map(char *direction, char *character, t_game *level)
 {
 	if (*direction == '1' || (*direction == 'E' && level->loot_n != 0))
 		return;
@@ -70,9 +70,9 @@ void change_map(char *direction, char *character, t_map *level)
 		level->lives--;
 		level->death = true;
 		// mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
-		load_map(level->level_array, level);
-		// free_all_gamedata(level);
-		// exit(0);
+		load_map(level->all_levels, level); // as no need to change the level here
+											// free_all_gamedata(level);
+											// exit(0);
 	}
 	else if (*direction == 'E' && level->loot_n == 0)
 	{
@@ -82,7 +82,7 @@ void change_map(char *direction, char *character, t_map *level)
 		// free_all_gamedata(level);
 		mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
 
-		load_map(level->level_array, level);
+		load_map(level->all_levels, level);
 		level->mini_libx.session = mlx_new_window(level->mini_libx.game,
 												  (level->pixels * level->width), (level->pixels * level->height),
 												  "SO_LONG");
@@ -100,7 +100,7 @@ void change_map(char *direction, char *character, t_map *level)
 	check_exit_update(level);
 }
 
-int key_hook(int keycode, t_map *level)
+int key_hook(int keycode, t_game *level)
 {
 	if (keycode == UP_KEY || keycode == W_KEY)
 		change_map(level->character_data->up_i->ptr,

@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:39:06 by jjs               #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-void	handle_nl_start(int fd, t_map *map_data, char *file_content, char *line)
+void handle_nl_start(int fd, t_game *map_data, char *file_content, char *line)
 {
 	ft_printf("Error: map cannot have an empty newline!\n");
 	free(map_data);
@@ -22,7 +22,7 @@ void	handle_nl_start(int fd, t_map *map_data, char *file_content, char *line)
 	exit(1);
 }
 
-void	no_content(int fd, t_map *map_data, char *file_content)
+void no_content(int fd, t_game *map_data, char *file_content)
 {
 	ft_printf("Error: file is empty!\n");
 	free(map_data);
@@ -31,9 +31,9 @@ void	no_content(int fd, t_map *map_data, char *file_content)
 	exit(1);
 }
 
-static char	*parse_map(int fd, t_map *map_data, char *file_content, char *line)
+static char *parse_map(int fd, t_game *map_data, char *file_content, char *line)
 {
-	char	*temp;
+	char *temp;
 	// int		i;
 
 	// i = 0;
@@ -58,10 +58,10 @@ static char	*parse_map(int fd, t_map *map_data, char *file_content, char *line)
 	return (file_content);
 }
 
-static int	has_file_extension(char *file, char *extension)
+static int has_file_extension(char *file, char *extension)
 {
-	int	file_len;
-	int	ext_len;
+	int file_len;
+	int ext_len;
 
 	if (!file || !extension)
 		return (0);
@@ -79,11 +79,11 @@ static int	has_file_extension(char *file, char *extension)
 	return (1);
 }
 
-char	**get_map(char *file, t_map *level)
+char **get_map(char *file, t_game *level)
 {
-	int		fd;
-	char	*file_content;
-	char	*line;
+	int fd;
+	char *file_content;
+	char *line;
 
 	fd = open(file, O_RDONLY);
 	if (!has_file_extension(file, ".ber") || fd < 0)

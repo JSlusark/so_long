@@ -6,19 +6,19 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-static int	verify_animation_sprites(void)
+static int verify_animation_sprites(void)
 {
-	int	door_open;
-	int	open_1;
-	int	open_2;
-	int	open_3;
-	int	open_4;
+	int door_open;
+	int open_1;
+	int open_2;
+	int open_3;
+	int open_4;
 
 	door_open = open("textures/xpm/open.xpm", O_RDWR);
 	open_1 = open("textures/xpm/open_1.xpm", O_RDWR);
@@ -35,12 +35,12 @@ static int	verify_animation_sprites(void)
 	return (1);
 }
 
-static int	verify_bonus_sprites(void)
+static int verify_bonus_sprites(void)
 {
-	int	enemy;
-	int	left;
-	int	right;
-	int	up;
+	int enemy;
+	int left;
+	int right;
+	int up;
 
 	enemy = open("textures/xpm/enemy.xpm", O_RDWR);
 	left = open("textures/xpm/left.xpm", O_RDWR);
@@ -55,13 +55,13 @@ static int	verify_bonus_sprites(void)
 	return (1);
 }
 
-static int	verify_sprites(void)
+static int verify_sprites(void)
 {
-	int	chara;
-	int	loot;
-	int	door;
-	int	floor;
-	int	wall;
+	int chara;
+	int loot;
+	int door;
+	int floor;
+	int wall;
 
 	chara = open("textures/xpm/chara.xpm", O_RDWR);
 	door = open("textures/xpm/door.xpm", O_RDWR);
@@ -78,10 +78,9 @@ static int	verify_sprites(void)
 	return (1);
 }
 
-void	collect_sprites(char **map_array, t_map *level)
+void collect_sprites(char **map_array, t_game *level)
 {
-	if (!verify_sprites() || !verify_bonus_sprites()
-		|| !verify_animation_sprites())
+	if (!verify_sprites() || !verify_bonus_sprites() || !verify_animation_sprites())
 	{
 		free_map(map_array);
 		free(level);

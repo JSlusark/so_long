@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/12 23:31:10 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-void render_moves(t_map *level)
+void render_moves(t_game *level)
 {
 	char *moves_text;
 	char *lives_text;
@@ -35,7 +35,7 @@ void render_moves(t_map *level)
 
 	free(moves_text);
 }
-char *get_file(char c, t_map *level)
+char *get_file(char c, t_game *level)
 {
 	if (c == '1')
 		return (level->wall_img);
@@ -52,7 +52,7 @@ char *get_file(char c, t_map *level)
 	return (NULL);
 }
 
-void render_map(void *img, char **map_array, t_map *level, t_lib lib)
+void render_map(void *img, char **map_array, t_game *level, t_lib lib)
 {
 	int y;
 	int x;

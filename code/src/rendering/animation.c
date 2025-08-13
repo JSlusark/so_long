@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 08:57:16 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-int	active_char_frames(t_map *level, int frame_counter)
+int active_char_frames(t_game *level, int frame_counter)
 {
 	if (frame_counter < 10)
 		level->character_img = level->char_frame_0; // 10
@@ -29,7 +29,7 @@ int	active_char_frames(t_map *level, int frame_counter)
 	return (frame_counter);
 }
 
-int	active_exit_frames(t_map *level, int frame_counter)
+int active_exit_frames(t_game *level, int frame_counter)
 {
 	if (frame_counter < 20) // 80
 		level->door_img = "textures/xpm/open_1.xpm";
@@ -44,14 +44,14 @@ int	active_exit_frames(t_map *level, int frame_counter)
 	else if (frame_counter < 200) // 480
 		level->door_img = "textures/xpm/open_4.xpm";
 	else
-		frame_counter = 100; //240
+		frame_counter = 100; // 240
 	return (frame_counter);
 }
 
-int	animation(t_map *level)
+int animation(t_game *level)
 {
-	static int	exit_animation = 0;
-	static int	char_animation = 0;
+	static int exit_animation = 0;
+	static int char_animation = 0;
 	char_animation = active_char_frames(level, char_animation);
 	char_animation++;
 	if (level->activation == 1)

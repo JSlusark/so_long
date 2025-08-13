@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-void	enemy_check(t_map	*level, int y, int x)
+void enemy_check(t_game *level, int y, int x)
 {
 	reach_enemies(y, x, level);
 	if (enemy_was_found(level->map_dup))
@@ -26,7 +26,7 @@ void	enemy_check(t_map	*level, int y, int x)
 	allocate_map_dup(level);
 }
 
-void	exit_check(t_map *level)
+void exit_check(t_game *level)
 {
 	if (exit_was_found(level->map_dup))
 	{
@@ -37,11 +37,11 @@ void	exit_check(t_map *level)
 	}
 }
 
-void	verify_playability(t_map *level)
+void verify_playability(t_game *level)
 {
-	int		reachable_loot;
-	int		x;
-	int		y;
+	int reachable_loot;
+	int x;
+	int y;
 
 	reachable_loot = 0;
 	allocate_map_dup(level);
@@ -52,7 +52,7 @@ void	verify_playability(t_map *level)
 	if (reachable_loot != level->loot_n)
 	{
 		ft_printf("Error: Could not reach %d out of %d loot\n",
-			level->loot_n - reachable_loot, level->loot_n);
+				  level->loot_n - reachable_loot, level->loot_n);
 		free_map(level->map_dup);
 		free_all_gamedata(level);
 		exit(1);

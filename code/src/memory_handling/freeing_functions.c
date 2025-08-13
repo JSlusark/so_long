@@ -6,13 +6,13 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-void	free_sprite(t_sprite *character_data)
+void free_sprite(t_sprite *character_data)
 {
 	if (character_data != NULL)
 	{
@@ -25,12 +25,12 @@ void	free_sprite(t_sprite *character_data)
 	}
 }
 
-void	free_map(char **map_layout)
+void free_map(char **map_layout)
 {
-	int	i;
+	int i;
 
 	if (!map_layout)
-		return ;
+		return;
 	i = 0;
 	while (map_layout[i])
 	{
@@ -40,13 +40,13 @@ void	free_map(char **map_layout)
 	free(map_layout);
 }
 
-void	free_all_gamedata(t_map *level)
+void free_all_gamedata(t_game *level)
 {
 	if (level->mini_libx.game)
 	{
 		mlx_clear_window(level->mini_libx.game, level->mini_libx.session);
 		mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
-#ifdef __linux__  // Only include this part on Linux
+#ifdef __linux__ // Only include this part on Linux
 		mlx_destroy_display(level->mini_libx.game);
 #endif
 		free(level->mini_libx.game);
