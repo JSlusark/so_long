@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:42:30 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/15 11:30:51 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void free_all_gamedata(t_game *level)
 		free(level->mini_libx.game);
 	}
 	free_sprite(level->character_data);
+	free_map(level->map_dup); // moved as this is needed from replaying level
 	free_map(level->map_array);
 	free(level);
 }

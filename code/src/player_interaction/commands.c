@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 12:33:33 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/07 21:04:00 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,54 +50,95 @@ void change_player_texture(int keycode, t_game *level)
 	}
 }
 
-void rerender_game(t_game *level)
+void reset_map(char **map_dup, t_game *game)
 {
-	get_chara_position(level->map_array, level->character_data);
-	render_map(level->mini_libx.img, level->map_array, level,
-			   level->mini_libx);
-	render_moves(level);
+
+	int i = 0;
+	while (game->map_array[i])
+	{
+		// if string compoare fails
+		ft_strlcpy(game->map_array[i], map_dup[i], game->width);
+		i++;
+	}
+
+	i = 0;
+	printf("MAP_DUP:\n");
+	while (game->map_array[i])
+	{
+		// print map_dup
+		printf("%s", map_dup[i]);
+		i++;
+	}
+	i = 0;
+	printf("MAP_ARRAY:\n");
+	while (game->map_array[i])
+	{
+		// print map_dup
+		printf("%s", game->map_array[i]);
+		i++;
+	}
 }
 
-void change_map(char *direction, char *character, t_game *level)
+void change_map(char *direction, char *character, t_game *game)
 {
-	if (*direction == '1' || (*direction == 'E' && level->loot_n != 0))
+	if (*direction == '1' || (*direction == 'E' && game->loot_n != 0))
 		return;
 	else if (*direction == 'K')
 	{
-		level->moves++;
-		ft_printf("STEPS: %d\n", level->moves);
+		game->moves++;
+		ft_printf("STEPS: %d\n", game->moves);
 		// ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
-		level->lives--;
-		level->death = true;
-		// mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
-		load_map(level->all_levels, level); // as no need to change the level here
-											// free_all_gamedata(level);
-											// exit(0);
+		game->lives--;
+		// game->moves = 0;
+		game->activation = 0;
+		// game->death = true;
+		// mlx_destroy_window(game->mini_libx.game, game->mini_libx.session);
+		// load_map(game->all_levels, level); // as no need to change the level here
+		// 									// free_all_gamedata(level);
+		// 									// exit(0);
+		if (game->lives == 0)
+		{
+			ft_printf("you lost all your lives :( you dead");
+			exit(0);
+		}
+		// game->death = false;
+		ft_printf("you lost! Lives remaining: %d\n", game->lives);
+		// free_map(game->map_array);
+		// if (create_map_dup(game->map_dup, game))
+		// {
+		// reset_map(game->map_dup, game);
+		print_map(game->map_array);
+		rerender_game(game);
+		return;
+		// }
 	}
-	else if (*direction == 'E' && level->loot_n == 0)
+	else if (*direction == 'E' && game->loot_n == 0)
 	{
-		level->moves++;
-		ft_printf("STEPS: %d\n", level->moves);
+		game->moves++;
+		ft_printf("STEPS: %d\n", game->moves);
 		// ft_printf("YOU WON!\n");
 		// free_all_gamedata(level);
-		mlx_destroy_window(level->mini_libx.game, level->mini_libx.session);
+		mlx_destroy_window(game->mini_libx.game, game->mini_libx.session);
 
-		load_map(level->all_levels, level);
-		level->mini_libx.session = mlx_new_window(level->mini_libx.game,
-												  (level->pixels * level->width), (level->pixels * level->height),
-												  "SO_LONG");
-		mlx_key_hook(level->mini_libx.session, key_hook, level);
-
+		load_map(game->all_levels, game);
+		game->mini_libx.session = mlx_new_window(game->mini_libx.game,
+												 (game->pixels * game->width), (game->pixels * game->height),
+												 "SO_LONG");
+		mlx_key_hook(game->mini_libx.session, key_hook, game);
+		ft_printf("Level %d won!\n", game->level_i);
+		return;
 		//
 		// exit(0);
 	}
 	else if (*direction == 'C')
-		level->loot_n--;
-	level->moves++;
-	ft_printf("STEPS: %d\n", level->moves);
+	{
+		game->loot_n--;
+	}
+	game->moves++;
+	ft_printf("STEPS: %d\n", game->moves);
 	*direction = *character;
 	*character = '0';
-	check_exit_update(level);
+	check_exit_update(game);
 }
 
 int key_hook(int keycode, t_game *level)

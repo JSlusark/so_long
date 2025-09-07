@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/15 11:28:23 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ void verify_playability(t_game *level)
 		exit(1);
 	}
 	exit_check(level);
-	free_map(level->map_dup);
+	// free_map(level->map_dup); // TODO: free at end!!
 }

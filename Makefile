@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2025/08/13 11:49:05 by jslusark         ###   ########.fr        #
+#    Updated: 2025/09/07 21:13:25 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,18 +33,19 @@ REMOVE = rm -rf
 UNAME := $(shell uname)
 
 # Directories
-LIBFT_DIR = code/libft
-PRINTF_DIR = code/ft_printf
+LIBFT_DIR = code/libs/libft
+PRINTF_DIR = code/libs/ft_printf
 OBJ_DIR = code/obj
+SRC_DIR = code/src
 
 
 # Platform-specific settings
 ifeq ($(UNAME), Linux)
-    MLX_DIR = code/minilibx-linux
+    MLX_DIR = code/libs/minilibx-linux
     MLX_LIB = $(MLX_DIR)/libmlx.a
     EXT_LIBS = -L/usr/X11/lib -lXext -lX11 -lm -lbsd
 else ifeq ($(UNAME), Darwin)
-    MLX_DIR = code/mlx-apple
+    MLX_DIR = code/libs/mlx-apple
     MLX_LIB = $(MLX_DIR)/libmlx.a
     EXT_LIBS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 endif
@@ -54,22 +55,24 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 
 # Source files
-SRC = code/src/main.c \
-	code/src/map_data/data_collection.c \
-	code/src/map_data/get_map.c \
-	code/src/map_data/get_next_line.c \
-	code/src/map_data/map_validation.c \
-	code/src/sprite_data/sprite_validation.c \
-	code/src/sprite_data/get_chara_position.c \
-	code/src/rendering/render_map.c \
-	code/src/rendering/verify_playability.c \
-	code/src/rendering/fill_checks.c \
-	code/src/player_interaction/commands.c \
-	code/src/player_interaction/close_game.c \
-	code/src/memory_handling/freeing_functions.c \
-	code/src/memory_handling/allocation_functions.c \
-	code/src/rendering/animation.c \
-	code/src/error_handling/testing_functions.c
+SRC = $(SRC_DIR)/main.c \
+	$(SRC_DIR)/error_handling/testing_functions.c \
+	$(SRC_DIR)/memory_handling/allocate_data.c \
+	$(SRC_DIR)/memory_handling/free_data.c \
+	$(SRC_DIR)/player_interaction/close_game.c \
+	$(SRC_DIR)/player_interaction/commands.c \
+	$(SRC_DIR)/rendering/animation.c \
+	$(SRC_DIR)/rendering/character_position.c \
+	$(SRC_DIR)/rendering/render_map.c \
+	$(SRC_DIR)/rendering/reload_map.c \
+	$(SRC_DIR)/rendering/render_ui.c \
+	$(SRC_DIR)/validate_game_data/fill_checks.c \
+	$(SRC_DIR)/validate_game_data/verify_playability.c \
+	$(SRC_DIR)/validate_game_data/data_collection.c \
+	$(SRC_DIR)/validate_game_data/get_map.c \
+	$(SRC_DIR)/validate_game_data/get_next_line.c \
+	$(SRC_DIR)/validate_game_data/map_validation.c \
+	$(SRC_DIR)/validate_game_data/sprite_validation.c \
 
 # OBJ = $(SRC:.c=.o)
 OBJ = $(patsubst code/%.c,$(OBJ_DIR)/%.o,$(SRC))

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2025/08/13 12:38:27 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/07 20:44:56 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,31 @@ static void launch_game(char **map_array, t_game *level)
 
 void load_map(t_level *levels, t_game *game)
 {
-	if (game->death)
+	// ft_printf("%s", game->map_dup[1]);
+	// if (game->death)
+	// {
+	if (game->lives == 0)
 	{
-		if (game->lives == 0)
-		{
-			ft_printf("you lost all your lives :( you dead");
-			exit(0);
-		}
-		game->death = false;
-		ft_printf("you lost! Lives remaining: %d\n", game->lives);
-		// load lost life img
+		ft_printf("you lost all your lives :( you dead");
+		exit(0);
 	}
-	else
-	{
-		game->level_i++; //
-	}
+	// game->death = false;
+	// ft_printf("you lost! Lives remaining: %d\n", game->lives);
+	// load lost life img
+	// }
+	// else
+	// {
+	game->level_i++; // if lives are still there it means that we go next level
+	// }
 	game->activation = 0;
 	if (!levels[game->level_i].level_path)
 	{
-		// game->end_game = true;
+		// game->end_game = true; // may be useful for the start/endgame section
 		ft_printf("you've won!");
-		exit(0);
+		exit(0); // go back to start game
 	}
 	game->level_file = game->all_levels[game->level_i].level_path;
-	game->level_loading_file = game->all_levels[game->level_i].loading_path;
+	game->start_level_screen = game->all_levels[game->level_i].start_level_screen;
 	game->map_array = get_map(game->level_file, game);
 	// instead verify all games before the gane starts so i just call the old/new map
 	// while levels is not null do a loop and chek all the maps then call load map

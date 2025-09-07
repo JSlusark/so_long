@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2025/08/13 12:26:20 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/07 21:59:06 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@
 #define RIGHT_KEY 65363
 #endif
 
-#include "code/ft_printf/ft_printf.h"
-#include "code/libft/libft.h"
-#include "code/minilibx-linux/mlx.h"
+#include "code/libs/ft_printf/ft_printf.h"
+#include "code/libs/libft/libft.h"
+#include "code/libs/minilibx-linux/mlx.h"
 #include <fcntl.h>
 #include <math.h>
 #include <limits.h>
@@ -66,7 +66,7 @@ typedef struct s_lib
 typedef struct s_level
 {
 	char *level_path;
-	char *loading_path;
+	char *start_level_screen;
 } t_level;
 
 typedef struct s_coord
@@ -99,15 +99,19 @@ typedef struct s_game
 	int loot_n;
 	int moves;
 	t_sprite *character_data;
-	char *character_img;
+	// character animation
 	char *char_frame_0;
 	char *char_frame_1;
 	char *char_frame_2;
+	// sprites
+	char *character_img;
 	char *door_img;
 	char *floor_img;
 	char *loot_img;
 	char *wall_img;
 	char *enemy_img;
+	// UI
+	char *heart_icon;
 	int last_c;
 	int last_r;
 	int activation;
@@ -118,7 +122,7 @@ typedef struct s_game
 	char *you_lose_screen;
 	int level_i;
 	char *level_file;
-	char *level_loading_file;
+	char *start_level_screen;
 } t_game;
 
 char **get_map(char *file, t_game *map_data);
@@ -152,11 +156,11 @@ void reach_enemies(int y, int x, t_game *level);
 int collect_loot(int y, int x, int *reachable_loot, t_game *level);
 void rerender_game(t_game *level);
 int animation(t_game *level);
-void render_moves(t_game *level); // flickers on vm ubuntu (not on mac)
+void show_status_bar(t_game *level); // flickers on vm ubuntu (not on mac)
 
 void load_map(t_level *levels, t_game *level);
 
 // testing functions
-// void			print_chara_data(t_sprite *c);
-// void			print_map(char **map_array);
+void print_chara_data(t_sprite *c);
+void print_map(char **map_array);
 #endif

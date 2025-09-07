@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:26:37 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/08/15 11:42:08 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int create_map_dup(char **map_dup, t_game *level)
 		if (!map_dup[i])
 		{
 			ft_printf("Error: failed strdup on line %i\n", i);
+			// exit not return
 			return (0);
 		}
 		i++;

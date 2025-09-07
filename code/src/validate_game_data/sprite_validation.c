@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:25:30 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:17:48 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,27 @@ static int verify_sprites(void)
 	return (1);
 }
 
+static int verify_ui(void)
+{
+	int heart_icon;
+
+	heart_icon = open("textures/xpm/heart_icon.xpm", O_RDWR);
+	if (heart_icon < 0)
+		return (0);
+	close(heart_icon);
+	return (1);
+}
+
 void collect_sprites(char **map_array, t_game *level)
 {
-	if (!verify_sprites() || !verify_bonus_sprites() || !verify_animation_sprites())
+	if (!verify_sprites() || !verify_bonus_sprites() || !verify_animation_sprites() || !verify_ui())
 	{
 		free_map(map_array);
 		free(level);
 		ft_printf("Error: unable to access one or more sprites\n");
 		exit(1);
 	}
+	// switch to mlx_xpm_file to image pass
 	level->char_frame_0 = "textures/xpm/down_0.xpm";
 	level->char_frame_1 = "textures/xpm/down_1.xpm";
 	level->char_frame_2 = "textures/xpm/down_2.xpm";
@@ -97,4 +109,5 @@ void collect_sprites(char **map_array, t_game *level)
 	level->wall_img = "textures/xpm/wall.xpm";
 	level->enemy_img = "textures/xpm/enemy.xpm";
 	level->pixels = 64;
+	// level->heart_icon = "textures/xpm/heart_icon.xpm";
 }
