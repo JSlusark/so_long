@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/08 00:53:46 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 01:01:59 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void reset_map(char **map_dup, t_game *game)
 	while (game->map_array[i])
 	{
 		// if string compoare fails
-		ft_strlcpy(game->map_array[i], map_dup[i], game->width);
+		ft_strlcpy(game->map_array[i], map_dup[i], game->width + 1);
 		i++;
 	};
 	// game->death = true;
