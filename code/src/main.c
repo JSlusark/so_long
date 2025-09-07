@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2025/09/07 20:44:56 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:47:25 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void load_map(t_level *levels, t_game *game)
 	// {
 	game->level_i++; // if lives are still there it means that we go next level
 	// }
-	game->activation = 0;
+	game->exit_active = 0;
 	if (!levels[game->level_i].level_path)
 	{
 		// game->end_game = true; // may be useful for the start/endgame section
@@ -69,10 +69,13 @@ void load_map(t_level *levels, t_game *game)
 	// instead verify all games before the gane starts so i just call the old/new map
 	// while levels is not null do a loop and chek all the maps then call load map
 	verify_format(game->map_array, game);
-	collect_sprites(game->map_array, game);
 	allocate_chara_data(game);
 	get_chara_position(game->map_array, game->character_data);
 	verify_playability(game);
+	create_map_dup(game->map_dup, game);
+	game->loot_n = game->loot_n_remaining;
+	printf("total loot_n_remaining %d\n", game->loot_n_remaining);
+	printf("total loot_n %d\n", game->loot_n);
 	// show loading page
 }
 
@@ -101,6 +104,7 @@ int main()
 	// level->level_i = -1;
 	game->lives = 3;
 	game->death = false;
+	collect_sprites(game->map_array, game); // collect creatives
 	load_map(game->all_levels, game);
 	launch_game(game->map_array, game);
 	// free_all_gamedata(level);

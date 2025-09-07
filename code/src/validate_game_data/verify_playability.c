@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:35:45 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/15 11:28:23 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:27:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void verify_playability(t_game *level)
 	y = level->character_data->curr_i->y;
 	enemy_check(level, y, x);
 	reachable_loot = collect_loot(y, x, &reachable_loot, level);
-	if (reachable_loot != level->loot_n)
+	if (reachable_loot != level->loot_n_remaining)
 	{
 		ft_printf("Error: Could not reach %d out of %d loot\n",
-				  level->loot_n - reachable_loot, level->loot_n);
+				  level->loot_n_remaining - reachable_loot, level->loot_n_remaining);
 		free_map(level->map_dup);
 		free_all_gamedata(level);
 		exit(1);

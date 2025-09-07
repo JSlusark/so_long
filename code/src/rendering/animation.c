@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 08:57:16 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:08:15 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int animation(t_game *level)
 	static int char_animation = 0;
 	char_animation = active_char_frames(level, char_animation);
 	char_animation++;
-	if (level->activation == 1)
+	if (level->exit_active == 1)
 	{
 		exit_animation = active_exit_frames(level, exit_animation);
 		exit_animation++;

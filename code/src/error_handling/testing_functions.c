@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:34:27 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:43:57 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,13 @@ void print_controls(t_game *level, char *direction)
 	ft_printf("CH position map_arr[%d][%d], symbol %c\n",
 			  level->character_data->curr_i->x, level->character_data->curr_i->y,
 			  *(level->character_data->curr_i->ptr));
+}
+void print_level_data(t_game *level)
+{
+	printf("total death %d\n", level->death);
+	printf("total exit_active %d\n", level->exit_active);
+	printf("total lives %d\n", level->lives);
+	printf("total loot_n_remaining %d\n", level->loot_n_remaining);
+	printf("total loot_n %d\n", level->loot_n);
+	printf("total moves %d\n", level->moves);
 }

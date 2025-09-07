@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 13:36:59 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:27:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int collect_loot(int y, int x, int *reachable_loot, t_game *level)
 {
 	if (x < 0 || x >= level->height || y < 0 || y >= level->width)
 		return (0);
-	if (level->map_dup[x][y] == '1' || level->map_dup[x][y] == ' ' || ((*reachable_loot) != level->loot_n && level->map_dup[x][y] == 'E') || level->map_dup[x][y] == 'K')
+	if (level->map_dup[x][y] == '1' || level->map_dup[x][y] == ' ' || ((*reachable_loot) != level->loot_n_remaining && level->map_dup[x][y] == 'E') || level->map_dup[x][y] == 'K')
 	{
 		if (level->map_dup[x][y] == 'E')
 			level->map_dup[x][y] = ' ';
@@ -104,7 +104,7 @@ int collect_loot(int y, int x, int *reachable_loot, t_game *level)
 	collect_loot(y, x + 1, reachable_loot, level);
 	collect_loot(y - 1, x, reachable_loot, level);
 	collect_loot(y + 1, x, reachable_loot, level);
-	if ((*reachable_loot) == level->loot_n && level->map_dup[x][y] == 'E')
+	if ((*reachable_loot) == level->loot_n_remaining && level->map_dup[x][y] == 'E')
 		level->map_dup[x][y] = ' ';
 	return (*reachable_loot);
 }

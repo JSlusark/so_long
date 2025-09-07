@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 19:07:10 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 11:55:05 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:27:20 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int has_enough_sprites(char **map, t_game *map_data)
 		ft_printf("- K: %d (needs to be 1 or more) \n", e);
 		return (0);
 	}
-	map_data->loot_n = c;
+	map_data->loot_n_remaining = c;
 	map_data->moves = 0;
 	return (1);
 }

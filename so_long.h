@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2025/09/07 21:59:06 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:27:32 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,22 +89,24 @@ typedef struct s_sprite
 typedef struct s_game
 {
 	t_lib mini_libx;
-	int lives;
-	bool death;
+	// map data
+	t_level *all_levels;
+	int level_i;
+	char *level_file;
 	char **map_array;
 	char **map_dup;
+	int last_c;
+	int last_r;
 	int width;
 	int height;
 	int pixels;
-	int loot_n;
-	int moves;
+	// character position
 	t_sprite *character_data;
-	// character animation
+	// sprites
+	char *character_img;
 	char *char_frame_0;
 	char *char_frame_1;
 	char *char_frame_2;
-	// sprites
-	char *character_img;
 	char *door_img;
 	char *floor_img;
 	char *loot_img;
@@ -112,17 +114,18 @@ typedef struct s_game
 	char *enemy_img;
 	// UI
 	char *heart_icon;
-	int last_c;
-	int last_r;
-	int activation;
-	// char *level_array[7]; // 6 levels + NULL
-	t_level *all_levels;
 	char *intro_screen;
 	char *you_won_screen;
 	char *you_lose_screen;
-	int level_i;
-	char *level_file;
 	char *start_level_screen;
+	// game data
+	bool death;
+	int exit_active;
+	int lives;
+	int loot_n;
+	int loot_n_remaining;
+	int moves;
+	// char *level_array[7]; // 6 levels + NULL
 } t_game;
 
 char **get_map(char *file, t_game *map_data);
@@ -163,4 +166,6 @@ void load_map(t_level *levels, t_game *level);
 // testing functions
 void print_chara_data(t_sprite *c);
 void print_map(char **map_array);
+void print_level_data(t_game *level);
+
 #endif

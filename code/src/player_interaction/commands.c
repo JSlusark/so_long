@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/07 21:04:00 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:53:46 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void check_exit_update(t_game *level)
 {
-	if (level->loot_n == 0)
-		level->activation = 1;
+	if (level->loot_n_remaining == 0)
+		level->exit_active = 1;
 }
 
 void change_player_texture(int keycode, t_game *level)
@@ -54,34 +54,29 @@ void reset_map(char **map_dup, t_game *game)
 {
 
 	int i = 0;
+	printf("Map_array and data before reset\n");
+	print_map(game->map_array);
+	print_level_data(game);
 	while (game->map_array[i])
 	{
 		// if string compoare fails
 		ft_strlcpy(game->map_array[i], map_dup[i], game->width);
 		i++;
-	}
-
-	i = 0;
-	printf("MAP_DUP:\n");
-	while (game->map_array[i])
-	{
-		// print map_dup
-		printf("%s", map_dup[i]);
-		i++;
-	}
-	i = 0;
-	printf("MAP_ARRAY:\n");
-	while (game->map_array[i])
-	{
-		// print map_dup
-		printf("%s", game->map_array[i]);
-		i++;
-	}
+	};
+	// game->death = true;
+	game->exit_active = false;
+	game->loot_n_remaining = game->loot_n; // change
+	game->moves = 0;					   // change
+	game->door_img = "textures/xpm/door.xpm";
+	game->character_img = "textures/xpm/chara.xpm";
+	printf("Map_array and data after reset\n");
+	print_map(game->map_array);
+	print_level_data(game);
 }
 
 void change_map(char *direction, char *character, t_game *game)
 {
-	if (*direction == '1' || (*direction == 'E' && game->loot_n != 0))
+	if (*direction == '1' || (*direction == 'E' && game->loot_n_remaining != 0))
 		return;
 	else if (*direction == 'K')
 	{
@@ -90,7 +85,7 @@ void change_map(char *direction, char *character, t_game *game)
 		// ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
 		game->lives--;
 		// game->moves = 0;
-		game->activation = 0;
+		game->exit_active = 0;
 		// game->death = true;
 		// mlx_destroy_window(game->mini_libx.game, game->mini_libx.session);
 		// load_map(game->all_levels, level); // as no need to change the level here
@@ -106,13 +101,12 @@ void change_map(char *direction, char *character, t_game *game)
 		// free_map(game->map_array);
 		// if (create_map_dup(game->map_dup, game))
 		// {
-		// reset_map(game->map_dup, game);
-		print_map(game->map_array);
+		reset_map(game->map_dup, game);
 		rerender_game(game);
 		return;
 		// }
 	}
-	else if (*direction == 'E' && game->loot_n == 0)
+	else if (*direction == 'E' && game->loot_n_remaining == 0)
 	{
 		game->moves++;
 		ft_printf("STEPS: %d\n", game->moves);
@@ -125,6 +119,11 @@ void change_map(char *direction, char *character, t_game *game)
 												 (game->pixels * game->width), (game->pixels * game->height),
 												 "SO_LONG");
 		mlx_key_hook(game->mini_libx.session, key_hook, game);
+		// game->death = true;
+		game->exit_active = false;
+		game->door_img = "textures/xpm/door.xpm";
+		game->character_img = "textures/xpm/chara.xpm";
+
 		ft_printf("Level %d won!\n", game->level_i);
 		return;
 		//
@@ -132,7 +131,7 @@ void change_map(char *direction, char *character, t_game *game)
 	}
 	else if (*direction == 'C')
 	{
-		game->loot_n--;
+		game->loot_n_remaining--;
 	}
 	game->moves++;
 	ft_printf("STEPS: %d\n", game->moves);
