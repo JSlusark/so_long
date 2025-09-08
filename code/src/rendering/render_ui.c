@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/08 00:56:07 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 18:11:47 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void show_status_bar(t_game *level)
 
 	i = 0;
 	level->heart_icon = mlx_xpm_file_to_image(level->mini_libx.game,
-											  "textures/xpm/heart_icon.xpm", &w, &h);
+											  "assets/xpm/heart_icon.xpm", &w, &h);
 	moves_text = ft_itoa(level->moves);
 	if (!moves_text)
 		return; // Handle memory allocation failure

@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:47:31 by jjs               #+#    #+#             */
-/*   Updated: 2025/09/08 00:27:32 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 18:09:21 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 #include "code/libs/ft_printf/ft_printf.h"
 #include "code/libs/libft/libft.h"
 #include "code/libs/minilibx-linux/mlx.h"
+#include "code/src/audio/audio.h"
 #include <fcntl.h>
 #include <math.h>
 #include <limits.h>

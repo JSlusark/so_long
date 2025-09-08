@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 08:57:16 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/08 00:08:15 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:11:23 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ int active_char_frames(t_game *level, int frame_counter)
 int active_exit_frames(t_game *level, int frame_counter)
 {
 	if (frame_counter < 20) // 80
-		level->door_img = "textures/xpm/open_1.xpm";
+		level->door_img = "assets/xpm/open_1.xpm";
 	else if (frame_counter < 40) // 160
-		level->door_img = "textures/xpm/open_2.xpm";
+		level->door_img = "assets/xpm/open_2.xpm";
 	else if (frame_counter < 60) // 240
-		level->door_img = "textures/xpm/open_3.xpm";
+		level->door_img = "assets/xpm/open_3.xpm";
 	else if (frame_counter < 100) // 320
-		level->door_img = "textures/xpm/open_4.xpm";
+		level->door_img = "assets/xpm/open_4.xpm";
 	else if (frame_counter < 140) // 400
-		level->door_img = "textures/xpm/open.xpm";
+		level->door_img = "assets/xpm/open.xpm";
 	else if (frame_counter < 200) // 480
-		level->door_img = "textures/xpm/open_4.xpm";
+		level->door_img = "assets/xpm/open_4.xpm";
 	else
 		frame_counter = 100; // 240
 	return (frame_counter);

@@ -6,7 +6,7 @@
 #    By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/15 17:49:39 by jjs               #+#    #+#              #
-#    Updated: 2025/09/07 21:13:25 by jslusark         ###   ########.fr        #
+#    Updated: 2025/09/08 18:09:49 by jslusark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC = $(SRC_DIR)/main.c \
 	$(SRC_DIR)/validate_game_data/get_next_line.c \
 	$(SRC_DIR)/validate_game_data/map_validation.c \
 	$(SRC_DIR)/validate_game_data/sprite_validation.c \
+	$(SRC_DIR)/audio/audio.c
 
 # OBJ = $(SRC:.c=.o)
 OBJ = $(patsubst code/%.c,$(OBJ_DIR)/%.o,$(SRC))
