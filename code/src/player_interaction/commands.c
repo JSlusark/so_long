@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/08 21:43:49 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 02:53:09 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void reset_map(char **map_dup, t_game *game)
 	stop_sfx();
 	start_music("assets/mp3/level_music.mp3", 0.25f);
 	int i = 0;
-	printf("Map_array and data before reset\n");
-	print_map(game->map_array);
-	print_level_data(game);
+	// printf("Map_array and data before reset\n");
+	// print_map(game->map_array);
+	// print_level_data(game);
 	while (game->map_array[i])
 	{
 		// if string compoare fails
@@ -73,9 +73,9 @@ void reset_map(char **map_dup, t_game *game)
 	game->moves = 0;					   // change
 	game->door_img = "assets/xpm/door.xpm";
 	game->character_img = "assets/xpm/chara.xpm";
-	printf("Map_array and data after reset\n");
-	print_map(game->map_array);
-	print_level_data(game);
+	// printf("Map_array and data after reset\n");
+	// print_map(game->map_array);
+	// print_level_data(game);
 }
 
 void change_map(char *direction, char *character, t_game *game)
@@ -86,7 +86,7 @@ void change_map(char *direction, char *character, t_game *game)
 	if (*direction == 'K')
 	{
 		game->moves++;
-		ft_printf("STEPS: %d\n", game->moves);
+		ft_printf("🐾 STEPS: %d\n", game->moves);
 		// ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
 		game->lives--;
 		play_sfx("assets/mp3/damage.mp3", 0.6f, true);
@@ -96,14 +96,14 @@ void change_map(char *direction, char *character, t_game *game)
 		{
 			// stop_music();
 			// play_sfx("assets/mp3/you_lose.mp3", 0.6f);
-			ft_printf("you lost all your lives :( you dead");
+			ft_printf("💀 You lost all your lives \n🍀 Maybe try again?");
 			stop_music();
 			stop_sfx();
 			exit(0);
 		}
 		// game->death = false;
 		// stop_music();
-		ft_printf("you lost! Lives remaining: %d\n", game->lives);
+		ft_printf("💔You lost! Lives remaining: %d\n", game->lives);
 		// free_map(game->map_array);
 		// if (create_map_dup(game->map_dup, game))
 		// {
@@ -115,11 +115,8 @@ void change_map(char *direction, char *character, t_game *game)
 	else if (*direction == 'E' && game->loot_n_remaining == 0)
 	{
 		game->moves++;
-		ft_printf("STEPS: %d\n", game->moves);
-		// ft_printf("YOU WON!\n");
+		ft_printf("🐾 STEPS: %d\n", game->moves);
 		// free_all_gamedata(level);
-		// stop_music();
-		// stop_sfx();
 		mlx_destroy_window(game->mini_libx.game, game->mini_libx.session);
 
 		load_map(game->all_levels, game);
@@ -136,7 +133,7 @@ void change_map(char *direction, char *character, t_game *game)
 		game->door_img = "assets/xpm/door.xpm";
 		game->character_img = "assets/xpm/chara.xpm";
 
-		ft_printf("Level %d won!\n", game->level_i);
+		ft_printf("🔥You won level %d!🔥\n", game->level_i);
 		return;
 		//
 		// exit(0);
@@ -147,7 +144,7 @@ void change_map(char *direction, char *character, t_game *game)
 		game->loot_n_remaining--;
 	}
 	game->moves++;
-	ft_printf("STEPS: %d\n", game->moves);
+	ft_printf("🐾 STEPS: %d\n", game->moves);
 	*direction = *character;
 	*character = '0';
 	check_exit_update(game);

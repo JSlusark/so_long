@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2025/09/08 20:55:12 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 02:53:11 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void launch_game(char **map_array, t_game *level)
 		exit(1);
 	}
 	// show loading page with start
-	start_music("assets/mp3/menu_music.mp3", 0.25f);
+	start_music("assets/mp3/level_music.mp3", 0.25f);
 	render_map(level->mini_libx.img, map_array, level, level->mini_libx);
 	mlx_hook(level->mini_libx.session, 17, 0L, close_window, level);
 	mlx_key_hook(level->mini_libx.session, key_hook, level);
@@ -49,7 +49,7 @@ void load_map(t_level *levels, t_game *game)
 	{
 		stop_music();
 		stop_sfx();
-		ft_printf("you lost all your lives :( you dead");
+		ft_printf("💀 You lost all your lives \n🍀 Maybe try again?");
 		exit(0);
 	}
 	// game->death = false;
@@ -64,7 +64,8 @@ void load_map(t_level *levels, t_game *game)
 	if (!levels[game->level_i].level_path)
 	{
 		// game->end_game = true; // may be useful for the start/endgame section
-		ft_printf("you've won!");
+		ft_printf("🥳🎉You've won the game!🎉🥳");
+		stop_music();
 		exit(0); // go back to start game
 	}
 	game->level_file = game->all_levels[game->level_i].level_path;
@@ -78,9 +79,8 @@ void load_map(t_level *levels, t_game *game)
 	verify_playability(game);
 	create_map_dup(game->map_dup, game);
 	game->loot_n = game->loot_n_remaining;
-	printf("total loot_n_remaining %d\n", game->loot_n_remaining);
-	printf("total loot_n %d\n", game->loot_n);
-	// show loading page
+	// printf("total loot_n_remaining %d\n", game->loot_n_remaining);
+	// printf("total loot_n %d\n", game->loot_n);
 }
 
 int main()

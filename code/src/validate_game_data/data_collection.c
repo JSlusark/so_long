@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:36:31 by jslusark          #+#    #+#             */
-/*   Updated: 2025/08/13 12:24:40 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 02:45:13 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void collect_size(char **map_array, t_game *map_data)
 	}
 	map_data->height = h;
 	map_data->width = w;
-	printf("MAP %d: \n h:%d w:%d\n", map_data->level_i, map_data->height, map_data->width);
+	printf("✅ LOADED MAP %d - h:%d w:%d\n", map_data->level_i, map_data->height, map_data->width);
 }
 
 void verify_format(char **map_array, t_game *level)
