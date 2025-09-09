@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_ui.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:26:09 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/08 18:11:47 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:21:45 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void show_status_bar(t_game *level)
 	int h = 5;
 
 	i = 0;
-	level->heart_icon = mlx_xpm_file_to_image(level->mini_libx.game,
+	char *heart = mlx_xpm_file_to_image(level->mini_libx.game,
 											  "assets/xpm/heart_icon.xpm", &w, &h);
 	moves_text = ft_itoa(level->moves);
 	if (!moves_text)
@@ -37,9 +37,9 @@ void show_status_bar(t_game *level)
 	while (i < level->lives)
 	{
 		mlx_put_image_to_window(level->mini_libx.game, level->mini_libx.session,
-								level->heart_icon, 145 + i * (h), 8);
+								heart, 145 + i * (h), 8);
 		i++;
 	}
-	//  mlx_destroy_image(g->mini_libx.game, heart); // free after use
+	 mlx_destroy_image(level->mini_libx.game, heart); // free after use
 	free(moves_text);
 }

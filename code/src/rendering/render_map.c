@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:14:37 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/07 22:30:09 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:25:27 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,25 @@ void render_map(void *img, char **map_array, t_game *level, t_lib lib)
 	y = 0;
 	while (map_array[y] != NULL)
 	{
+		
 		x = 0;
 		while (map_array[y][x] != '\0')
 		{
 			img = mlx_xpm_file_to_image(lib.game,
-										get_file(map_array[y][x], level),
-										&level->pixels, &level->pixels);
-			if (img == NULL)
-			{
-				printf("Error: rendering textured to map failed\n");
-				free_all_gamedata(level);
-				exit(1);
+				get_file(map_array[y][x], level),
+				&level->pixels, &level->pixels);
+				if (img == NULL)
+				{
+					printf("Error: rendering textured to map failed\n");
+					free_all_gamedata(level);
+					exit(1);
+				}
+				show_status_bar(level);
+				mlx_put_image_to_window(lib.game, lib.session,
+					img, x * level->pixels, y * level->pixels);
+					mlx_destroy_image(lib.game, img);
+					x++;
+				}
+				y++;
 			}
-			mlx_put_image_to_window(lib.game, lib.session,
-									img, x * level->pixels, y * level->pixels);
-			mlx_destroy_image(lib.game, img);
-			x++;
-		}
-		y++;
-	}
 }
