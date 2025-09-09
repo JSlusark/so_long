@@ -48,39 +48,38 @@ static char *vol_arg(float v)
 #elif defined(__linux__)
 #define MUSIC_PLAYER "paplay"
 #define SFX_PLAYER "paplay"
-static char *vol_arg(float v)
-{
-	(void)v;
-	return NULL;
-} // paplay volume via pactl; skip here
+// No vol_arg needed for paplay
 #endif
 
 void start_music(const char *path, float volume)
 {
-	stop_music();
-	pid_t pid = fork();
-	if (pid == 0)
-	{
-#if defined(__APPLE__)
-		// Loop music: restart on end using a tiny exec loop
-		for (;;)
-		{
-			execlp(MUSIC_PLAYER, MUSIC_PLAYER, "-v", vol_arg(volume), path, (char *)NULL);
-			_exit(1);
-		}
-#elif defined(__linux__)
-		// paplay has no loop flag; simple restart loop
-		for (;;)
-		{
-			execlp(MUSIC_PLAYER, MUSIC_PLAYER, path, (char *)NULL);
-			_exit(1);
-		}
+#if defined(__linux__)
+    (void)volume; // suppress unused warning
 #endif
-	}
-	else if (pid > 0)
-	{
-		g_music_pid = pid;
-	}
+    stop_music();
+    pid_t pid = fork();
+    if (pid == 0)
+    {
+#if defined(__APPLE__)
+        // Loop music: restart on end using a tiny exec loop
+        for (;;)
+        {
+            execlp(MUSIC_PLAYER, MUSIC_PLAYER, "-v", vol_arg(volume), path, (char *)NULL);
+            _exit(1);
+        }
+#elif defined(__linux__)
+        // paplay has no loop flag; simple restart loop
+        for (;;)
+        {
+            execlp(MUSIC_PLAYER, MUSIC_PLAYER, path, (char *)NULL);
+            _exit(1);
+        }
+#endif
+    }
+    else if (pid > 0)
+    {
+        g_music_pid = pid;
+    }
 }
 
 void stop_music(void)
@@ -96,18 +95,20 @@ void stop_music(void)
 static pid_t g_sfx_pid = -1;
 pid_t spawn_sfx(const char *path, float volume) // allows short noises can to overlap
 {
-	pid_t pid = fork();
-	if (pid == 0)
-	{
-#if defined(__APPLE__)
-		execlp(SFX_PLAYER, SFX_PLAYER, "-v", vol_arg(volume), path, (char *)NULL);
-
-#elif defined(__linux__)
-		execlp(SFX_PLAYER, SFX_PLAYER, path, (char *)NULL);
+#if defined(__linux__)
+    (void)volume; // suppress unused warning
 #endif
-		_exit(1);
-	}
-	return pid; // >0 in parent, <0 on error
+    pid_t pid = fork();
+    if (pid == 0)
+    {
+#if defined(__APPLE__)
+        execlp(SFX_PLAYER, SFX_PLAYER, "-v", vol_arg(volume), path, (char *)NULL);
+#elif defined(__linux__)
+        execlp(SFX_PLAYER, SFX_PLAYER, path, (char *)NULL);
+#endif
+        _exit(1);
+    }
+    return pid; // >0 in parent, <0 on error
 }
 
 void play_sfx(const char *path, float volume, bool repeat_sound)

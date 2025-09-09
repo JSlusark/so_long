@@ -6,7 +6,7 @@
 /*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:06:39 by jjs               #+#    #+#             */
-/*   Updated: 2025/09/09 16:23:33 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:52:38 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void launch_game(char **map_array, t_game *level)
 	level->heart_icon = mlx_xpm_file_to_image(level->mini_libx.game,
 											  "assets/xpm/heart_icon.xpm", &w, &h);
 	// show loading page with start
-	start_music("assets/mp3/level_music.mp3", 0.25f);
+	start_music("assets/audio/level_music.wav", 0.25f);
 	render_map(level->mini_libx.img, map_array, level, level->mini_libx);
 	mlx_hook(level->mini_libx.session, 17, 0L, close_window, level);
 	mlx_key_hook(level->mini_libx.session, key_hook, level);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jslusark <jslusark@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: jslusark <jslusark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:13:19 by jslusark          #+#    #+#             */
-/*   Updated: 2025/09/09 02:53:09 by jslusark         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:52:38 by jslusark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void check_exit_update(t_game *level)
 	if (level->loot_n_remaining == 0)
 		level->exit_active = 1;
 	if (level->exit_active)
-		play_sfx("assets/mp3/bubbles.mp3", 0.8f, false);
+		play_sfx("assets/audio/bubbles.wav", 0.8f, false);
 }
 
 void change_player_texture(int keycode, t_game *level)
@@ -56,7 +56,7 @@ void reset_map(char **map_dup, t_game *game)
 {
 	stop_music();
 	stop_sfx();
-	start_music("assets/mp3/level_music.mp3", 0.25f);
+	start_music("assets/audio/level_music.wav", 0.25f);
 	int i = 0;
 	// printf("Map_array and data before reset\n");
 	// print_map(game->map_array);
@@ -82,20 +82,20 @@ void change_map(char *direction, char *character, t_game *game)
 {
 	if (*direction == '1' || (*direction == 'E' && game->loot_n_remaining != 0))
 		return;
-	play_sfx("assets/mp3/walk.mp3", 0.6f, true);
+	play_sfx("assets/audio/walk.wav", 0.6f, true);
 	if (*direction == 'K')
 	{
 		game->moves++;
 		ft_printf("🐾 STEPS: %d\n", game->moves);
 		// ft_printf("SORRY, YOU DEAD.. TRY AGAIN MAYBE? :(\n");
 		game->lives--;
-		play_sfx("assets/mp3/damage.mp3", 0.6f, true);
+		play_sfx("assets/audio/damage.wav", 0.6f, true);
 		// game->moves = 0;
 		game->exit_active = 0;
 		if (game->lives == 0)
 		{
 			// stop_music();
-			// play_sfx("assets/mp3/you_lose.mp3", 0.6f);
+			// play_sfx("assets/audio/you_lose.wav", 0.6f);
 			ft_printf("💀 You lost all your lives \n🍀 Maybe try again?");
 			stop_music();
 			stop_sfx();
@@ -122,7 +122,7 @@ void change_map(char *direction, char *character, t_game *game)
 		load_map(game->all_levels, game);
 		stop_music();
 		stop_sfx();
-		start_music("assets/mp3/level_music.mp3", 0.25f);
+		start_music("assets/audio/level_music.wav", 0.25f);
 
 		game->mini_libx.session = mlx_new_window(game->mini_libx.game,
 												 (game->pixels * game->width), (game->pixels * game->height),
@@ -140,7 +140,7 @@ void change_map(char *direction, char *character, t_game *game)
 	}
 	else if (*direction == 'C')
 	{
-		play_sfx("assets/mp3/collect.mp3", 0.6f, true);
+		play_sfx("assets/audio/collect.wav", 0.6f, true);
 		game->loot_n_remaining--;
 	}
 	game->moves++;
@@ -154,25 +154,25 @@ int key_hook(int keycode, t_game *level)
 {
 	if (keycode == UP_KEY || keycode == W_KEY)
 	{
-		// play_sfx("assets/mp3/walk.mp3", 0.6f);
+		// play_sfx("assets/audio/walk.wav", 0.6f);
 		change_map(level->character_data->up_i->ptr,
 				   level->character_data->curr_i->ptr, level);
 	}
 	else if (keycode == DOWN_KEY || keycode == S_KEY)
 	{
-		// play_sfx("assets/mp3/walk.mp3", 0.6f);
+		// play_sfx("assets/audio/walk.wav", 0.6f);
 		change_map(level->character_data->down_i->ptr,
 				   level->character_data->curr_i->ptr, level);
 	}
 	else if (keycode == LEFT_KEY || keycode == A_KEY)
 	{
-		// play_sfx("assets/mp3/walk.mp3", 0.6f);
+		// play_sfx("assets/audio/walk.wav", 0.6f);
 		change_map(level->character_data->left_i->ptr,
 				   level->character_data->curr_i->ptr, level);
 	}
 	else if (keycode == RIGHT_KEY || keycode == D_KEY)
 	{
-		// play_sfx("assets/mp3/walk.mp3", 0.6f);
+		// play_sfx("assets/audio/walk.wav", 0.6f);
 		change_map(level->character_data->right_i->ptr,
 				   level->character_data->curr_i->ptr, level);
 	}
